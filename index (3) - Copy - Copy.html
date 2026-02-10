@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valentine for Namita</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #ffd1dc; /* pastel pink [web:3] */
+      --btn-yes: #ff6fa5;
+      --btn-no: #ff3b6f;
+      --btn-text: #ffffff;
+      --text-main: #b03060;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #ffe4ee, var(--bg));
+      color: var(--text-main);
+      overflow: hidden;
+      padding: 1rem;
+    }
+
+    .container {
+      text-align: center;
+      padding: 1.5rem;
+      max-width: 480px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .countdown-label {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      color: #ad1457;
+    }
+
+    .countdown {
+      display: inline-flex;
+      gap: 0.9rem;
+      margin-bottom: 1.4rem;
+      font-size: 0.9rem;
+      color: #8b004b;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 0.6rem 1rem;
+      border-radius: 1.25rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .time-block {
+      text-align: center;
+      min-width: 60px;
+    }
+
+    .time-block strong {
+      display: block;
+      font-size: 1.4rem;
+      line-height: 1.2;
+    }
+
+    .time-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.8rem 2.6rem;
+      font-size: 1rem;
+      cursor: pointer;
+      color: var(--btn-text);
+      transition: transform 0.2s ease, box-shadow 0.2s ease,
+        background 0.2s ease;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      touch-action: manipulation;
+    }
+
+    #yesButton {
+      background: linear-gradient(135deg, #ff9acb, var(--btn-yes));
+    }
+
+    #yesButton:hover,
+    #yesButton:focus-visible {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 22px rgba(255, 111, 165, 0.4);
+      outline: none;
+    }
+
+    #noButton {
+      position: fixed;
+      background: linear-gradient(135deg, #ff7b92, var(--btn-no));
+      z-index: 50;
+    }
+
+    #noButton:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Success overlay */
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .success-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1.5rem;
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .success-card h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+      color: #e91e63;
+    }
+
+    .success-card p {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .success-card .subtext {
+      font-size: 0.95rem;
+      color: #ad1457;
+    }
+
+    /* Simple heart/confetti animation [web:7][web:10] */
+    .hearts {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4f8b;
+      font-size: 1.4rem;
+      animation: floatUp 3s linear infinite;
+      opacity: 0.9;
+    }
+
+    .heart:nth-child(2) {
+      left: 20%;
+      animation-delay: 0.4s;
+      color: #ff7bb0;
+    }
+
+    .heart:nth-child(3) {
+      left: 40%;
+      animation-delay: 0.8s;
+      color: #ff4f7d;
+    }
+
+    .heart:nth-child(4) {
+      left: 60%;
+      animation-delay: 1.2s;
+      color: #ff8bbf;
+    }
+
+    .heart:nth-child(5) {
+      left: 80%;
+      animation-delay: 1.6s;
+      color: #ff5f9e;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(120%) scale(0.8);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120%) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .countdown {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: 0.6rem;
+        column-gap: 0.8rem;
+        width: 100%;
+        justify-items: center;
+        border-radius: 1rem;
+        padding: 0.8rem;
+      }
+
+      .time-block {
+        min-width: auto;
+      }
+
+      .time-block strong {
+        font-size: 1.6rem;
+      }
+
+      .time-label {
+        font-size: 0.75rem;
+      }
+
+      button {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="mainView">
+    <h1><span id="nameSpan">Namita</span> will you be my Valentine? ❤️</h1>
+
+    <!-- Countdown -->
+    <div class="countdown-label">
+      Countdown to Valentine’s Day 2026 💌
+    </div>
+    <div class="countdown" id="countdown">
+      <div class="time-block">
+        <strong id="days">0</strong>
+        <div class="time-label">Days</div>
+      </div>
+      <div class="time-block">
+        <strong id="hours">00</strong>
+        <div class="time-label">Hours</div>
+      </div>
+      <div class="time-block">
+        <strong id="minutes">00</strong>
+        <div class="time-label">Minutes</div>
+      </div>
+      <div class="time-block">
+        <strong id="seconds">00</strong>
+        <div class="time-label">Seconds</div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button id="yesButton">Yes 💖</button>
+    </div>
+    <!-- No button is fixed so it sits over everything -->
+    <button id="noButton">No 💔</button>
+  </div>
+
+  <!-- Success screen -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-card">
+      <div class="hearts">
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💗</div>
+        <div class="heart">💓</div>
+        <div class="heart">💞</div>
+      </div>
+      <h2>Yay! You just made me the happiest person 💕</h2>
+      <p class="subtext">Happy Valentine’s Day ❤️</p>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noButton");
+    const yesBtn = document.getElementById("yesButton");
+    const successOverlay = document.getElementById("successOverlay");
+
+    // Center initial "No" button position
+    function centerNoButton() {
+      const rect = noBtn.getBoundingClientRect();
+      const x = (window.innerWidth - rect.width) / 2;
+      const y = window.innerHeight / 2 + 60;
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    // Move "No" button to random safe position (inside viewport)
+    function moveNoButton() {
+      const rect = noBtn.getBoundingClientRect();
+      const maxX = window.innerWidth - rect.width - 10;
+      const maxY = window.innerHeight - rect.height - 10;
+      const minX = 10;
+      const minY = 10;
+
+      const randomX = Math.random() * (maxX - minX) + minX;
+      const randomY = Math.random() * (maxY - minY) + minY;
+
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+    }
+
+    // Trigger success "page"
+    function showSuccess() {
+      successOverlay.style.display = "flex";
+    }
+
+    // YES button redirects to success "page"
+    yesBtn.addEventListener("click", showSuccess);
+
+    // Desktop: run when pointer gets near or over the button
+    noBtn.addEventListener("mouseenter", moveNoButton);
+
+    // Extra safety: if the user somehow manages to click/tap
+    function blockNoAction(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      moveNoButton();
+    }
+
+    noBtn.addEventListener("click", blockNoAction);
+    noBtn.addEventListener("touchstart", function (event) {
+      blockNoAction(event);
+    });
+
+    // On resize, keep it in view
+    window.addEventListener("resize", () => {
+      centerNoButton();
+    });
+
+    // COUNTDOWN TO VALENTINE'S DAY 2026 (February 14, 2026) [web:20][web:22][web:30]
+    const targetDate = new Date("February 14, 2026 00:00:00").getTime();
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        daysEl.textContent = "0";
+        hoursEl.textContent = "00";
+        minutesEl.textContent = "00";
+        secondsEl.textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysEl.textContent = days;
+      hoursEl.textContent = String(hours).padStart(2, "0");
+      minutesEl.textContent = String(minutes).padStart(2, "0");
+      secondsEl.textContent = String(seconds).padStart(2, "0");
+    }
+
+    // Initial placement and countdown start
+    window.addEventListener("load", () => {
+      centerNoButton();
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    });
+  </script>
+</body>
+</html>
