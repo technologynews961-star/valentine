@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta name="description" content="Prisha Mehndi Art - Professional Mehndi Artist in Mumbai. Bridal, Festival, Arabic & Modern Mehndi. Book on WhatsApp!" />
+  <meta name="theme-color" content="#8B1A4A" />
+  <title>Prisha Mehndi Art | Premium Mehndi Artist Mumbai</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES
+    ============================================================ */
+    :root {
+      --primary:     #8B1A4A;
+      --primary-l:   #b52463;
+      --secondary:   #D4956A;
+      --accent:      #F5C842;
+      --dark:        #1a0a12;
+      --light:       #FFF8F0;
+      --white:       #ffffff;
+      --text:        #333;
+      --muted:       #888;
+      --gradient:    linear-gradient(135deg,#8B1A4A 0%,#c2365e 50%,#D4956A 100%);
+      --gradient2:   linear-gradient(135deg,#D4956A 0%,#F5C842 100%);
+      --shadow:      0 15px 50px rgba(139,26,74,.18);
+      --shadow-sm:   0 5px 20px  rgba(139,26,74,.12);
+      --r:           20px;
+      --r-sm:        12px;
+    }
+
+    /* ============================================================
+       BASE
+    ============================================================ */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; -webkit-tap-highlight-color:transparent; }
+    body { font-family:'Poppins',sans-serif; background:var(--light); color:var(--text); overflow-x:hidden; }
+    img  { max-width:100%; display:block; }
+    a    { color:inherit; }
+
+    ::-webkit-scrollbar       { width:6px; }
+    ::-webkit-scrollbar-track { background:#f5e8f0; }
+    ::-webkit-scrollbar-thumb { background:var(--primary); border-radius:10px; }
+
+    /* ============================================================
+       LOADER
+    ============================================================ */
+    #loader {
+      position:fixed; inset:0; z-index:99999;
+      background:var(--gradient);
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center; gap:20px;
+      transition:opacity .6s ease;
+    }
+    #loader.hide { opacity:0; pointer-events:none; }
+    .ld-logo {
+      font-family:'Dancing Script',cursive;
+      font-size:clamp(1.8rem,5vw,3rem); color:#fff; text-align:center;
+    }
+    .ld-logo span { color:var(--accent); }
+    .ld-icon { font-size:2.5rem; animation:ldSpin 2s linear infinite; }
+    .ld-dots { display:flex; gap:8px; }
+    .ld-dots span {
+      width:11px; height:11px; border-radius:50%;
+      background:rgba(255,255,255,.35);
+      animation:ldBounce 1.2s ease-in-out infinite;
+    }
+    .ld-dots span:nth-child(2){animation-delay:.2s}
+    .ld-dots span:nth-child(3){animation-delay:.4s}
+    @keyframes ldSpin   { to{transform:rotate(360deg)} }
+    @keyframes ldBounce {
+      0%,100%{ transform:translateY(0); background:rgba(255,255,255,.35)}
+      50%    { transform:translateY(-14px); background:var(--accent) }
+    }
+
+    /* ============================================================
+       PROGRESS BAR
+    ============================================================ */
+    #prog {
+      position:fixed; top:0; left:0; height:3px; width:0%;
+      background:var(--gradient2); z-index:9999;
+      transition:width .1s linear;
+    }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .nav {
+      position:fixed; top:0; left:0; width:100%; z-index:1000;
+      padding:18px 5%;
+      display:flex; align-items:center; justify-content:space-between;
+      transition:all .4s ease;
+    }
+    .nav.on {
+      background:rgba(255,255,255,.97);
+      backdrop-filter:blur(20px);
+      box-shadow:0 4px 30px rgba(139,26,74,.12);
+      padding:11px 5%;
+    }
+    /* Logo */
+    .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .logo-mark {
+      width:42px; height:42px; border-radius:50%;
+      background:var(--gradient);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.25rem; color:#fff; flex-shrink:0;
+      box-shadow:var(--shadow-sm);
+    }
+    .logo-txt {
+      font-family:'Dancing Script',cursive;
+      font-size:1.5rem; font-weight:700; color:#fff; line-height:1.1;
+    }
+    .logo-txt small {
+      display:block; font-size:.58rem; letter-spacing:2px;
+      text-transform:uppercase; font-family:'Poppins',sans-serif;
+      font-weight:500; color:var(--accent);
+    }
+    .nav.on .logo-txt      { color:var(--primary); }
+    .nav.on .logo-txt small{ color:var(--secondary); }
+    /* Nav links */
+    .nav-ul {
+      display:flex; align-items:center; list-style:none; gap:26px;
+    }
+    .nav-ul a {
+      text-decoration:none; color:rgba(255,255,255,.9);
+      font-size:.87rem; font-weight:500;
+      position:relative; transition:color .3s;
+    }
+    .nav.on .nav-ul a { color:var(--text); }
+    .nav-ul a::after {
+      content:''; position:absolute; bottom:-4px; left:0;
+      width:0; height:2px; background:var(--primary); transition:width .3s;
+    }
+    .nav-ul a:hover::after, .nav-ul a.cur::after { width:100%; }
+    .nav-ul a:hover { color:var(--accent); }
+    .nav.on .nav-ul a:hover { color:var(--primary); }
+    .nav-cta {
+      background:var(--gradient) !important;
+      color:#fff !important; padding:9px 20px; border-radius:50px;
+      font-weight:600 !important; display:flex; align-items:center; gap:7px;
+      box-shadow:var(--shadow-sm);
+      transition:transform .3s, box-shadow .3s !important;
+    }
+    .nav-cta:hover { transform:translateY(-2px)!important; box-shadow:0 10px 28px rgba(139,26,74,.4)!important; }
+    .nav-cta::after { display:none!important; }
+    /* Hamburger */
+    .ham {
+      display:none; flex-direction:column; gap:5px;
+      cursor:pointer; padding:6px; z-index:1001;
+    }
+    .ham span {
+      display:block; width:24px; height:2.5px;
+      background:var(--primary); border-radius:3px; transition:all .3s;
+    }
+    .ham.open span:nth-child(1){ transform:translateY(7.5px) rotate(45deg); }
+    .ham.open span:nth-child(2){ opacity:0; }
+    .ham.open span:nth-child(3){ transform:translateY(-7.5px) rotate(-45deg); }
+    /* Mobile nav overlay */
+    .nav-ul.open {
+      position:fixed; inset:0;
+      background:rgba(255,255,255,.98);
+      flex-direction:column; justify-content:center;
+      align-items:center; gap:28px;
+      padding:60px 40px;
+    }
+    .nav-ul.open a { color:var(--text)!important; font-size:1.1rem; }
+    .nav-ul.open .nav-cta { color:#fff!important; font-size:1rem; }
+    .nav-ul.open a:hover { color:var(--primary)!important; }
+    /* Overlay backdrop */
+    #navBackdrop {
+      display:none; position:fixed; inset:0; z-index:999;
+      background:rgba(0,0,0,.4); backdrop-filter:blur(4px);
+    }
+    #navBackdrop.show { display:block; }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position:relative; height:100vh; min-height:580px;
+      display:flex; align-items:center; overflow:hidden;
+    }
+    .hero-slides { position:absolute; inset:0; z-index:0; }
+    .hero-slide {
+      position:absolute; inset:0;
+      background-size:cover; background-position:center;
+      opacity:0; transition:opacity 1.8s ease;
+    }
+    .hero-slide::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(120deg,rgba(139,26,74,.82) 0%,rgba(26,10,18,.45) 100%);
+    }
+    .hero-slide.on { opacity:1; }
+    /* SVG mandala */
+    .hero-mandala {
+      position:absolute; right:4%; top:50%; transform:translateY(-50%);
+      z-index:1; opacity:.1; pointer-events:none;
+      width:min(400px,45vw); height:auto;
+    }
+    .hero-body {
+      position:relative; z-index:2;
+      padding:0 5% 0 7%; max-width:680px;
+    }
+    .h-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(245,200,66,.18);
+      border:1px solid rgba(245,200,66,.5);
+      color:var(--accent); padding:7px 18px; border-radius:50px;
+      font-size:.75rem; font-weight:600;
+      letter-spacing:2.5px; text-transform:uppercase; margin-bottom:18px;
+    }
+    .hero h1 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,4.5vw,3.8rem);
+      color:#fff; line-height:1.2; margin-bottom:14px;
+    }
+    .hero h1 .script {
+      font-family:'Dancing Script',cursive;
+      color:var(--accent); font-size:clamp(2.5rem,6vw,4.8rem);
+      display:block; line-height:1.1;
+    }
+    .hero p {
+      color:rgba(255,255,255,.82); font-size:1rem;
+      line-height:1.85; margin-bottom:30px; max-width:500px;
+    }
+    .h-cta { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-p {
+      display:inline-flex; align-items:center; gap:9px;
+      background:var(--gradient); color:#fff; text-decoration:none;
+      padding:13px 28px; border-radius:50px;
+      font-weight:600; font-size:.93rem;
+      box-shadow:0 10px 28px rgba(139,26,74,.45);
+      transition:transform .3s, box-shadow .3s;
+      border:none; cursor:pointer; font-family:'Poppins',sans-serif;
+    }
+    .btn-p:hover { transform:translateY(-3px); box-shadow:0 18px 38px rgba(139,26,74,.5); color:#fff; }
+    .btn-o {
+      display:inline-flex; align-items:center; gap:9px;
+      background:transparent; color:#fff; text-decoration:none;
+      padding:13px 28px; border-radius:50px;
+      font-weight:600; font-size:.93rem;
+      border:2px solid rgba(255,255,255,.65);
+      transition:all .3s;
+    }
+    .btn-o:hover { background:#fff; color:var(--primary); transform:translateY(-3px); }
+    /* Slider dots */
+    .s-dots {
+      position:absolute; bottom:24px; left:50%;
+      transform:translateX(-50%); z-index:3;
+      display:flex; gap:7px;
+    }
+    .s-dot {
+      width:8px; height:8px; border-radius:50%;
+      background:rgba(255,255,255,.4);
+      cursor:pointer; transition:all .3s;
+    }
+    .s-dot.on { background:var(--accent); width:26px; border-radius:5px; }
+    /* Scroll hint */
+    .scroll-hint {
+      position:absolute; bottom:24px; right:6%;
+      z-index:3; color:rgba(255,255,255,.6);
+      font-size:.7rem; text-transform:uppercase;
+      letter-spacing:2px;
+      display:flex; flex-direction:column; align-items:center; gap:5px;
+    }
+    .scroll-hint::after {
+      content:''; width:1px; height:42px;
+      background:linear-gradient(to bottom,rgba(255,255,255,.6),transparent);
+      animation:scrollAnim 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollAnim {
+      0%  { transform:scaleY(0); transform-origin:top; }
+      50% { transform:scaleY(1); transform-origin:top; }
+      100%{ transform:scaleY(0); transform-origin:bottom; }
+    }
+
+    /* ============================================================
+       STATS
+    ============================================================ */
+    .stats {
+      background:var(--gradient);
+      padding:32px 7%;
+      display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+    }
+    .stat { text-align:center; color:#fff; }
+    .s-num {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.8rem,3vw,2.4rem); font-weight:700;
+      display:block; line-height:1;
+    }
+    .s-lbl {
+      font-size:.73rem; opacity:.85;
+      text-transform:uppercase; letter-spacing:1.5px; margin-top:5px;
+    }
+
+    /* ============================================================
+       SECTION COMMON
+    ============================================================ */
+    section { padding:80px 7%; }
+    .sec-hd { text-align:center; margin-bottom:55px; }
+    .sec-tag {
+      display:inline-block;
+      background:rgba(139,26,74,.09); color:var(--primary);
+      padding:5px 17px; border-radius:50px;
+      font-size:.73rem; font-weight:600;
+      letter-spacing:2.5px; text-transform:uppercase; margin-bottom:11px;
+    }
+    .sec-ttl {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.7rem,3vw,2.7rem);
+      color:var(--dark); margin-bottom:13px;
+    }
+    .sec-ttl em { color:var(--primary); font-style:italic; }
+    .sec-ln {
+      width:52px; height:4px; background:var(--gradient);
+      border-radius:2px; margin:0 auto 14px;
+    }
+    .sec-dsc {
+      color:var(--muted); font-size:.95rem; line-height:1.85;
+      max-width:560px; margin:0 auto;
+    }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    .about { background:#fff; }
+    .about-g {
+      display:grid; grid-template-columns:1fr 1.1fr;
+      gap:60px; align-items:center;
+    }
+    .about-img-wrap { position:relative; }
+    .about-img {
+      width:100%; height:480px; object-fit:cover;
+      border-radius:28px; box-shadow:var(--shadow);
+    }
+    /* Mosaic secondary images */
+    .about-mosaic {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:10px; margin-top:12px;
+    }
+    .about-mosaic img {
+      height:140px; object-fit:cover;
+      border-radius:16px; width:100%;
+      box-shadow:var(--shadow-sm);
+      transition:transform .4s;
+    }
+    .about-mosaic img:hover { transform:scale(1.04); }
+    .exp-badge {
+      position:absolute; top:18px; right:-16px;
+      background:var(--gradient); color:#fff;
+      padding:16px 20px; border-radius:16px;
+      text-align:center; box-shadow:var(--shadow);
+      z-index:2;
+    }
+    .exp-badge strong {
+      display:block; font-family:'Playfair Display',serif;
+      font-size:2rem;
+    }
+    .exp-badge span { font-size:.72rem; opacity:.9; }
+    .about-body .sec-tag { text-align:left; }
+    .about-body h2 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.4rem,2.5vw,2rem);
+      color:var(--dark); margin-bottom:16px; text-align:left;
+    }
+    .about-body h2 em { color:var(--primary); }
+    .about-body p { color:#666; line-height:1.9; font-size:.95rem; margin-bottom:16px; }
+    .feat-g {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:10px; margin:20px 0;
+    }
+    .feat-it {
+      display:flex; align-items:center; gap:8px;
+      font-size:.88rem; font-weight:500;
+    }
+    .feat-it i { color:var(--primary); }
+    .a-btns { display:flex; gap:13px; flex-wrap:wrap; margin-top:24px; }
+    /* Social buttons */
+    .wa-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      background:#25D366; color:#fff;
+      padding:11px 22px; border-radius:50px;
+      font-weight:600; font-size:.87rem; text-decoration:none;
+      transition:all .3s; box-shadow:0 5px 18px rgba(37,211,102,.3);
+    }
+    .wa-btn:hover { background:#1db954; transform:translateY(-2px); box-shadow:0 10px 26px rgba(37,211,102,.4); color:#fff; }
+    .ig-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+      color:#fff; padding:11px 22px; border-radius:50px;
+      font-weight:600; font-size:.87rem; text-decoration:none;
+      transition:all .3s; box-shadow:0 5px 18px rgba(220,39,67,.3);
+    }
+    .ig-btn:hover { transform:translateY(-2px); box-shadow:0 10px 26px rgba(220,39,67,.4); color:#fff; }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    .services { background:var(--light); }
+    .srv-g {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+    }
+    .srv-card {
+      background:#fff; border-radius:var(--r);
+      padding:34px 26px; text-align:center;
+      border:2px solid transparent;
+      position:relative; overflow:hidden;
+      transition:all .4s ease;
+    }
+    .srv-card::before {
+      content:''; position:absolute; top:0; left:0;
+      width:100%; height:4px; background:var(--gradient);
+      transform:scaleX(0); transform-origin:left; transition:transform .4s;
+    }
+    .srv-card:hover::before { transform:scaleX(1); }
+    .srv-card:hover { transform:translateY(-10px); box-shadow:var(--shadow); border-color:rgba(139,26,74,.08); }
+    .srv-ic {
+      width:72px; height:72px; border-radius:50%;
+      background:rgba(139,26,74,.09);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.75rem; color:var(--primary);
+      margin:0 auto 20px; transition:all .3s;
+    }
+    .srv-card:hover .srv-ic { background:var(--gradient); color:#fff; }
+    .srv-card h3 { font-family:'Playfair Display',serif; font-size:1.18rem; color:var(--dark); margin-bottom:9px; }
+    .srv-card p  { color:var(--muted); font-size:.86rem; line-height:1.7; margin-bottom:16px; }
+    .srv-pr      { font-size:1.6rem; font-weight:700; color:var(--primary); font-family:'Playfair Display',serif; }
+    .srv-pr small{ font-size:.8rem; color:var(--muted); font-family:'Poppins',sans-serif; font-weight:400; }
+
+    /* ============================================================
+       PLANS
+    ============================================================ */
+    .plans { background:#fff; }
+    .plans-g { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .plan-c {
+      border-radius:var(--r); padding:36px 26px;
+      border:2px solid #f5e0ec;
+      position:relative; overflow:hidden; transition:all .4s;
+    }
+    .plan-c.hot {
+      background:var(--gradient); border-color:transparent;
+      transform:scale(1.04); box-shadow:var(--shadow);
+    }
+    .plan-c:not(.hot):hover { transform:translateY(-8px); box-shadow:var(--shadow); border-color:var(--primary); }
+    .hot-lbl {
+      position:absolute; top:18px; right:-32px;
+      background:var(--accent); color:var(--dark);
+      padding:4px 48px; font-size:.68rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:1px; transform:rotate(45deg);
+    }
+    .p-name { font-family:'Playfair Display',serif; font-size:1.18rem; color:var(--dark); margin-bottom:7px; }
+    .plan-c.hot .p-name { color:#fff; }
+    .p-price { font-family:'Playfair Display',serif; font-size:2.7rem; font-weight:700; color:var(--primary); margin:14px 0 4px; }
+    .plan-c.hot .p-price { color:#fff; }
+    .p-price sup { font-size:1.3rem; }
+    .p-sub  { font-size:.8rem; color:var(--muted); margin-bottom:20px; }
+    .plan-c.hot .p-sub { color:rgba(255,255,255,.75); }
+    .p-feats { list-style:none; margin-bottom:26px; }
+    .p-feats li {
+      display:flex; align-items:center; gap:8px;
+      padding:6px 0; font-size:.86rem;
+      border-bottom:1px solid rgba(139,26,74,.07); color:#555;
+    }
+    .plan-c.hot .p-feats li { border-bottom-color:rgba(255,255,255,.18); color:rgba(255,255,255,.9); }
+    .p-feats li .fa-check { color:var(--primary); }
+    .plan-c.hot .p-feats li .fa-check { color:var(--accent); }
+    .p-feats li .fa-xmark  { color:#ccc; }
+    .btn-plan {
+      display:block; width:100%; padding:12px;
+      border-radius:50px; text-align:center;
+      border:2px solid var(--primary); color:var(--primary);
+      background:transparent; font-family:'Poppins',sans-serif;
+      font-weight:600; font-size:.88rem;
+      text-decoration:none; cursor:pointer; transition:all .3s;
+    }
+    .btn-plan:hover { background:var(--primary); color:#fff; }
+    .plan-c.hot .btn-plan { background:#fff; color:var(--primary); border-color:#fff; }
+    .plan-c.hot .btn-plan:hover { background:var(--accent); border-color:var(--accent); color:var(--dark); }
+
+    /* ============================================================
+       GALLERY  — Updated with 17 Pexels images
+    ============================================================ */
+    .gallery { background:var(--light); }
+    .gf-row {
+      display:flex; gap:10px; justify-content:center;
+      flex-wrap:wrap; margin-bottom:38px;
+    }
+    .gf-btn {
+      padding:8px 20px; border-radius:50px;
+      border:2px solid #e8d0de; background:transparent;
+      cursor:pointer; font-family:'Poppins',sans-serif;
+      font-size:.82rem; font-weight:500; transition:all .3s;
+    }
+    .gf-btn.on, .gf-btn:hover {
+      background:var(--gradient); border-color:transparent; color:#fff;
+    }
+    /* Masonry-style gallery grid */
+    .gal-g {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }
+    .gal-g .gi-tall { grid-row:span 2; }
+    .gal-g .gi-wide { grid-column:span 2; }
+    .gal-item {
+      position:relative; border-radius:14px;
+      overflow:hidden; cursor:pointer;
+      min-height:180px;
+    }
+    .gal-item img {
+      width:100%; height:100%; object-fit:cover;
+      transition:transform .55s cubic-bezier(.4,0,.2,1);
+      display:block;
+    }
+    .gal-item:hover img { transform:scale(1.1); }
+    .gal-ov {
+      position:absolute; inset:0;
+      background:linear-gradient(to top,rgba(139,26,74,.9) 0%,transparent 60%);
+      opacity:0; transition:opacity .3s;
+      display:flex; align-items:flex-end;
+      padding:14px 16px;
+    }
+    .gal-item:hover .gal-ov { opacity:1; }
+    .gal-ov h4 { font-family:'Playfair Display',serif; font-size:.92rem; color:#fff; margin-bottom:2px; }
+    .gal-ov p  { font-size:.72rem; color:rgba(255,255,255,.8); }
+    /* Lightbox */
+    #lb {
+      position:fixed; inset:0; z-index:9999;
+      background:rgba(0,0,0,.96);
+      display:none; align-items:center; justify-content:center; padding:16px;
+    }
+    #lb.show { display:flex; }
+    #lb img { max-width:90%; max-height:88vh; border-radius:14px; object-fit:contain; }
+    .lb-close {
+      position:absolute; top:16px; right:18px;
+      width:46px; height:46px; border-radius:50%;
+      background:rgba(255,255,255,.12); border:none; color:#fff;
+      font-size:1.25rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:background .3s;
+    }
+    .lb-close:hover { background:var(--primary); }
+    .lb-arrow {
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:46px; height:46px; border-radius:50%;
+      background:rgba(255,255,255,.12); border:none; color:#fff;
+      font-size:1.2rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:background .3s;
+    }
+    .lb-arrow:hover { background:var(--primary); }
+    #lbPrev { left:16px; }
+    #lbNext { right:16px; }
+    #lbCounter {
+      position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
+      color:rgba(255,255,255,.6); font-size:.8rem;
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    .testimonials { background:#fff; }
+    .tst-g { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .tst-c {
+      background:var(--light); border-radius:var(--r);
+      padding:30px 26px; transition:all .35s;
+    }
+    .tst-c:hover { transform:translateY(-6px); box-shadow:var(--shadow); }
+    .q-ic { font-size:3.5rem; color:var(--primary); opacity:.18; line-height:.8; font-family:Georgia,serif; }
+    .tst-txt { font-size:.88rem; color:#666; line-height:1.85; font-style:italic; margin:10px 0 20px; }
+    .tst-auth { display:flex; align-items:center; gap:12px; }
+    .tst-av {
+      width:44px; height:44px; border-radius:50%;
+      background:var(--gradient); display:flex; align-items:center;
+      justify-content:center; font-weight:700; font-size:1.05rem; color:#fff; flex-shrink:0;
+    }
+    .tst-nm   { font-weight:600; font-size:.9rem; color:var(--dark); }
+    .tst-role { font-size:.76rem; color:var(--muted); }
+    .stars    { color:var(--accent); font-size:.78rem; margin-top:2px; }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    .contact { background:var(--light); }
+    .ct-g { display:grid; grid-template-columns:1fr 1.1fr; gap:55px; align-items:start; }
+    .ct-l h3 { font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--dark); margin-bottom:14px; }
+    .ct-l p  { color:#666; line-height:1.85; font-size:.93rem; margin-bottom:26px; }
+    .ct-items { display:flex; flex-direction:column; gap:16px; }
+    .ct-it { display:flex; align-items:center; gap:13px; }
+    .ct-ic {
+      width:46px; height:46px; flex-shrink:0;
+      background:var(--gradient); border-radius:11px;
+      display:flex; align-items:center; justify-content:center;
+      color:#fff; font-size:1.05rem; box-shadow:var(--shadow-sm);
+    }
+    .ct-inf strong { display:block; font-size:.8rem; font-weight:600; color:var(--dark); margin-bottom:2px; }
+    .ct-inf a, .ct-inf span { color:var(--primary); text-decoration:none; font-size:.9rem; font-weight:500; }
+    .ct-inf a:hover { text-decoration:underline; }
+    .ct-inf span { color:#666; }
+    .ct-btns { display:flex; gap:12px; flex-wrap:wrap; margin-top:26px; }
+    /* Form */
+    .bk-form { background:#fff; border-radius:var(--r); padding:38px 34px; box-shadow:var(--shadow); }
+    .bk-form h3 { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--dark); margin-bottom:22px; }
+    .fg { margin-bottom:16px; }
+    .fg label { display:block; font-size:.82rem; font-weight:500; color:var(--text); margin-bottom:6px; }
+    .fg input, .fg select, .fg textarea {
+      width:100%; padding:12px 15px;
+      border:2px solid #f0dde8; border-radius:var(--r-sm);
+      font-family:'Poppins',sans-serif; font-size:.86rem;
+      background:var(--light); transition:all .3s; color:var(--text);
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { outline:none; border-color:var(--primary); background:#fff; }
+    .fg textarea { height:100px; resize:vertical; }
+    .fg-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .btn-sub {
+      width:100%; padding:14px;
+      background:var(--gradient); color:#fff; border:none;
+      border-radius:50px; font-family:'Poppins',sans-serif;
+      font-size:.93rem; font-weight:600; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; gap:9px;
+      transition:all .3s; box-shadow:0 8px 24px rgba(139,26,74,.35);
+    }
+    .btn-sub:hover { transform:translateY(-2px); box-shadow:0 15px 36px rgba(139,26,74,.45); }
+
+    /* ============================================================
+       FLOATING BUTTONS
+    ============================================================ */
+    .floats {
+      position:fixed; bottom:24px; right:22px;
+      z-index:900; display:flex; flex-direction:column; gap:11px;
+    }
+    .fl-b {
+      width:52px; height:52px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      text-decoration:none; font-size:1.3rem;
+      box-shadow:0 6px 20px rgba(0,0,0,.2); transition:all .3s;
+      position:relative;
+    }
+    .fl-b:hover { transform:scale(1.16); }
+    .fl-tip {
+      position:absolute; right:60px;
+      background:var(--dark); color:#fff;
+      padding:5px 11px; border-radius:7px;
+      font-size:.73rem; font-family:'Poppins',sans-serif;
+      white-space:nowrap; opacity:0; pointer-events:none;
+      transition:opacity .25s;
+    }
+    .fl-b:hover .fl-tip { opacity:1; }
+    .fl-wa   { background:#25D366; color:#fff; animation:waPulse 2.5s infinite; }
+    .fl-ig   { background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; }
+    .fl-call { background:var(--primary); color:#fff; }
+    @keyframes waPulse {
+      0%,100%{ box-shadow:0 6px 20px rgba(37,211,102,.3) }
+      50%    { box-shadow:0 0 0 14px rgba(37,211,102,0) }
+    }
+    #btt {
+      position:fixed; bottom:24px; left:22px;
+      width:42px; height:42px; border-radius:50%;
+      background:var(--gradient); color:#fff; border:none;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      font-size:.95rem; z-index:900;
+      opacity:0; transform:translateY(20px);
+      transition:all .35s; box-shadow:var(--shadow-sm);
+    }
+    #btt.vis { opacity:1; transform:translateY(0); }
+    #btt:hover { transform:translateY(-4px); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background:#150710;
+      color:rgba(255,255,255,.65);
+      padding:60px 7% 28px;
+    }
+    .ft-top {
+      display:grid; grid-template-columns:2fr 1fr 1fr 1.5fr;
+      gap:40px; margin-bottom:40px;
+    }
+    .ft-brand .ft-logo {
+      font-family:'Dancing Script',cursive;
+      font-size:1.9rem; color:#fff; display:block; margin-bottom:13px;
+    }
+    .ft-brand p { font-size:.86rem; line-height:1.85; margin-bottom:20px; }
+    .ft-soc { display:flex; gap:9px; }
+    .ft-soc a {
+      width:36px; height:36px; border-radius:50%;
+      border:1px solid rgba(255,255,255,.18);
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,.65); text-decoration:none;
+      font-size:.85rem; transition:all .3s;
+    }
+    .ft-soc a:hover { background:var(--primary); border-color:var(--primary); color:#fff; transform:translateY(-3px); }
+    .ft-col h5 {
+      color:#fff; font-size:.93rem; font-weight:600;
+      margin-bottom:16px; padding-bottom:9px; position:relative;
+    }
+    .ft-col h5::after { content:''; position:absolute; bottom:0; left:0; width:26px; height:2px; background:var(--primary); }
+    .ft-lnks { list-style:none; display:flex; flex-direction:column; gap:8px; }
+    .ft-lnks a {
+      color:rgba(255,255,255,.55); text-decoration:none;
+      font-size:.84rem; display:flex; align-items:center; gap:6px;
+      transition:all .3s;
+    }
+    .ft-lnks a:hover { color:var(--secondary); padding-left:4px; }
+    .fc-it { display:flex; gap:10px; margin-bottom:12px; font-size:.84rem; align-items:flex-start; }
+    .fc-it i { color:var(--primary); margin-top:2px; flex-shrink:0; }
+    .fc-it a { color:rgba(255,255,255,.55); text-decoration:none; transition:color .3s; }
+    .fc-it a:hover { color:var(--secondary); }
+    .dev-box {
+      background:rgba(139,26,74,.2);
+      border:1px solid rgba(139,26,74,.3);
+      border-radius:11px; padding:15px 18px;
+      text-align:center; font-size:.83rem;
+      margin-top:20px; line-height:1.7;
+    }
+    .dev-box a { color:var(--accent); font-weight:600; text-decoration:none; }
+    .ft-bot {
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:22px;
+      display:flex; justify-content:space-between; align-items:center;
+      flex-wrap:wrap; gap:10px; font-size:.8rem;
+    }
+    .ft-bot a { color:var(--secondary); text-decoration:none; }
+
+    /* Toast */
+    #toast {
+      position:fixed; bottom:26px; left:50%;
+      transform:translateX(-50%) translateY(100px);
+      background:#25D366; color:#fff;
+      padding:12px 26px; border-radius:50px;
+      font-weight:600; z-index:99999;
+      box-shadow:0 8px 24px rgba(37,211,102,.4);
+      transition:transform .4s cubic-bezier(.4,0,.2,1);
+      display:flex; align-items:center; gap:9px;
+      font-size:.87rem; white-space:nowrap;
+    }
+    #toast.show { transform:translateX(-50%) translateY(0); }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE FIRST ENHANCEMENTS
+    ============================================================ */
+
+    /* Tablet: ≤1100px */
+    @media (max-width:1100px) {
+      .gal-g { grid-template-columns:repeat(3,1fr); }
+      .gal-g .gi-wide { grid-column:span 1; }
+    }
+
+    /* Tablet portrait: ≤960px */
+    @media (max-width:960px) {
+      section { padding:65px 5%; }
+      .stats  { grid-template-columns:repeat(2,1fr); padding:28px 5%; }
+      .about-g, .ct-g { grid-template-columns:1fr; gap:36px; }
+      .about-img { height:320px; }
+      .exp-badge { right:12px; }
+      .srv-g, .plans-g, .tst-g { grid-template-columns:1fr 1fr; }
+      .gal-g  { grid-template-columns:repeat(3,1fr); }
+      .gal-g .gi-tall { grid-row:span 1; }
+      .ft-top { grid-template-columns:1fr 1fr; }
+      .plan-c.hot { transform:scale(1); }
+      .about-mosaic img { height:110px; }
+    }
+
+    /* Mobile: ≤768px */
+    @media (max-width:768px) {
+      .ham { display:flex; }
+      .nav-ul:not(.open) { display:none; }
+      .nav-ul.open { display:flex; }
+      .hero-mandala { display:none; }
+      .scroll-hint  { display:none; }
+      .hero h1 .script { font-size:clamp(2rem,8vw,3.2rem); }
+      .hero p { font-size:.93rem; }
+      .h-cta { flex-direction:column; }
+      .h-cta .btn-p, .h-cta .btn-o { justify-content:center; text-align:center; }
+      .gal-g { grid-template-columns:repeat(2,1fr); }
+      .gal-g .gi-tall,.gal-g .gi-wide { grid-row:span 1; grid-column:span 1; }
+      .srv-g { grid-template-columns:1fr 1fr; }
+      .plans-g { grid-template-columns:1fr; }
+      .tst-g  { grid-template-columns:1fr; }
+      .ft-top { grid-template-columns:1fr; }
+      .ft-bot { flex-direction:column; text-align:center; }
+      .fg-row { grid-template-columns:1fr; }
+      .bk-form { padding:26px 18px; }
+      .floats { bottom:16px; right:14px; }
+      #btt    { bottom:16px; left:14px; width:38px; height:38px; }
+      .ft-top { gap:28px; }
+    }
+
+    /* Small mobile: ≤480px */
+    @media (max-width:480px) {
+      section { padding:50px 4%; }
+      .gal-g  { grid-template-columns:repeat(2,1fr); gap:8px; }
+      .srv-g  { grid-template-columns:1fr; }
+      .about-mosaic { grid-template-columns:1fr 1fr; }
+      .about-mosaic img { height:90px; }
+      .stats  { grid-template-columns:repeat(2,1fr); gap:12px; padding:24px 4%; }
+      .s-num  { font-size:1.7rem; }
+      .h-badge { font-size:.68rem; letter-spacing:1.5px; padding:6px 14px; }
+      .fl-b   { width:46px; height:46px; font-size:1.15rem; }
+      .floats { gap:9px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== LOADER ===== -->
+<div id="loader">
+  <div class="ld-icon">✿</div>
+  <div class="ld-logo">Prisha <span>Mehndi Art</span></div>
+  <div class="ld-dots"><span></span><span></span><span></span></div>
+</div>
+
+<!-- Progress Bar -->
+<div id="prog"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="nav" id="nav">
+  <a href="#home" class="logo">
+    <div class="logo-mark">✿</div>
+    <div class="logo-txt">
+      Prisha Mehndi Art
+      <small>Premium Mehndi Artist</small>
+    </div>
+  </a>
+  <div id="navBackdrop"></div>
+  <ul class="nav-ul" id="navUl">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#plans">Packages</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li>
+      <a href="https://wa.me/919892415819?text=Hi%20Prisha!%20I%20want%20to%20book%20a%20Mehndi%20session%20%F0%9F%8C%B8"
+         target="_blank" class="nav-cta">
+        <i class="fab fa-whatsapp"></i> Book Now
+      </a>
+    </li>
+  </ul>
+  <div class="ham" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-slides">
+    <!-- Hero Slides: using Pexels images via CDN format -->
+    <div class="hero-slide on"  style="background-image:url('https://images.pexels.com/photos/4711086/pexels-photo-4711086.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+    <div class="hero-slide"     style="background-image:url('https://images.pexels.com/photos/5246790/pexels-photo-5246790.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+    <div class="hero-slide"     style="background-image:url('https://images.pexels.com/photos/11019293/pexels-photo-11019293.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+    <div class="hero-slide"     style="background-image:url('https://images.pexels.com/photos/9199387/pexels-photo-9199387.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+    <div class="hero-slide"     style="background-image:url('https://images.pexels.com/photos/8232427/pexels-photo-8232427.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+  </div>
+
+  <!-- Mandala SVG -->
+  <svg class="hero-mandala" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#F5C842" stroke-width="1.2">
+      <circle cx="210" cy="210" r="200"/><circle cx="210" cy="210" r="170"/>
+      <circle cx="210" cy="210" r="140"/><circle cx="210" cy="210" r="110"/>
+      <circle cx="210" cy="210" r="80"/> <circle cx="210" cy="210" r="50"/>
+      <circle cx="210" cy="210" r="22"/>
+      <line x1="10" y1="210" x2="410" y2="210"/>
+      <line x1="210" y1="10" x2="210" y2="410"/>
+      <line x1="68" y1="68" x2="352" y2="352"/>
+      <line x1="352" y1="68" x2="68" y2="352"/>
+      <path d="M210,10 Q260,80 210,150 Q160,80 210,10Z" fill="rgba(245,200,66,.12)"/>
+      <path d="M210,410 Q260,340 210,270 Q160,340 210,410Z" fill="rgba(245,200,66,.12)"/>
+      <path d="M10,210 Q80,260 150,210 Q80,160 10,210Z"   fill="rgba(245,200,66,.12)"/>
+      <path d="M410,210 Q340,260 270,210 Q340,160 410,210Z" fill="rgba(245,200,66,.12)"/>
+      <circle cx="210" cy="210" r="7" fill="#F5C842"/>
+    </g>
+  </svg>
+
+  <div class="hero-body" data-aos="fade-right" data-aos-duration="1000">
+    <div class="h-badge"><i class="fas fa-crown"></i> Premium Mehndi Services Mumbai</div>
+    <h1>
+      Beautiful Art On Your Hands
+      <span class="script">Prisha Mehndi Art</span>
+    </h1>
+    <p>Experience timeless Mehndi artistry blending traditional patterns with modern elegance. From intimate gatherings to grand bridal ceremonies — crafted with passion in Mumbai.</p>
+    <div class="h-cta">
+      <a href="https://wa.me/919892415819?text=Hi%20Prisha!%20I%20want%20to%20book%20a%20Mehndi%20session%20%F0%9F%8C%B8" target="_blank" class="btn-p">
+        <i class="fab fa-whatsapp"></i> Book on WhatsApp
+      </a>
+      <a href="#gallery" class="btn-o"><i class="fas fa-images"></i> View Gallery</a>
+    </div>
+  </div>
+  <div class="s-dots" id="sDots"></div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ===== STATS ===== -->
+<div class="stats">
+  <div class="stat" data-aos="fade-up"><span class="s-num" data-count="500">0</span>+ <span class="s-lbl">Happy Clients</span></div>
+  <div class="stat" data-aos="fade-up" data-aos-delay="80"><span class="s-num" data-count="5">0</span>+ <span class="s-lbl">Years Experience</span></div>
+  <div class="stat" data-aos="fade-up" data-aos-delay="160"><span class="s-num" data-count="50">0</span>+ <span class="s-lbl">Design Styles</span></div>
+  <div class="stat" data-aos="fade-up" data-aos-delay="240"><span class="s-num" data-count="100">0</span>% <span class="s-lbl">Natural Henna</span></div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="about-g">
+    <div class="about-img-wrap" data-aos="fade-right">
+      <img
+        src="https://images.pexels.com/photos/11019293/pexels-photo-11019293.jpeg?auto=compress&cs=tinysrgb&w=700"
+        alt="Prisha Mehndi Art"
+        class="about-img"
+      />
+      <div class="exp-badge" data-aos="zoom-in" data-aos-delay="300">
+        <strong>5+</strong><span>Years of Excellence</span>
+      </div>
+      <!-- Mosaic of 2 extra reference images below main -->
+      <div class="about-mosaic">
+        <img src="https://images.pexels.com/photos/5246790/pexels-photo-5246790.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bridal Henna" loading="lazy" />
+        <img src="https://images.pexels.com/photos/4711086/pexels-photo-4711086.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Henna Arms" loading="lazy" />
+      </div>
+    </div>
+    <div class="about-body" data-aos="fade-left">
+      <span class="sec-tag">About Us</span>
+      <h2>Crafting <em>Beautiful Mehndi</em><br>With Love &amp; Tradition</h2>
+      <p>Welcome to <strong>Prisha Mehndi Art</strong> — where every design tells a story. We blend the timeless tradition of henna artistry with modern creativity to give you designs that are uniquely yours.</p>
+      <p>Based in Mumbai, we specialise in bridal, festival, and custom Mehndi for every occasion. Our premium natural henna ensures deep, long-lasting colour you'll love.</p>
+      <div class="feat-g">
+        <div class="feat-it"><i class="fas fa-check-circle"></i> 100% Natural Henna</div>
+        <div class="feat-it"><i class="fas fa-check-circle"></i> Bridal Specialist</div>
+        <div class="feat-it"><i class="fas fa-check-circle"></i> Home Service Available</div>
+        <div class="feat-it"><i class="fas fa-check-circle"></i> Custom Designs</div>
+        <div class="feat-it"><i class="fas fa-check-circle"></i> Event Bookings</div>
+        <div class="feat-it"><i class="fas fa-check-circle"></i> Competitive Pricing</div>
+      </div>
+      <div class="a-btns">
+        <a href="https://wa.me/919892415819?text=Hi%20Prisha!%20Tell%20me%20more%20about%20your%20services%20%F0%9F%8C%B8" target="_blank" class="wa-btn">
+          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+        <a href="https://www.instagram.com/vishalmhaske__?igsh=MWV2amxxNTJldnFpcA%3D%3D&utm_source=qr" target="_blank" class="ig-btn">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="sec-hd" data-aos="fade-up">
+    <span class="sec-tag">Our Services</span>
+    <h2 class="sec-ttl">What We <em>Offer</em></h2>
+    <div class="sec-ln"></div>
+    <p class="sec-dsc">From intimate gatherings to grand celebrations — a complete range of Mehndi services crafted perfectly for every occasion.</p>
+  </div>
+  <div class="srv-g">
+    <div class="srv-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="srv-ic"><i class="fas fa-ring"></i></div>
+      <h3>Bridal Mehndi</h3>
+      <p>Elaborate full-hand &amp; feet designs for the bride's most special day. Traditional and modern bridal patterns.</p>
+      <div class="srv-pr">₹2,000 <small>/ onwards</small></div>
+    </div>
+    <div class="srv-card" data-aos="fade-up" data-aos-delay="80">
+      <div class="srv-ic"><i class="fas fa-star-and-crescent"></i></div>
+      <h3>Festival Mehndi</h3>
+      <p>Celebrate Eid, Diwali, Karva Chauth, Navratri &amp; all festivals with vibrant festive designs.</p>
+      <div class="srv-pr">₹300 <small>/ onwards</small></div>
+    </div>
+    <div class="srv-card" data-aos="fade-up" data-aos-delay="160">
+      <div class="srv-ic"><i class="fas fa-heart"></i></div>
+      <h3>Engagement Mehndi</h3>
+      <p>Romantic, elegant designs for engagement &amp; betrothal ceremonies. Name personalization available.</p>
+      <div class="srv-pr">₹1,000 <small>/ onwards</small></div>
+    </div>
+    <div class="srv-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="srv-ic"><i class="fas fa-baby"></i></div>
+      <h3>Baby Shower Mehndi</h3>
+      <p>Soft, delicate, meaningful designs specially created for the mother-to-be &amp; baby shower events.</p>
+      <div class="srv-pr">₹800 <small>/ onwards</small></div>
+    </div>
+    <div class="srv-card" data-aos="fade-up" data-aos-delay="80">
+      <div class="srv-ic"><i class="fas fa-users"></i></div>
+      <h3>Group Packages</h3>
+      <p>Discounted packages for kitty parties, ladies' sangeet, corporate events &amp; family functions.</p>
+      <div class="srv-pr">₹200 <small>/ per person</small></div>
+    </div>
+    <div class="srv-card" data-aos="fade-up" data-aos-delay="160">
+      <div class="srv-ic"><i class="fas fa-home"></i></div>
+      <h3>Home Service</h3>
+      <p>Professional Mehndi at the comfort of your home. We arrive with all materials — zero extra charge.</p>
+      <div class="srv-pr">₹500 <small>/ onwards</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PLANS ===== -->
+<section class="plans" id="plans">
+  <div class="sec-hd" data-aos="fade-up">
+    <span class="sec-tag">Packages</span>
+    <h2 class="sec-ttl">Choose Your <em>Perfect Plan</em></h2>
+    <div class="sec-ln"></div>
+    <p class="sec-dsc">Transparent, all-inclusive pricing with zero hidden charges. All packages include premium natural henna.</p>
+  </div>
+  <div class="plans-g">
+    <div class="plan-c" data-aos="fade-up">
+      <h3 class="p-name">✿ Basic</h3>
+      <div class="p-price"><sup>₹</sup>500</div>
+      <p class="p-sub">Simple Elegant Designs</p>
+      <ul class="p-feats">
+        <li><i class="fas fa-check"></i> Simple pattern (1 hand)</li>
+        <li><i class="fas fa-check"></i> Natural henna</li>
+        <li><i class="fas fa-check"></i> ~30 min session</li>
+        <li><i class="fas fa-check"></i> Aftercare guidance</li>
+        <li><i class="fas fa-xmark"></i> Custom design</li>
+        <li><i class="fas fa-xmark"></i> Home service</li>
+      </ul>
+      <a href="https://wa.me/919892415819?text=Hi%20Prisha!%20I%20want%20Basic%20Package%20%E2%82%B9500%20%F0%9F%8C%B8" target="_blank" class="btn-plan">Book Basic Package</a>
+    </div>
+    <div class="plan-c hot" data-aos="fade-up" data-aos-delay="100">
+      <span class="hot-lbl">Most Popular</span>
+      <h3 class="p-name">✿ Premium</h3>
+      <div class="p-price"><sup>₹</sup>1,500</div>
+      <p class="p-sub">Both Hands &amp; Feet</p>
+      <ul class="p-feats">
+        <li><i class="fas fa-check"></i> Full design (both hands)</li>
+        <li><i class="fas fa-check"></i> Premium natural henna</li>
+        <li><i class="fas fa-check"></i> ~90 min session</li>
+        <li><i class="fas fa-check"></i> Custom design choice</li>
+        <li><i class="fas fa-check"></i> Feet design included</li>
+        <li><i class="fas fa-check"></i> Touch-up included</li>
+      </ul>
+      <a href="https://wa.me/919892415819?text=Hi%20Prisha!%20I%20want%20Premium%20Package%20%E2%82%B91500%20%F0%9F%8C%B8" target="_blank" class="btn-plan">Book Premium Package</a>
+    </div>
+    <div class="plan-c" data-aos="fade-up" data-aos-delay="200">
+      <h3 class="p-name">✿ Bridal</h3>
+      <div class="p-price"><sup>₹</sup>5,000</div>
+      <p class="p-sub">Full Bridal Package</p>
+      <ul class="p-feats">
+        <li><i class="fas fa-check"></i> Full bridal coverage</li>
+        <li><i class="fas fa-check"></i> Hands + Feet + Arms</li>
+        <li><i class="fas fa-check"></i> Groom's hand design</li>
+        <li><i class="fas fa-check"></i> Custom bridal motifs</li>
+        <li><i class="fas fa-check"></i> Home service included</li>
+        <li><i class="fas fa-check"></i> 3+ hour premium session</li>
+      </ul>
+      <a href="https://wa.me/919892415819?text=Hi%20Prisha!%20I%20want%20Bridal%20Package%20%E2%82%B95000%20%F0%9F%8C%B8" target="_blank" class="btn-plan">Book Bridal Package</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="gallery" id="gallery">
+  <div class="sec-hd" data-aos="fade-up">
+    <span class="sec-tag">Art Gallery</span>
+    <h2 class="sec-ttl">Our <em>Beautiful Work</em></h2>
+    <div class="sec-ln"></div>
+    <p class="sec-dsc">All original Mehndi photographs. Click any image to view full screen. Use arrows or swipe to browse.</p>
+  </div>
+  <div class="gf-row" data-aos="fade-up">
+    <button class="gf-btn on" data-cat="all">All Designs</button>
+    <button class="gf-btn" data-cat="bridal">Bridal</button>
+    <button class="gf-btn" data-cat="arabic">Arabic</button>
+    <button class="gf-btn" data-cat="festival">Festival</button>
+    <button class="gf-btn" data-cat="feet">Feet Art</button>
+    <button class="gf-btn" data-cat="modern">Modern</button>
+  </div>
+
+  <!-- ===================================================
+       ALL 17 PEXELS IMAGES categorised + mosaic layout
+  ==================================================== -->
+  <div class="gal-g" id="galG">
+
+    <!-- 1: 9199387 - Close up mehndi tattoo (TALL) -->
+    <div class="gal-item gi-tall" data-cat="arabic" data-aos="zoom-in"
+         data-full="https://images.pexels.com/photos/9199387/pexels-photo-9199387.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/9199387/pexels-photo-9199387.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Mehndi Tattoo Close-up" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Arabic Close-up</h4><p>Intricate Arabic Design</p></div></div>
+    </div>
+
+    <!-- 2: 5246790 - Floral bridal hand (WIDE) -->
+    <div class="gal-item gi-wide" data-cat="bridal" data-aos="zoom-in" data-aos-delay="50"
+         data-full="https://images.pexels.com/photos/5246790/pexels-photo-5246790.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/5246790/pexels-photo-5246790.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Bridal Henna Hand" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Floral Bridal Design</h4><p>Traditional Bridal Henna</p></div></div>
+    </div>
+
+    <!-- 3: 13713418 - Hands with mehndi -->
+    <div class="gal-item" data-cat="festival" data-aos="zoom-in" data-aos-delay="80"
+         data-full="https://images.pexels.com/photos/13713418/pexels-photo-13713418.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/13713418/pexels-photo-13713418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hands with Mehndi" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Festival Hands</h4><p>Festival Special</p></div></div>
+    </div>
+
+    <!-- 4: 2784986 - Hand tattoo -->
+    <div class="gal-item" data-cat="modern" data-aos="zoom-in" data-aos-delay="100"
+         data-full="https://images.pexels.com/photos/2784986/pexels-photo-2784986.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/2784986/pexels-photo-2784986.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Mehndi Hand Design" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Modern Hand Art</h4><p>Contemporary Mehndi</p></div></div>
+    </div>
+
+    <!-- 5: 2669709 - Person with mandhi tattoo -->
+    <div class="gal-item" data-cat="arabic" data-aos="zoom-in" data-aos-delay="120"
+         data-full="https://images.pexels.com/photos/2669709/pexels-photo-2669709.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/2669709/pexels-photo-2669709.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Arabic Mandhi Tattoo" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Arabic Mandala</h4><p>Detailed Arabic Work</p></div></div>
+    </div>
+
+    <!-- 6: 5602866 - Black and red flower tattoo -->
+    <div class="gal-item" data-cat="modern" data-aos="zoom-in" data-aos-delay="140"
+         data-full="https://images.pexels.com/photos/5602866/pexels-photo-5602866.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/5602866/pexels-photo-5602866.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Floral Tattoo Mehndi" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Bold Floral Art</h4><p>Modern Style</p></div></div>
+    </div>
+
+    <!-- 7: 8232427 - Hands with mehndi (TALL) -->
+    <div class="gal-item gi-tall" data-cat="festival" data-aos="zoom-in" data-aos-delay="160"
+         data-full="https://images.pexels.com/photos/8232427/pexels-photo-8232427.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/8232427/pexels-photo-8232427.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Mehndi Hands" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Festive Mehndi</h4><p>Eid Special</p></div></div>
+    </div>
+
+    <!-- 8: 5309020 - Traditional henna tattoo (WIDE) -->
+    <div class="gal-item gi-wide" data-cat="bridal" data-aos="zoom-in" data-aos-delay="180"
+         data-full="https://images.pexels.com/photos/5309020/pexels-photo-5309020.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/5309020/pexels-photo-5309020.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Traditional Henna Bridal" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Traditional Bridal Henna</h4><p>Full Hand Bridal</p></div></div>
+    </div>
+
+    <!-- 9: 11019293 - Woman with mehendi art -->
+    <div class="gal-item" data-cat="bridal" data-aos="zoom-in" data-aos-delay="200"
+         data-full="https://images.pexels.com/photos/11019293/pexels-photo-11019293.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/11019293/pexels-photo-11019293.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Woman Mehendi Art" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Bridal Elegance</h4><p>Full Bridal Look</p></div></div>
+    </div>
+
+    <!-- 10: 4711086 - Arms and hands with henna -->
+    <div class="gal-item" data-cat="bridal" data-aos="zoom-in" data-aos-delay="220"
+         data-full="https://images.pexels.com/photos/4711086/pexels-photo-4711086.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/4711086/pexels-photo-4711086.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Arms and Hands Henna" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Full Arm Coverage</h4><p>Bridal Arm Art</p></div></div>
+    </div>
+
+    <!-- 11: 13155761 - Close-up mehndi on hand (TALL) -->
+    <div class="gal-item gi-tall" data-cat="arabic" data-aos="zoom-in" data-aos-delay="240"
+         data-full="https://images.pexels.com/photos/13155761/pexels-photo-13155761.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/13155761/pexels-photo-13155761.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Close-up Mehndi Hand" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Arabic Precision</h4><p>Close-up Detail</p></div></div>
+    </div>
+
+    <!-- 12: 21568655 - Henna on woman feet (WIDE) -->
+    <div class="gal-item gi-wide" data-cat="feet" data-aos="zoom-in" data-aos-delay="260"
+         data-full="https://images.pexels.com/photos/21568655/pexels-photo-21568655.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/21568655/pexels-photo-21568655.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Henna Tattoos on Feet" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Feet Henna Art</h4><p>Bridal Feet Design</p></div></div>
+    </div>
+
+    <!-- 13: 12606670 - Person's hands with mehndi -->
+    <div class="gal-item" data-cat="modern" data-aos="zoom-in" data-aos-delay="280"
+         data-full="https://images.pexels.com/photos/12606670/pexels-photo-12606670.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/12606670/pexels-photo-12606670.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Mehndi Hands" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Modern Mehndi</h4><p>Contemporary Style</p></div></div>
+    </div>
+
+    <!-- 14: 2203167 - Feet tattoo -->
+    <div class="gal-item" data-cat="feet" data-aos="zoom-in" data-aos-delay="300"
+         data-full="https://images.pexels.com/photos/2203167/pexels-photo-2203167.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/2203167/pexels-photo-2203167.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Feet Mehndi Tattoo" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Feet Pattern</h4><p>Intricate Feet Art</p></div></div>
+    </div>
+
+    <!-- 15: 12872541 - Henna tattoos on hands -->
+    <div class="gal-item" data-cat="festival" data-aos="zoom-in" data-aos-delay="320"
+         data-full="https://images.pexels.com/photos/12872541/pexels-photo-12872541.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/12872541/pexels-photo-12872541.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Henna Tattoos Hands" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Festival Pattern</h4><p>Karva Chauth Special</p></div></div>
+    </div>
+
+    <!-- 16: 5309016 - Henna tattoo on hand -->
+    <div class="gal-item" data-cat="arabic" data-aos="zoom-in" data-aos-delay="340"
+         data-full="https://images.pexels.com/photos/5309016/pexels-photo-5309016.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/5309016/pexels-photo-5309016.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Henna Tattoo Hand" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Arabic Floral</h4><p>Detailed Arabic Work</p></div></div>
+    </div>
+
+    <!-- 17: 12872536 - Person's hands with mehndi -->
+    <div class="gal-item" data-cat="festival" data-aos="zoom-in" data-aos-delay="360"
+         data-full="https://images.pexels.com/photos/12872536/pexels-photo-12872536.jpeg?auto=compress&cs=tinysrgb&w=1200">
+      <img src="https://images.pexels.com/photos/12872536/pexels-photo-12872536.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Mehndi Hands Festival" loading="lazy"/>
+      <div class="gal-ov"><div><h4>Festive Hands</h4><p>Diwali Special</p></div></div>
+    </div>
+
+  </div><!-- /.gal-g -->
+</section>
+
+<!-- Lightbox -->
+<div id="lb">
+  <button class="lb-arrow" id="lbPrev"><i class="fas fa-chevron-left"></i></button>
+  <img id="lbImg" src="" alt="Gallery Fullscreen" />
+  <button class="lb-arrow" id="lbNext"><i class="fas fa-chevron-right"></i></button>
+  <button class="lb-close" id="lbClose"><i class="fas fa-times"></i></button>
+  <div id="lbCounter"></div>
+</div>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials" id="testimonials">
+  <div class="sec-hd" data-aos="fade-up">
+    <span class="sec-tag">Client Reviews</span>
+    <h2 class="sec-ttl">What Our <em>Clients Say</em></h2>
+    <div class="sec-ln"></div>
+  </div>
+  <div class="tst-g">
+    <div class="tst-c" data-aos="fade-up">
+      <div class="q-ic">"</div>
+      <p class="tst-txt">Prisha did my bridal Mehndi and it was absolutely stunning! Everyone at my wedding was complimenting the designs. Intricate, beautiful and long-lasting. Highly recommended!</p>
+      <div class="tst-auth">
+        <div class="tst-av">S</div>
+        <div>
+          <div class="tst-nm">Sneha Patil</div>
+          <div class="tst-role">Bride, Dadar Mumbai</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="tst-c" data-aos="fade-up" data-aos-delay="100">
+      <div class="q-ic">"</div>
+      <p class="tst-txt">Got Mehndi done for Eid and the designs were gorgeous and very long-lasting. Very professional, came home on time with premium henna. Will definitely book again!</p>
+      <div class="tst-auth">
+        <div class="tst-av">R</div>
+        <div>
+          <div class="tst-nm">Riya Shaikh</div>
+          <div class="tst-role">Regular Client, Thane</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="tst-c" data-aos="fade-up" data-aos-delay="200">
+      <div class="q-ic">"</div>
+      <p class="tst-txt">Booked for my baby shower and loved every design. Beautiful, soft patterns perfect for the occasion. Very creative, patient and professional. 10/10 experience!</p>
+      <div class="tst-auth">
+        <div class="tst-av">P</div>
+        <div>
+          <div class="tst-nm">Priya Mehta</div>
+          <div class="tst-role">Baby Shower, Navi Mumbai</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="sec-hd" data-aos="fade-up">
+    <span class="sec-tag">Contact Us</span>
+    <h2 class="sec-ttl">Get In <em>Touch</em></h2>
+    <div class="sec-ln"></div>
+    <p class="sec-dsc">Ready to book? We confirm your session within hours. Reach out anytime!</p>
+  </div>
+  <div class="ct-g">
+    <div class="ct-l" data-aos="fade-right">
+      <h3>Let's Create Something Beautiful Together</h3>
+      <p>Available for weddings, festivals, engagements, parties and private sessions across Mumbai &amp; surrounding areas.</p>
+      <div class="ct-items">
+        <div class="ct-it">
+          <div class="ct-ic"><i class="fas fa-phone"></i></div>
+          <div class="ct-inf"><strong>Call Us</strong><a href="tel:+918779266408">+91 87792 66408</a></div>
+        </div>
+        <div class="ct-it">
+          <div class="ct-ic"><i class="fab fa-whatsapp"></i></div>
+          <div class="ct-inf"><strong>WhatsApp</strong><a href="https://wa.me/919892415819" target="_blank">+91 98924 15819</a></div>
+        </div>
+        <div class="ct-it">
+          <div class="ct-ic"><i class="fab fa-instagram"></i></div>
+          <div class="ct-inf"><strong>Instagram</strong><a href="https://www.instagram.com/vishalmhaske__?igsh=MWV2amxxNTJldnFpcA%3D%3D&utm_source=qr" target="_blank">@vishalmhaske__</a></div>
+        </div>
+        <div class="ct-it">
+          <div class="ct-ic"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="ct-inf"><strong>Location</strong><span>Mumbai, Maharashtra, India</span></div>
+        </div>
+      </div>
+      <div class="ct-btns">
+        <a href="https://wa.me/919892415819?text=Hi%20Prisha!%20I%20want%20to%20book%20a%20session%20%F0%9F%8C%B8" target="_blank" class="wa-btn">
+          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+        <a href="https://www.instagram.com/vishalmhaske__?igsh=MWV2amxxNTJldnFpcA%3D%3D&utm_source=qr" target="_blank" class="ig-btn">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </div>
+    </div>
+    <div class="bk-form" data-aos="fade-left">
+      <h3>📅 Book Your Session</h3>
+      <form id="bkForm" onsubmit="sendBooking(event)">
+        <div class="fg-row">
+          <div class="fg">
+            <label>Your Name *</label>
+            <input type="text" id="bk_name" placeholder="Full name" required />
+          </div>
+          <div class="fg">
+            <label>Phone Number *</label>
+            <input type="tel" id="bk_phone" placeholder="+91 XXXXX XXXXX" required />
+          </div>
+        </div>
+        <div class="fg">
+          <label>Service Required</label>
+          <select id="bk_service">
+            <option value="">— Select a service —</option>
+            <option>Bridal Mehndi (₹2,000+)</option>
+            <option>Festival Mehndi (₹300+)</option>
+            <option>Engagement Mehndi (₹1,000+)</option>
+            <option>Baby Shower Mehndi (₹800+)</option>
+            <option>Group Package (₹200/person)</option>
+            <option>Home Service (₹500+)</option>
+          </select>
+        </div>
+        <div class="fg-row">
+          <div class="fg">
+            <label>Preferred Date</label>
+            <input type="date" id="bk_date" />
+          </div>
+          <div class="fg">
+            <label>Preferred Time</label>
+            <input type="time" id="bk_time" />
+          </div>
+        </div>
+        <div class="fg">
+          <label>Special Requests / Message</label>
+          <textarea id="bk_msg" placeholder="Tell us about your event or design preferences..."></textarea>
+        </div>
+        <button type="submit" class="btn-sub">
+          <i class="fab fa-whatsapp"></i> Send Booking via WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand">
+      <span class="ft-logo">✿ Prisha Mehndi Art</span>
+      <p>Creating beautiful Mehndi art that tells your story. Traditional patterns, modern designs and everything in between — crafted with love and precision in Mumbai.</p>
+      <div class="ft-soc">
+        <a href="https://wa.me/919892415819" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/vishalmhaske__?igsh=MWV2amxxNTJldnFpcA%3D%3D&utm_source=qr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="tel:+918779266408" title="Call"><i class="fas fa-phone"></i></a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h5>Quick Links</h5>
+      <ul class="ft-lnks">
+        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+        <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+        <li><a href="#plans"><i class="fas fa-chevron-right"></i> Packages</a></li>
+        <li><a href="#gallery"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Our Services</h5>
+      <ul class="ft-lnks">
+        <li><a href="#services"><i class="fas fa-chevron-right"></i> Bridal Mehndi</a></li>
+        <li><a href="#services"><i class="fas fa-chevron-right"></i> Festival Mehndi</a></li>
+        <li><a href="#services"><i class="fas fa-chevron-right"></i> Engagement</a></li>
+        <li><a href="#services"><i class="fas fa-chevron-right"></i> Group Packages</a></li>
+        <li><a href="#services"><i class="fas fa-chevron-right"></i> Home Service</a></li>
+        <li><a href="#services"><i class="fas fa-chevron-right"></i> Baby Shower</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Contact Info</h5>
+      <div class="fc-it"><i class="fas fa-phone"></i><a href="tel:+918779266408">+91 87792 66408</a></div>
+      <div class="fc-it"><i class="fab fa-whatsapp"></i><a href="https://wa.me/919892415819" target="_blank">+91 98924 15819</a></div>
+      <div class="fc-it"><i class="fab fa-instagram"></i><a href="https://www.instagram.com/vishalmhaske__?igsh=MWV2amxxNTJldnFpcA%3D%3D&utm_source=qr" target="_blank">@vishalmhaske__</a></div>
+      <div class="fc-it"><i class="fas fa-map-marker-alt"></i><span style="color:rgba(255,255,255,.55)">Mumbai, Maharashtra, India</span></div>
+    </div>
+  </div>
+  <div class="dev-box">
+    💻 <strong>Love this website? Want a professional website for your business?</strong><br>
+    Contact <strong>Prisha Service &amp; Solutions</strong> —
+    <a href="tel:+918779266408">+91 87792 66408</a> &nbsp;|&nbsp;
+    <a href="https://wa.me/919892415819?text=Hi!%20I%20want%20a%20professional%20website%20for%20my%20business!" target="_blank">WhatsApp Now</a>
+  </div>
+  <div class="ft-bot">
+    <p>© 2025 <strong style="color:#fff">Prisha Mehndi Art</strong>. All Rights Reserved. |
+       <a href="https://www.instagram.com/vishalmhaske__" target="_blank">Prisha Service &amp; Solutions</a>
+    </p>
+    <p>Made with ❤️ in Mumbai, India</p>
+  </div>
+</footer>
+
+<!-- ===== FLOATING BUTTONS ===== -->
+<div class="floats">
+  <a href="https://www.instagram.com/vishalmhaske__?igsh=MWV2amxxNTJldnFpcA%3D%3D&utm_source=qr"
+     target="_blank" class="fl-b fl-ig">
+    <i class="fab fa-instagram"></i>
+    <span class="fl-tip">Follow on Instagram</span>
+  </a>
+  <a href="https://wa.me/919892415819?text=Hi%20Prisha!%20I%20want%20to%20book%20Mehndi%20%F0%9F%8C%B8"
+     target="_blank" class="fl-b fl-wa">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fl-tip">Book on WhatsApp</span>
+  </a>
+  <a href="tel:+918779266408" class="fl-b fl-call">
+    <i class="fas fa-phone"></i>
+    <span class="fl-tip">Call Now</span>
+  </a>
+</div>
+
+<!-- Back to Top -->
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Toast -->
+<div id="toast"><i class="fab fa-whatsapp"></i> Opening WhatsApp — booking details sent!</div>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+/* =========================================================
+   JAVASCRIPT — Prisha Mehndi Art  (v2 — Pexels Images)
+========================================================= */
+
+// AOS
+AOS.init({ duration:720, once:true, offset:60 });
+
+// --- Loader ---
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const l = document.getElementById('loader');
+    l.classList.add('hide');
+    setTimeout(() => l.style.display='none', 700);
+  }, 1600);
+});
+
+// --- Scroll: navbar / progress / btt / active links ---
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('on', window.scrollY > 55);
+  const p = (window.scrollY / (document.body.offsetHeight - window.innerHeight)) * 100;
+  document.getElementById('prog').style.width = p + '%';
+  document.getElementById('btt').classList.toggle('vis', window.scrollY > 300);
+  // Active nav
+  let cur = '';
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (window.scrollY >= s.offsetTop - 140) cur = s.id;
+  });
+  document.querySelectorAll('.nav-ul a').forEach(a => {
+    a.classList.toggle('cur', a.getAttribute('href') === '#' + cur);
+  });
+}, { passive: true });
+
+// --- Hamburger ---
+const ham        = document.getElementById('ham');
+const navUl      = document.getElementById('navUl');
+const navBdrop   = document.getElementById('navBackdrop');
+function closeMenu() {
+  ham.classList.remove('open');
+  navUl.classList.remove('open');
+  navBdrop.classList.remove('show');
+  document.body.style.overflow = '';
+}
+ham.addEventListener('click', () => {
+  const opening = !navUl.classList.contains('open');
+  if (opening) {
+    ham.classList.add('open');
+    navUl.classList.add('open');
+    navBdrop.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  } else { closeMenu(); }
+});
+navBdrop.addEventListener('click', closeMenu);
+navUl.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+// --- Hero Slider ---
+const slides = document.querySelectorAll('.hero-slide');
+const dotsC  = document.getElementById('sDots');
+let curSlide = 0, sliderTimer;
+slides.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 's-dot' + (i === 0 ? ' on' : '');
+  d.addEventListener('click', () => { goSlide(i); resetTimer(); });
+  dotsC.appendChild(d);
+});
+function goSlide(n) {
+  slides[curSlide].classList.remove('on');
+  dotsC.children[curSlide].classList.remove('on');
+  curSlide = ((n % slides.length) + slides.length) % slides.length;
+  slides[curSlide].classList.add('on');
+  dotsC.children[curSlide].classList.add('on');
+}
+function resetTimer() { clearInterval(sliderTimer); sliderTimer = setInterval(() => goSlide(curSlide + 1), 4500); }
+resetTimer();
+// Touch swipe on hero
+let tStart = 0;
+const heroEl = document.querySelector('.hero');
+heroEl.addEventListener('touchstart', e => { tStart = e.touches[0].clientX; }, { passive:true });
+heroEl.addEventListener('touchend',   e => {
+  const diff = tStart - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) { goSlide(diff > 0 ? curSlide + 1 : curSlide - 1); resetTimer(); }
+}, { passive:true });
+
+// --- Counter Animation ---
+const counters = document.querySelectorAll('.s-num');
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const target = +e.target.dataset.count;
+    let n = 0;
+    const step = Math.max(1, Math.ceil(target / 55));
+    const t = setInterval(() => {
+      n = Math.min(n + step, target);
+      e.target.textContent = n;
+      if (n >= target) clearInterval(t);
+    }, 28);
+    cObs.unobserve(e.target);
+  });
+}, { threshold: 0.6 });
+counters.forEach(c => cObs.observe(c));
+
+// --- Gallery Filter ---
+const allGalItems = Array.from(document.querySelectorAll('.gal-item'));
+document.querySelectorAll('.gf-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('.gf-btn').forEach(b => b.classList.remove('on'));
+    this.classList.add('on');
+    const cat = this.dataset.cat;
+    allGalItems.forEach(item => {
+      const show = (cat === 'all' || item.dataset.cat === cat);
+      item.style.display = show ? 'block' : 'none';
+    });
+  });
+});
+
+// --- Lightbox ---
+let lbIdx = 0;
+function visItems() { return allGalItems.filter(i => i.style.display !== 'none'); }
+const lb    = document.getElementById('lb');
+const lbImg = document.getElementById('lbImg');
+const lbCnt = document.getElementById('lbCounter');
+function openLB(idx) {
+  const items = visItems();
+  lbIdx = ((idx % items.length) + items.length) % items.length;
+  lbImg.src = items[lbIdx].dataset.full;
+  lbCnt.textContent = (lbIdx + 1) + ' / ' + items.length;
+  lb.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB() { lb.classList.remove('show'); document.body.style.overflow = ''; }
+allGalItems.forEach(item => {
+  item.addEventListener('click', () => { const v = visItems(); openLB(v.indexOf(item)); });
+});
+document.getElementById('lbClose').onclick = closeLB;
+document.getElementById('lbPrev').onclick  = () => openLB(lbIdx - 1);
+document.getElementById('lbNext').onclick  = () => openLB(lbIdx + 1);
+lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('show')) return;
+  if (e.key === 'Escape')      closeLB();
+  if (e.key === 'ArrowLeft')   openLB(lbIdx - 1);
+  if (e.key === 'ArrowRight')  openLB(lbIdx + 1);
+});
+// Swipe in lightbox
+let lbTX = 0;
+lb.addEventListener('touchstart', e => { lbTX = e.touches[0].clientX; }, { passive:true });
+lb.addEventListener('touchend',   e => {
+  const diff = lbTX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 45) openLB(diff > 0 ? lbIdx + 1 : lbIdx - 1);
+}, { passive:true });
+
+// --- Booking Form → WhatsApp ---
+function sendBooking(e) {
+  e.preventDefault();
+  const name    = document.getElementById('bk_name').value.trim();
+  const phone   = document.getElementById('bk_phone').value.trim();
+  const service = document.getElementById('bk_service').value || 'Not specified';
+  const date    = document.getElementById('bk_date').value || 'Flexible';
+  const time    = document.getElementById('bk_time').value || 'Flexible';
+  const msg     = document.getElementById('bk_msg').value.trim() || 'No special requests';
+  const text =
+    `Hi Prisha! 🌸 I want to book a Mehndi session.%0A%0A` +
+    `*Name:* ${encodeURIComponent(name)}%0A` +
+    `*Phone:* ${encodeURIComponent(phone)}%0A` +
+    `*Service:* ${encodeURIComponent(service)}%0A` +
+    `*Date:* ${encodeURIComponent(date)}%0A` +
+    `*Time:* ${encodeURIComponent(time)}%0A` +
+    `*Message:* ${encodeURIComponent(msg)}`;
+  showToast();
+  setTimeout(() => window.open(`https://wa.me/919892415819?text=${text}`, '_blank'), 800);
+  e.target.reset();
+}
+
+// --- Toast ---
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3600);
+}
+
+// --- Smooth scroll for all # links ---
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const tgt = document.querySelector(this.getAttribute('href'));
+    if (tgt) { e.preventDefault(); tgt.scrollIntoView({ behavior:'smooth', block:'start' }); }
+  });
+});
+</script>
+</body>
+</html>
