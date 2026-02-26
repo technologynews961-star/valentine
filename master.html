@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prisha Service & Solutions | Website Design & Automation Mumbai</title>
+<meta name="description" content="Professional website design, Google Business setup, QR feedback systems, and business automation for small businesses in Mumbai. MSME Registered.">
+<meta name="keywords" content="website design Mumbai, business automation Mumbai, Google Business setup, QR system, small business website">
+<meta name="author" content="Vishal Mhaske">
+<meta name="robots" content="index, follow">
+<meta name="geo.region" content="IN-MH">
+<meta name="geo.placename" content="Mumbai">
+<meta property="og:title" content="Prisha Service & Solutions | Mumbai Digital Partner">
+<meta property="og:description" content="Professional website design & automation for Mumbai small businesses.">
+<meta property="og:url" content="https://prishaserviceandsolutions.in/">
+<meta property="og:image" content="https://prishaserviceandsolutions.in/logo.jpg">
+<link rel="icon" href="https://prishaserviceandsolutions.in/logo.jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Prisha Service & Solutions","url":"https://prishaserviceandsolutions.in","telephone":"+919892415819","address":{"@type":"PostalAddress","streetAddress":"Samrat Ashok Nagar","addressLocality":"Mumbai","addressRegion":"MH","postalCode":"400099","addressCountry":"IN"},"founder":{"@type":"Person","name":"Vishal Mhaske"},"priceRange":"₹999 - ₹14,999"}
+</script>
+
+<style>
+:root {
+  --p: #020617; --s: #0f172a; --a1: #6366f1; --a2: #a855f7; --a3: #22c55e;
+  --a4: #f59e0b; --a5: #ef4444; --a6: #06b6d4; --w: #fff; --l: #f8fafc;
+  --m: #64748b; --bd: rgba(255,255,255,0.08);
+  --g1: linear-gradient(135deg,#6366f1,#a855f7);
+  --g2: linear-gradient(135deg,#22c55e,#06b6d4);
+  --g3: linear-gradient(135deg,#f59e0b,#ef4444);
+  --sh: 0 20px 60px rgba(0,0,0,0.4);
+  --r: 20px; --rl: 32px;
+  --tr: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;background:var(--p);color:#fff;line-height:1.6;overflow-x:hidden;}
+img{max-width:100%;height:auto;display:block;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+button{cursor:pointer;font-family:inherit;}
+input,textarea,select{font-family:inherit;}
+
+/* BG */
+.bg-wrap{position:fixed;inset:0;z-index:-2;overflow:hidden;background:radial-gradient(ellipse at 20% 20%,#1e1b4b 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,#0d1117 0%,#020617 100%);}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:floatOrb 12s ease-in-out infinite;}
+.o1{width:500px;height:500px;background:rgba(99,102,241,0.12);top:-150px;left:-150px;}
+.o2{width:400px;height:400px;background:rgba(168,85,247,0.10);top:40%;right:-100px;animation-delay:-4s;}
+.o3{width:350px;height:350px;background:rgba(34,197,94,0.08);bottom:-100px;left:30%;animation-delay:-8s;}
+.o4{width:300px;height:300px;background:rgba(6,182,212,0.08);top:20%;left:50%;animation-delay:-2s;}
+@keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(30px,-30px) scale(1.05);}66%{transform:translate(-20px,20px) scale(0.95);}}
+.grid-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.03;background-image:linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px);background-size:60px 60px;}
+
+/* LOADER */
+#loader{position:fixed;inset:0;z-index:99999;background:var(--p);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.5rem;transition:opacity 0.6s ease;}
+#loader.hide{opacity:0;pointer-events:none;}
+.ld-text{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:800;}
+.ld-text span{background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ld-ring{width:50px;height:50px;border-radius:50%;border:3px solid rgba(255,255,255,0.1);border-top-color:#6366f1;border-right-color:#a855f7;animation:spin 0.8s linear infinite;}
+.ld-dots{display:flex;gap:8px;}
+.ld-dots span{width:8px;height:8px;border-radius:50%;background:#6366f1;animation:dotB 1.4s ease-in-out infinite;}
+.ld-dots span:nth-child(2){animation-delay:0.2s;background:#a855f7;}
+.ld-dots span:nth-child(3){animation-delay:0.4s;background:#22c55e;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes dotB{0%,80%,100%{transform:scale(0.6);opacity:0.4;}40%{transform:scale(1);opacity:1;}}
+
+/* SCROLL BAR */
+#sp{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--g1);z-index:9999;box-shadow:0 0 10px rgba(99,102,241,0.8);transition:width 0.1s linear;}
+
+/* UTILS */
+.con{width:100%;max-width:1140px;margin:0 auto;padding:0 1.5rem;}
+.tc{text-align:center;}
+.tg1{background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.tg2{background:var(--g2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.tg3{background:var(--g3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:50px;font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:1px solid;margin-bottom:1rem;}
+.tp{color:#a855f7;border-color:rgba(168,85,247,0.3);background:rgba(168,85,247,0.08);}
+.tg{color:#22c55e;border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.08);}
+.tb{color:#6366f1;border-color:rgba(99,102,241,0.3);background:rgba(99,102,241,0.08);}
+.tc2{color:#06b6d4;border-color:rgba(6,182,212,0.3);background:rgba(6,182,212,0.08);}
+.st{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:1rem;}
+.ss{color:rgba(255,255,255,0.5);font-size:1.05rem;max-width:560px;margin:0 auto 3.5rem;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-weight:700;font-size:0.9rem;border:none;transition:var(--tr);text-transform:uppercase;letter-spacing:0.5px;position:relative;overflow:hidden;}
+.btn:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(0,0,0,0.3);}
+.bg1{background:var(--g1);color:#fff;box-shadow:0 8px 25px rgba(99,102,241,0.4);}
+.bg2{background:var(--g2);color:#fff;box-shadow:0 8px 25px rgba(34,197,94,0.4);}
+.bg3{background:var(--g3);color:#fff;box-shadow:0 8px 25px rgba(245,158,11,0.4);}
+.bgo{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.2);backdrop-filter:blur(10px);}
+.bgo:hover{border-color:#6366f1;background:rgba(99,102,241,0.1);}
+.bw{background:#fff;color:#4f46e5;font-weight:800;}
+.bw:hover{background:#f1f5f9;}
+.sec{padding:6rem 0;}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.165,0.84,0.44,1);}
+.rvl{opacity:0;transform:translateX(-40px);transition:all 0.8s cubic-bezier(0.165,0.84,0.44,1);}
+.rvr{opacity:0;transform:translateX(40px);transition:all 0.8s cubic-bezier(0.165,0.84,0.44,1);}
+.rv.on,.rvl.on,.rvr.on{opacity:1;transform:translate(0,0);}
+.d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}.d4{transition-delay:0.4s;}.d5{transition-delay:0.5s;}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all 0.4s ease;}
+header.sc{background:rgba(2,6,23,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd);box-shadow:0 8px 32px rgba(0,0,0,0.3);}
+.nw{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;}
+.nl{display:flex;align-items:center;gap:12px;cursor:pointer;}
+.nl img{height:42px;width:42px;border-radius:10px;object-fit:cover;background:#1e1b4b;}
+.nlt{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem;line-height:1.2;}
+.nlt small{display:block;font-size:0.6rem;font-weight:500;letter-spacing:2px;color:#22c55e;}
+.nls{display:flex;align-items:center;gap:2rem;}
+.nls a{color:rgba(255,255,255,0.7);font-size:0.88rem;font-weight:600;transition:0.3s;position:relative;padding-bottom:4px;}
+.nls a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--g1);transition:0.3s;border-radius:2px;}
+.nls a:hover{color:#fff;}.nls a:hover::after{width:100%;}
+.ncta{padding:10px 22px;font-size:0.82rem;}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;}
+.hbg span{display:block;width:24px;height:2px;background:#fff;transition:0.3s;border-radius:2px;}
+.hbg.op span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hbg.op span:nth-child(2){opacity:0;}
+.hbg.op span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* MOBILE NAV */
+.mnav{display:none;position:fixed;inset:0;z-index:999;background:rgba(2,6,23,0.97);backdrop-filter:blur(20px);flex-direction:column;justify-content:center;align-items:center;gap:2.5rem;opacity:0;transition:opacity 0.4s;}
+.mnav.op{display:flex;opacity:1;}
+.mnav a{font-size:1.5rem;font-weight:700;color:rgba(255,255,255,0.8);transition:0.3s;}
+.mnav a:hover{color:#fff;}
+.mcl{position:absolute;top:2rem;right:2rem;font-size:2rem;cursor:pointer;color:#fff;background:none;border:none;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:9rem 0 5rem;position:relative;overflow:hidden;}
+.hbadge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.3);padding:8px 20px;border-radius:50px;font-size:0.8rem;font-weight:700;color:#a5b4fc;margin-bottom:2rem;animation:pulse 3s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,0.4);}50%{box-shadow:0 0 0 8px rgba(99,102,241,0);}}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.8rem,8vw,5.5rem);font-weight:800;line-height:1.05;margin-bottom:1.8rem;letter-spacing:-1px;}
+.hsub{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,0.55);max-width:620px;margin:0 auto 3rem;line-height:1.7;}
+.hbtns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.hstats{display:flex;justify-content:center;gap:3rem;margin-top:5rem;flex-wrap:wrap;}
+.stn{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:800;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stl{font-size:0.8rem;color:rgba(255,255,255,0.5);margin-top:4px;letter-spacing:0.5px;}
+.hsc{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:1px;animation:bounce 2s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-8px);}}
+
+/* FLOATING CARDS */
+.fcards{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.fc{position:absolute;background:rgba(255,255,255,0.04);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:14px 18px;font-size:0.78rem;font-weight:600;display:flex;align-items:center;gap:10px;white-space:nowrap;animation:fcA 8s ease-in-out infinite;}
+.fc i{font-size:1.1rem;}
+.fc1{top:20%;left:4%;color:#22c55e;}
+.fc2{top:35%;right:4%;color:#6366f1;animation-delay:-3s;}
+.fc3{bottom:28%;left:5%;color:#f59e0b;animation-delay:-6s;}
+.fc4{bottom:35%;right:5%;color:#a855f7;animation-delay:-1.5s;}
+@keyframes fcA{0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-15px) rotate(1deg);}}
+
+/* MARQUEE */
+.mq{padding:1.5rem 0;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);overflow:hidden;position:relative;}
+.mq::before,.mq::after{content:'';position:absolute;top:0;width:150px;height:100%;z-index:2;}
+.mq::before{left:0;background:linear-gradient(to right,var(--p),transparent);}
+.mq::after{right:0;background:linear-gradient(to left,var(--p),transparent);}
+.mqt{display:flex;width:max-content;animation:mqA 25s linear infinite;}
+.mqi{display:flex;align-items:center;gap:12px;padding:0 2.5rem;font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.45);white-space:nowrap;border-right:1px solid var(--bd);}
+.mqi i{color:#6366f1;}
+@keyframes mqA{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* SERVICES */
+.stabs{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;}
+.tbtn{padding:10px 24px;border-radius:50px;background:rgba(255,255,255,0.05);border:1px solid var(--bd);color:rgba(255,255,255,0.6);font-size:0.85rem;font-weight:600;cursor:pointer;transition:0.3s;}
+.tbtn.ac{background:var(--g1);color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(99,102,241,0.4);}
+.tbtn:hover:not(.ac){background:rgba(255,255,255,0.08);color:#fff;}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem;}
+.sc2{background:rgba(255,255,255,0.03);border:1px solid var(--bd);border-radius:var(--rl);padding:2rem 1.8rem;transition:var(--tr);position:relative;overflow:hidden;}
+.sc2::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--g1);opacity:0;transition:0.4s;}
+.sc2:hover{background:rgba(255,255,255,0.06);border-color:rgba(99,102,241,0.3);transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,0.4);}
+.sc2:hover::before{opacity:1;}
+.si{width:52px;height:52px;border-radius:14px;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+.sip{background:rgba(168,85,247,0.15);color:#c084fc;}
+.sig{background:rgba(34,197,94,0.15);color:#4ade80;}
+.sib{background:rgba(99,102,241,0.15);color:#818cf8;}
+.sia{background:rgba(245,158,11,0.15);color:#fbbf24;}
+.sir{background:rgba(239,68,68,0.15);color:#f87171;}
+.sic{background:rgba(6,182,212,0.15);color:#22d3ee;}
+.sc2 h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:1rem;}
+.sits{display:flex;flex-direction:column;gap:8px;}
+.sit{display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;color:rgba(255,255,255,0.65);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.sit:last-child{border-bottom:none;}
+.pr{font-weight:800;font-size:0.82rem;color:#4ade80;}
+
+/* TOOLS */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;}
+.ti{background:rgba(255,255,255,0.03);border:1px solid var(--bd);border-radius:14px;padding:1rem 1.2rem;display:flex;align-items:center;gap:12px;font-size:0.85rem;color:rgba(255,255,255,0.65);transition:0.3s;}
+.ti:hover{background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.25);color:#fff;transform:translateX(4px);}
+.tn{font-family:'Space Grotesk',sans-serif;font-size:0.75rem;font-weight:800;color:#6366f1;min-width:28px;}
+.ti i{color:#a855f7;font-size:0.9rem;}
+
+/* GALLERY */
+.cout{position:relative;overflow:hidden;border-radius:var(--rl); margin: 0 -1.5rem; padding: 0 1.5rem;}
+.ctr{
+  display:flex; gap:1.5rem; transition:transform 0.5s cubic-bezier(0.165,0.84,0.44,1); 
+  padding:0.5rem 0; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory;
+}
+.ctr::-webkit-scrollbar { display: none; }
+.cc{min-width:280px; width: 300px; background:rgba(255,255,255,0.04);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;transition:0.4s;flex-shrink:0; scroll-snap-align: start;}
+.cc:hover{border-color:rgba(99,102,241,0.4);}
+.cc img{width:100%;height:170px;object-fit:cover; background:#1e1b4b;}
+.ccb{padding:1.2rem;}
+.ccb h3{font-size:0.95rem;font-weight:700;margin-bottom:6px;}
+.ccb p{font-size:0.8rem;color:rgba(255,255,255,0.5);}
+.cnav{display:flex;justify-content:center;gap:1rem;margin-top:2rem;}
+.cbtn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--bd);color:#fff;font-size:1rem;transition:0.3s;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.cbtn:hover{background:var(--g1);border-color:transparent;}
+
+/* PRICING */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;align-items:start;}
+.pcard{background:rgba(255,255,255,0.03);border:1px solid var(--bd);border-radius:var(--rl);padding:2.5rem 2rem;transition:var(--tr);position:relative;overflow:hidden;}
+.pcard:hover{transform:translateY(-8px);box-shadow:var(--sh);}
+.pcard.pop{background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.3);transform:scale(1.03);}
+.pcard.pop::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--g1);}
+.pbadge{position:absolute;top:1.5rem;right:1.5rem;background:var(--g1);color:#fff;padding:4px 14px;border-radius:50px;font-size:0.72rem;font-weight:800;}
+.pico{font-size:2.5rem;margin-bottom:1rem;}
+.pname{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:800;color:rgba(255,255,255,0.7);letter-spacing:1px;text-transform:uppercase;margin-bottom:0.5rem;}
+.pprice{font-family:'Space Grotesk',sans-serif;font-size:3rem;font-weight:800;line-height:1;margin:1rem 0 1.5rem;}
+.pprice sup{font-size:1.2rem;vertical-align:top;margin-top:0.8rem;display:inline-block;}
+.pfts{margin-bottom:2rem;display:flex;flex-direction:column;gap:10px;}
+.pft{display:flex;align-items:center;gap:10px;font-size:0.88rem;color:rgba(255,255,255,0.7);}
+.pft i{color:#22c55e;font-size:0.85rem;flex-shrink:0;}
+.pbtn{width:100%;justify-content:center;}
+
+/* ABOUT */
+.abgrid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:center;}
+.abimg{position:relative;max-width:340px;margin:0 auto;}
+.abimg img{width:100%;border-radius:var(--rl);position:relative;z-index:1;background:#1e1b4b;}
+.abglow{position:absolute;inset:-20px;border-radius:40px;z-index:0;background:radial-gradient(ellipse,rgba(99,102,241,0.2),transparent 70%);animation:gp 4s ease-in-out infinite;}
+@keyframes gp{0%,100%{opacity:0.5;transform:scale(1);}50%{opacity:1;transform:scale(1.05);}}
+.fbd{position:absolute;bottom:-12px;right:-12px;z-index:2;background:var(--g3);color:#fff;padding:12px 18px;border-radius:16px;font-size:0.75rem;font-weight:800;line-height:1.4;box-shadow:0 8px 24px rgba(245,158,11,0.4);}
+.abcon h2{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:800;line-height:1.2;margin-bottom:1.5rem;}
+.abcon p{color:rgba(255,255,255,0.6);margin-bottom:1.2rem;font-size:0.95rem;line-height:1.8;}
+.msme{display:inline-flex;align-items:center;gap:14px;background:rgba(255,255,255,0.04);border:1px solid var(--bd);border-radius:14px;padding:14px 18px;margin-top:1rem;}
+.msme img{height:42px;border-radius:6px;}
+.msme p{font-size:0.78rem;color:rgba(255,255,255,0.5);}
+.msme strong{font-size:0.88rem;color:#22c55e;}
+.skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:2rem;}
+.sk{padding:6px 16px;border-radius:50px;font-size:0.8rem;font-weight:600;background:rgba(255,255,255,0.05);border:1px solid var(--bd);color:rgba(255,255,255,0.7);transition:0.3s;}
+.sk:hover{background:rgba(99,102,241,0.15);border-color:rgba(99,102,241,0.4);color:#fff;}
+
+/* TESTIMONIALS */
+.tgr{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+.tcard{background:rgba(255,255,255,0.03);border:1px solid var(--bd);border-radius:var(--r);padding:2rem;transition:0.4s;}
+.tcard:hover{border-color:rgba(99,102,241,0.3);transform:translateY(-6px);}
+.tstars{color:#fbbf24;font-size:0.9rem;margin-bottom:1rem;}
+.ttxt{font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.8;margin-bottom:1.5rem;font-style:italic;}
+.tau{display:flex;align-items:center;gap:12px;}
+.tav{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#fff;flex-shrink:0;}
+.tnm{font-weight:700;font-size:0.88rem;}
+.tbz{font-size:0.78rem;color:rgba(255,255,255,0.45);}
+
+/* CTA */
+.ctacard{background:var(--g1);border-radius:var(--rl);padding:5rem 3rem;text-align:center;position:relative;overflow:hidden;}
+.ctacard::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:rgba(255,255,255,0.08);border-radius:50%;pointer-events:none;}
+.ctacard h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:1rem;}
+.ctacard p{color:rgba(255,255,255,0.8);font-size:1.05rem;margin-bottom:2.5rem;max-width:500px;margin-inline:auto;}
+.ctabtns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{padding:5rem 0 2rem;border-top:1px solid var(--bd);}
+.fgrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:3rem;margin-bottom:4rem;}
+.fb p{font-size:0.88rem;color:rgba(255,255,255,0.5);line-height:1.8;margin:1.5rem 0;}
+.fsc{display:flex;gap:12px;}
+.fsi{width:40px;height:40px;border-radius:10px;border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:1rem;color:rgba(255,255,255,0.6);transition:0.3s;}
+.fsi:hover{transform:scale(1.15);}
+.fsi.wa:hover{background:#25d366;border-color:#25d366;color:#fff;}
+.fsi.ig:hover{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);border-color:transparent;color:#fff;}
+.fcol h4{font-family:'Space Grotesk',sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1.5rem;}
+.fcol ul li{margin-bottom:0.8rem;}
+.fcol ul li a{font-size:0.88rem;color:rgba(255,255,255,0.55);transition:0.3s;display:flex;align-items:center;gap:8px;}
+.fcol ul li a:hover{color:#fff;padding-left:4px;}
+.fct li{font-size:0.85rem;color:rgba(255,255,255,0.55);margin-bottom:1rem;display:flex;gap:10px;line-height:1.5;}
+.fct li i{color:#6366f1;margin-top:3px;flex-shrink:0;}
+.fbot{border-top:1px solid var(--bd);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.82rem;color:rgba(255,255,255,0.35);}
+.fbot a{color:rgba(255,255,255,0.5);transition:0.3s;}
+.fbot a:hover{color:#6366f1;}
+
+/* FLOAT BTNS */
+.fzone{position:fixed;bottom:2rem;right:1.5rem;z-index:500;display:flex;flex-direction:column;gap:12px;}
+.fbtn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;transition:var(--tr);box-shadow:0 10px 30px rgba(0,0,0,0.3);cursor:pointer;border:none;}
+.fbtn:hover{transform:scale(1.15) rotate(8deg);}
+.fwa{background:linear-gradient(135deg,#25d366,#128c7e);}
+.fig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);}
+
+/* MODAL */
+.ovl{position:fixed;inset:0;z-index:5000;background:rgba(2,6,23,0.88);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:0.4s;}
+.ovl.op{opacity:1;pointer-events:all;}
+.modal{background:#0f172a;border:1px solid var(--bd);border-radius:var(--rl);padding:2.5rem 2rem;max-width:480px;width:100%;transform:scale(0.9) translateY(30px);transition:all 0.5s cubic-bezier(0.34,1.56,0.64,1);max-height:95vh;overflow-y:auto;position:relative;}
+.ovl.op .modal{transform:scale(1) translateY(0);}
+.mcl2{position:absolute;top:1.5rem;right:1.5rem;cursor:pointer;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:1rem;color:rgba(255,255,255,0.5);transition:0.3s;}
+.mcl2:hover{background:rgba(239,68,68,0.2);color:#ef4444;}
+.mtop{margin-bottom:2rem;}
+.mtop h3{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:0.4rem;}
+.mtop p{font-size:0.85rem;color:rgba(255,255,255,0.5);}
+.flbl{display:block;font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.5);margin-bottom:6px;letter-spacing:0.5px;}
+.finp{width:100%;padding:13px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--bd);border-radius:12px;color:#fff;font-size:0.92rem;outline:none;transition:0.3s;margin-bottom:1rem;}
+.finp:focus{border-color:rgba(99,102,241,0.5);background:rgba(99,102,241,0.05);}
+.finp::placeholder{color:rgba(255,255,255,0.3);}
+.apb{display:inline-flex;align-items:center;gap:8px;background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.3);color:#c084fc;padding:8px 16px;border-radius:8px;font-size:0.8rem;font-weight:700;cursor:pointer;transition:0.3s;margin-bottom:8px;}
+.apb:hover{background:rgba(168,85,247,0.25);}
+.sbtn{width:100%;justify-content:center;padding:15px;font-size:0.95rem;}
+
+/* TOAST */
+#toast{position:fixed;bottom:6rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--g2);color:#fff;padding:14px 28px;border-radius:50px;font-weight:800;font-size:0.85rem;z-index:6000;opacity:0;pointer-events:none;transition:0.4s;white-space:nowrap;box-shadow:0 10px 30px rgba(34,197,94,0.4);}
+#toast.sh{opacity:1;transform:translateX(-50%) translateY(0);}
+#toast.err{background:var(--g3); box-shadow:0 10px 30px rgba(245,158,11,0.4);}
+
+/* TERMS */
+.trmcard{background:rgba(255,255,255,0.03);border:1px solid var(--bd);border-radius:var(--rl);padding:3rem;max-width:800px;margin:0 auto;}
+.trmcard h3{font-family:'Space Grotesk',sans-serif;font-weight:700;margin:2rem 0 0.5rem;color:#a5b4fc;}
+.trmcard p{font-size:0.92rem;color:rgba(255,255,255,0.6);line-height:1.8;}
+
+/* PAGE */
+.page{display:none;}
+.page.ac{display:block;}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.fgrid{grid-template-columns:1fr 1fr;}}
+@media(max-width:768px){
+  .nls{display:none;}.hbg{display:flex;}
+  .abgrid{grid-template-columns:1fr;}
+  .fgrid{grid-template-columns:1fr 1fr;gap:2.5rem;}
+  .fc{display:none;}
+  .pcard.pop{transform:none;}
+  .modal{padding:2rem 1.5rem;}
+  .ctacard{padding:3.5rem 1.5rem;}
+  .hstats{gap:2rem;}
+}
+@media(max-width:500px){.fgrid{grid-template-columns:1fr;}.fbot{flex-direction:column;text-align:center;}}
+</style>
+</head>
+<body>
+
+<!-- BG -->
+<div class="bg-wrap">
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="orb o3"></div><div class="orb o4"></div>
+</div>
+<div class="grid-bg"></div>
+<div id="sp"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-text">PRISHA <span>S&S</span></div>
+  <div class="ld-ring"></div>
+  <div class="ld-dots"><span></span><span></span><span></span></div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mnav" id="mnav">
+  <button class="mcl" onclick="closeMN()">&times;</button>
+  <a href="#" onclick="goSec('hero');closeMN()">Home</a>
+  <a href="#" onclick="goSec('services');closeMN()">Services</a>
+  <a href="#" onclick="goSec('tools');closeMN()">Automation</a>
+  <a href="#" onclick="goSec('gallery');closeMN()">Gallery</a>
+  <a href="#" onclick="goSec('pricing');closeMN()">Pricing</a>
+  <a href="#" onclick="goSec('about');closeMN()">About</a>
+  <a href="#" onclick="goPage('terms');closeMN()">Terms</a>
+  <button class="btn bg1" onclick="openModal();closeMN()">Get Started</button>
+</div>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="con nw">
+    <div class="nl" onclick="goPage('home')">
+      <img src="https://prishaserviceandsolutions.in/logo.jpg" alt="Prisha Logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MiIgaGVpZ2h0PSI0MiI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzFlMWI0YiIvPjwvc3ZnPg=='" width="42" height="42">
+      <div class="nlt">PRISHA<small>SERVICE & SOLUTIONS</small></div>
+    </div>
+    <nav class="nls">
+      <a href="#" onclick="goSec('services')">Services</a>
+      <a href="#" onclick="goSec('tools')">Automation</a>
+      <a href="#" onclick="goSec('gallery')">Gallery</a>
+      <a href="#" onclick="goSec('pricing')">Pricing</a>
+      <a href="#" onclick="goSec('about')">About</a>
+      <a href="#" onclick="goPage('terms')">Terms</a>
+      <button class="btn bg1 ncta" onclick="openModal()"><i class="fas fa-rocket"></i> Get Started</button>
+    </nav>
+    <div class="hbg" id="hbg" onclick="toggleMN()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- HOME PAGE -->
+<div id="home-page" class="page ac">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="fcards">
+    <div class="fc fc1"><i class="fas fa-globe"></i> Website Live ✓</div>
+    <div class="fc fc2"><i class="fas fa-chart-line"></i> +300% Traffic</div>
+    <div class="fc fc3"><i class="fas fa-star"></i> 5-Star Google Reviews</div>
+    <div class="fc fc4"><i class="fas fa-qrcode"></i> Smart QR Systems</div>
+  </div>
+  <div class="con">
+    <div class="hbadge rv"><i class="fas fa-shield-halved"></i> MSME Registered • Mumbai • Est. 2022</div>
+    <h1 class="rv d1">Mumbai's #1<br><span class="tg1">Digital Growth</span><br>Partner</h1>
+    <p class="hsub rv d2">We build powerful websites, automate your business with Google tools & put your shop on top of Google Search — all at affordable Mumbai prices.</p>
+    <div class="hbtns rv d3">
+      <button class="btn bg1" onclick="openModal()"><i class="fas fa-rocket"></i> Start My Project</button>
+      <a href="https://wa.me/919892415819" target="_blank" rel="noopener" class="btn bgo"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+    </div>
+    <div class="hstats rv d4">
+      <div><div class="stn" data-target="150">0</div><div class="stl">Happy Clients</div></div>
+      <div><div class="stn" data-target="200">0</div><div class="stl">Projects Done</div></div>
+      <div><div class="stn" data-target="4">0</div><div class="stl">Years Experience</div></div>
+      <div><div class="stn" data-target="20">0</div><div class="stl">Automation Systems</div></div>
+    </div>
+  </div>
+  <div class="hsc"><span>SCROLL</span><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mqt" id="mqt">
+    <div class="mqi"><i class="fas fa-globe"></i>Website Design</div>
+    <div class="mqi"><i class="fab fa-google"></i>Google Business</div>
+    <div class="mqi"><i class="fas fa-qrcode"></i>QR Systems</div>
+    <div class="mqi"><i class="fas fa-robot"></i>Business Automation</div>
+    <div class="mqi"><i class="fas fa-search"></i>SEO Optimization</div>
+    <div class="mqi"><i class="fas fa-mobile-alt"></i>Mobile-First Design</div>
+    <div class="mqi"><i class="fas fa-shield-alt"></i>Cyber Secure</div>
+    <div class="mqi"><i class="fas fa-chart-bar"></i>Analytics Dashboard</div>
+    <div class="mqi"><i class="fab fa-whatsapp"></i>WhatsApp Integration</div>
+    <div class="mqi"><i class="fas fa-certificate"></i>MSME Registered</div>
+    <div class="mqi"><i class="fas fa-globe"></i>Website Design</div>
+    <div class="mqi"><i class="fab fa-google"></i>Google Business</div>
+    <div class="mqi"><i class="fas fa-qrcode"></i>QR Systems</div>
+    <div class="mqi"><i class="fas fa-robot"></i>Business Automation</div>
+    <div class="mqi"><i class="fas fa-search"></i>SEO Optimization</div>
+    <div class="mqi"><i class="fas fa-mobile-alt"></i>Mobile-First Design</div>
+    <div class="mqi"><i class="fas fa-shield-alt"></i>Cyber Secure</div>
+    <div class="mqi"><i class="fas fa-chart-bar"></i>Analytics Dashboard</div>
+    <div class="mqi"><i class="fab fa-whatsapp"></i>WhatsApp Integration</div>
+    <div class="mqi"><i class="fas fa-certificate"></i>MSME Registered</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec" id="services">
+  <div class="con">
+    <div class="tc rv">
+      <div class="tag tp"><i class="fas fa-bolt"></i> What We Do</div>
+      <h2 class="st">Our <span class="tg1">Service Arsenal</span></h2>
+      <p class="ss">Everything your business needs to dominate the digital space in Mumbai.</p>
+    </div>
+    <div class="stabs rv">
+      <button class="tbtn ac" onclick="filterS('all',this)">All Services</button>
+      <button class="tbtn" onclick="filterS('design',this)">Design & Brand</button>
+      <button class="tbtn" onclick="filterS('web',this)">Web & SEO</button>
+      <button class="tbtn" onclick="filterS('auto',this)">Automation & IT</button>
+    </div>
+    <div class="sgrid" id="sgrid">
+      <div class="sc2 rv" data-cat="design">
+        <div class="si sip"><i class="fas fa-palette"></i></div>
+        <h3>Visual Identity</h3>
+        <div class="sits">
+          <div class="sit"><span>Logo Design</span><span class="pr">₹400</span></div>
+          <div class="sit"><span>E-Business Cards</span><span class="pr">₹500</span></div>
+          <div class="sit"><span>Animated Logo</span><span class="pr">₹2,000</span></div>
+          <div class="sit"><span>Brochure (1 Page)</span><span class="pr">₹1,000+</span></div>
+          <div class="sit"><span>Flyer Design</span><span class="pr">₹1,000</span></div>
+        </div>
+      </div>
+      <div class="sc2 rv d1" data-cat="design">
+        <div class="si sia"><i class="fas fa-store"></i></div>
+        <h3>Shop Materials</h3>
+        <div class="sits">
+          <div class="sit"><span>Menu Design</span><span class="pr">₹1k–3k</span></div>
+          <div class="sit"><span>Banner / Poster</span><span class="pr">₹500</span></div>
+          <div class="sit"><span>Letterhead</span><span class="pr">₹500+</span></div>
+          <div class="sit"><span>Sticker / Coupon</span><span class="pr">₹300+</span></div>
+        </div>
+      </div>
+      <div class="sc2 rv d2" data-cat="web">
+        <div class="si sib"><i class="fas fa-code"></i></div>
+        <h3>Premium Websites</h3>
+        <div class="sits">
+          <div class="sit"><span>All-in-One Website</span><span class="pr">₹9,999</span></div>
+          <div class="sit"><span>Web Handling</span><span class="pr">₹5k–10k</span></div>
+          <div class="sit"><span>Free Hosting</span><span class="pr">✓</span></div>
+          <div class="sit"><span>Mobile-First Design</span><span class="pr">✓</span></div>
+        </div>
+      </div>
+      <div class="sc2 rv d3" data-cat="web">
+        <div class="si sig"><i class="fas fa-search-location"></i></div>
+        <h3>Local SEO & GMB</h3>
+        <div class="sits">
+          <div class="sit"><span>GMB Setup</span><span class="pr">₹999+</span></div>
+          <div class="sit"><span>GMB Premium SEO</span><span class="pr">₹4,999+</span></div>
+          <div class="sit"><span>Review Management</span><span class="pr">✓</span></div>
+          <div class="sit"><span>Local Area Targeting</span><span class="pr">✓</span></div>
+        </div>
+      </div>
+      <div class="sc2 rv d1" data-cat="auto">
+        <div class="si sic"><i class="fas fa-robot"></i></div>
+        <h3>Smart Automation</h3>
+        <div class="sits">
+          <div class="sit"><span>Gmail Auto-Reply</span><span class="pr">✓</span></div>
+          <div class="sit"><span>Auto Feedback Reports</span><span class="pr">✓</span></div>
+          <div class="sit"><span>Google Sheet Updates</span><span class="pr">✓</span></div>
+          <div class="sit"><span>QR Coupon Systems</span><span class="pr">✓</span></div>
+        </div>
+      </div>
+      <div class="sc2 rv d2" data-cat="auto">
+        <div class="si sir"><i class="fas fa-laptop-code"></i></div>
+        <h3>IT Support</h3>
+        <div class="sits">
+          <div class="sit"><span>Laptop Troubleshoot</span><span class="pr">✓</span></div>
+          <div class="sit"><span>OS Installation</span><span class="pr">₹1,499</span></div>
+          <div class="sit"><span>Software Upgrades</span><span class="pr">✓</span></div>
+          <div class="sit"><span>Hardware Support</span><span class="pr">✓</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="sec" id="tools" style="padding-top:0">
+  <div class="con">
+    <div class="tc rv">
+      <div class="tag tc2"><i class="fab fa-google"></i> Google Automation</div>
+      <h2 class="st">20 <span class="tg2">Business Systems</span> We Build</h2>
+      <p class="ss">Google-based automation tools to modernize your operations and save hours every week.</p>
+    </div>
+    <div class="tgrid rv">
+      <div class="ti"><span class="tn">01</span><i class="fas fa-user-check"></i><span>Staff Check-in / Check-out System</span></div>
+      <div class="ti"><span class="tn">02</span><i class="fab fa-whatsapp"></i><span>WhatsApp Lead Collector → Sheets</span></div>
+      <div class="ti"><span class="tn">03</span><i class="fas fa-exclamation-circle"></i><span>Digital Complaint System</span></div>
+      <div class="ti"><span class="tn">04</span><i class="fas fa-calendar-check"></i><span>Online Appointment Booking</span></div>
+      <div class="ti"><span class="tn">05</span><i class="fas fa-qrcode"></i><span>QR Photo Album (Drive + Sites)</span></div>
+      <div class="ti"><span class="tn">06</span><i class="fas fa-hand-holding-heart"></i><span>Temple Donation Tracker</span></div>
+      <div class="ti"><span class="tn">07</span><i class="fas fa-certificate"></i><span>Auto Certificate Generator</span></div>
+      <div class="ti"><span class="tn">08</span><i class="fas fa-boxes"></i><span>Shop Inventory System</span></div>
+      <div class="ti"><span class="tn">09</span><i class="fas fa-clipboard-check"></i><span>Student Attendance + QR Reports</span></div>
+      <div class="ti"><span class="tn">10</span><i class="fas fa-utensils"></i><span>Restaurant Order System</span></div>
+      <div class="ti"><span class="tn">11</span><i class="fas fa-star"></i><span>Customer Feedback Dashboard</span></div>
+      <div class="ti"><span class="tn">12</span><i class="fas fa-id-card"></i><span>Digital Visitor Register</span></div>
+      <div class="ti"><span class="tn">13</span><i class="fas fa-umbrella-beach"></i><span>Employee Leave Management</span></div>
+      <div class="ti"><span class="tn">14</span><i class="fas fa-truck"></i><span>Delivery Tracking System</span></div>
+      <div class="ti"><span class="tn">15</span><i class="fas fa-graduation-cap"></i><span>School Result Portal</span></div>
+      <div class="ti"><span class="tn">16</span><i class="fas fa-ticket-alt"></i><span>Event Registration + PDF Ticket</span></div>
+      <div class="ti"><span class="tn">17</span><i class="fas fa-tools"></i><span>Maintenance Request System</span></div>
+      <div class="ti"><span class="tn">18</span><i class="fas fa-address-book"></i><span>Mini CRM (Sheets + Apps Script)</span></div>
+      <div class="ti"><span class="tn">19</span><i class="fas fa-book-open"></i><span>Course Enrollment System</span></div>
+      <div class="ti"><span class="tn">20</span><i class="fas fa-chart-pie"></i><span>Business Dashboard (Looker Studio)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="sec" id="gallery" style="padding-top:0">
+  <div class="con">
+    <div class="tc rv">
+      <div class="tag tb"><i class="fas fa-images"></i> Project Gallery</div>
+      <h2 class="st">Real Work. <span class="tg1">Real Results.</span></h2>
+      <p class="ss">Automation systems we've built for Mumbai businesses.</p>
+    </div>
+    <div class="cout rv">
+      <div class="ctr" id="ctr">
+        <div class="cc"><img src="https://truthwear.in/Certificate%20Generator.png" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWUxYjRiIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiM2MzY2ZjEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q2VydGlmaWNhdGUgR2VuZXJhdG9yPC90ZXh0Pjwvc3ZnPg=='" alt="Certificate Generator" loading="lazy"><div class="ccb"><h3>Auto Certificate Generator</h3><p>Form → Docs → Auto PDF certificates.</p></div></div>
+        <div class="cc"><img src="https://truthwear.in/Digital%20Complaint%20System.png" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWUxYjRiIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiM2MzY2ZjEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Q29tcGxhaW50IFN5c3RlbTwvdGV4dD48L3N2Zz4='" alt="Complaint System" loading="lazy"><div class="ccb"><h3>Digital Complaint System</h3><p>Form + Sheet + email alerts.</p></div></div>
+        <div class="cc"><img src="https://truthwear.in/Donation%20or%20Payment%20Tracker.png" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWUxYjRiIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiM2MzY2ZjEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+RG9uYXRpb24gVHJhY2tlcjwvdGV4dD48L3N2Zz4='" alt="Donation Tracker" loading="lazy"><div class="ccb"><h3>Donation / Payment Tracker</h3><p>Screenshot upload + auto records.</p></div></div>
+        <div class="cc"><img src="https://truthwear.in/Inventory%20System%20(Shop%20stock).png" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWUxYjRiIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiM2MzY2ZjEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SW52ZW50b3J5IFN5c3RlbTwvdGV4dD48L3N2Zz4='" alt="Inventory" loading="lazy"><div class="ccb"><h3>Shop Inventory System</h3><p>Stock entry via Form + Sheets.</p></div></div>
+        <div class="cc"><img src="https://truthwear.in/Online%20Appointment%20Booking.png" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWUxYjRiIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiM2MzY2ZjEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+QXBwb2ludG1lbnQgQm9va2luZzwvdGV4dD48L3N2Zz4='" alt="Appointment" loading="lazy"><div class="ccb"><h3>Appointment Booking</h3><p>Form + Google Calendar automation.</p></div></div>
+        <div class="cc"><img src="https://truthwear.in/QR%20Photo%20Album.png" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWUxYjRiIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiM2MzY2ZjEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+UVIgUGhvdG8gQWxidW08L3RleHQ+PC9zdmc+'" alt="QR Album" loading="lazy"><div class="ccb"><h3>QR Photo Album</h3><p>Drive + Sites event photo album.</p></div></div>
+        <div class="cc"><img src="https://truthwear.in/Staff%20Check-in%20%20Check-out%20System.png" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWUxYjRiIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiM2MzY2ZjEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+QXR0ZW5kYW5jZSBTeXN0ZW08L3RleHQ+PC9zdmc+'" alt="Attendance" loading="lazy"><div class="ccb"><h3>Staff Attendance System</h3><p>QR check-in/out with auto reports.</p></div></div>
+      </div>
+    </div>
+    <div class="cnav">
+      <button class="cbtn" onclick="moveC(-1)"><i class="fas fa-chevron-left"></i></button>
+      <button class="cbtn" onclick="moveC(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec" id="pricing" style="padding-top:0">
+  <div class="con">
+    <div class="tc rv">
+      <div class="tag tg"><i class="fas fa-tags"></i> Pricing Plans</div>
+      <h2 class="st">Invest in Your <span class="tg2">Digital Future</span></h2>
+      <p class="ss">Transparent pricing with zero hidden costs.</p>
+    </div>
+    <div class="pgrid">
+      <div class="pcard rv">
+        <div class="pico">🟢</div>
+        <div class="pname">Basic Guest</div>
+        <div class="pprice tg2"><sup>₹</sup>2,999</div>
+        <div class="pfts">
+          <div class="pft"><i class="fas fa-check"></i><span>Logo & Business Card</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>Banner / Flyer Design</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>Feedback Form + QR Code</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>WhatsApp Integration</span></div>
+          <div class="pft"><i class="fas fa-clock"></i><span>3–4 Days Delivery</span></div>
+        </div>
+        <button class="btn bgo pbtn" onclick="orderP('Basic Guest — ₹2,999')"><i class="fas fa-rocket"></i> Get Started</button>
+      </div>
+      <div class="pcard pop rv d1">
+        <div class="pbadge">⭐ POPULAR</div>
+        <div class="pico">🔵</div>
+        <div class="pname">Standard Business</div>
+        <div class="pprice tg1"><sup>₹</sup>5,999</div>
+        <div class="pfts">
+          <div class="pft"><i class="fas fa-check"></i><span>Professional Logo & Card</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>2 Poster Designs</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>Auto Sheet Data Storage</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>Basic Gmail Auto-Reply</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>Google Business Setup</span></div>
+          <div class="pft"><i class="fas fa-clock"></i><span>5–7 Days Delivery</span></div>
+        </div>
+        <button class="btn bg1 pbtn" onclick="orderP('Standard Business — ₹5,999')"><i class="fas fa-star"></i> Upgrade Now</button>
+      </div>
+      <div class="pcard rv d2">
+        <div class="pico">🟣</div>
+        <div class="pname">Premium Brand</div>
+        <div class="pprice tg3"><sup>₹</sup>9,999</div>
+        <div class="pfts">
+          <div class="pft"><i class="fas fa-check"></i><span>Full Website (Mobile-First)</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>Animated Logo Intro</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>Full Identity Package</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>Discount QR System</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>Full Automation Suite</span></div>
+          <div class="pft"><i class="fas fa-check"></i><span>1 Year Free Support</span></div>
+        </div>
+        <button class="btn bg3 pbtn" onclick="orderP('Premium Brand — ₹9,999')"><i class="fas fa-crown"></i> Maximize</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="about" style="padding-top:0">
+  <div class="con">
+    <div class="abgrid">
+      <div class="rvl">
+        <div class="abimg">
+          <div class="abglow"></div>
+          <img src="https://prishaserviceandsolutions.in/vishal.jpg" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWUxYjRiIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiM2MzY2ZjEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+VmlzaGFsIE1oYXNrZTwvdGV4dD48L3N2Zz4='" alt="Vishal Mhaske Founder" loading="lazy">
+          <div class="fbd">VISHAL MHASKE<br><small style="font-weight:500">Founder & CEO</small></div>
+        </div>
+      </div>
+      <div class="abcon rvr">
+        <div class="tag tg"><i class="fas fa-user-tie"></i> About the Founder</div>
+        <h2>Building Mumbai's <span class="tg2">Digital Future</span></h2>
+        <p><strong style="color:#fff">Prisha Service & Solutions</strong> was founded by <strong style="color:#6366f1">Vishal Mhaske</strong> with one goal: to empower Mumbai's hardworking small business owners with professional digital tools previously available only to big companies.</p>
+        <p>We are a Govt. Registered MSME based in Mumbai. Every project is personally handled with integrity and technical excellence.</p>
+        <div class="msme">
+          <img src="https://prishaserviceandsolutions.in/msme.jpg" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MiIgaGVpZ2h0PSI0MiI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzIyYzU1ZSIvPjwvc3ZnPg=='" alt="MSME" loading="lazy">
+          <div><strong>✅ MSME Registered</strong><p>UDYAM-MH-18-0497703</p></div>
+        </div>
+        <div class="skills">
+          <span class="sk">Website Design</span><span class="sk">Google Apps Script</span>
+          <span class="sk">Local SEO</span><span class="sk">Business Automation</span>
+          <span class="sk">QR Systems</span><span class="sk">Shopify</span><span class="sk">HTML/CSS/JS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec" id="testimonials" style="padding-top:0">
+  <div class="con">
+    <div class="tc rv">
+      <div class="tag" style="color:#fbbf24;border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.08)"><i class="fas fa-heart"></i> Client Love</div>
+      <h2 class="st">What Mumbai Says <span class="tg3">About Us</span></h2>
+    </div>
+    <div class="tgr">
+      <div class="tcard rv"><div class="tstars">★★★★★</div><p class="ttxt">"Vishal bhai ne mera website banaya aur ab mujhe daily 5-6 new inquiries milti hain Google se! Bohot professional kaam hai."</p><div class="tau"><div class="tav" style="background:var(--g1)">R</div><div><div class="tnm">Rajesh Sharma</div><div class="tbz">Sharma Electronics, Andheri</div></div></div></div>
+      <div class="tcard rv d1"><div class="tstars">★★★★★</div><p class="ttxt">"QR feedback system ne meri dukan ke customer reviews improve kar diye. Google pe ab 4.8 star hai. Very affordable service!"</p><div class="tau"><div class="tav" style="background:var(--g3)">P</div><div><div class="tnm">Priya Patil</div><div class="tbz">Patil Saree Corner, Borivali</div></div></div></div>
+      <div class="tcard rv d2"><div class="tstars">★★★★★</div><p class="ttxt">"Automation system se ab mera staff attendance aur orders sab automatic Google Sheet mein aata hai. Time bhi bachta hai!"</p><div class="tau"><div class="tav" style="background:var(--g2)">M</div><div><div class="tnm">Mohammed Shaikh</div><div class="tbz">Al-Noor Restaurant, Kurla</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec" style="padding-top:0;padding-bottom:6rem">
+  <div class="con">
+    <div class="ctacard rv">
+      <h2>Ready to Go Digital? 🚀</h2>
+      <p>Join 150+ Mumbai businesses that trust Prisha Service & Solutions for their digital growth.</p>
+      <div class="ctabtns">
+        <button class="btn bw" onclick="openModal()"><i class="fas fa-rocket"></i> Start My Project Today</button>
+        <a href="https://wa.me/919892415819?text=Hi%20Vishal!%20I%20want%20to%20grow%20my%20business%20digitally." target="_blank" rel="noopener" class="btn bgo"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end home-page -->
+
+<!-- TERMS PAGE -->
+<div id="terms-page" class="page">
+  <section style="padding:8rem 0 5rem">
+    <div class="con">
+      <div class="tc" style="margin-bottom:3rem">
+        <div class="tag tb"><i class="fas fa-file-contract"></i> Legal</div>
+        <h2 class="st">Terms & <span class="tg1">Conditions</span></h2>
+      </div>
+      <div class="trmcard">
+        <h3>1. Technical Scope</h3><p>Prisha Service & Solutions provides infrastructure, design, and automation services. No income guarantees or specific search ranking guarantees are made.</p>
+        <h3>2. Ownership Rights</h3><p>All custom designs, code, and content created become client property upon receipt of full payment.</p>
+        <h3>3. Hosting & Renewals</h3><p>First-year hosting is included. Annual renewal fees apply from the second year onwards.</p>
+        <h3>4. Payment Policy</h3><p>50% advance is required to begin any project. Remaining 50% is due upon completion before final delivery.</p>
+        <h3>5. Refund Policy</h3><p>Advance payments are non-refundable after work has commenced. Work completed will be delivered in case of cancellation.</p>
+        <h3>6. Support</h3><p>Free support: 30 days for Basic/Standard plans, 1 year for Premium plans.</p>
+        <h3>7. Jurisdiction</h3><p>Disputes are subject to exclusive jurisdiction of courts in Mumbai, Maharashtra, India.</p>
+        <div class="tc" style="margin-top:3rem">
+          <button class="btn bg1" onclick="goPage('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="con">
+    <div class="fgrid">
+      <div class="fb">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.5rem">
+          <img src="https://prishaserviceandsolutions.in/logo.jpg" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MiIgaGVpZ2h0PSI0MiI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzFlMWI0YiIvPjwvc3ZnPg=='" alt="Logo" style="height:42px;width:42px;object-fit:cover;border-radius:10px">
+          <div class="nlt">PRISHA<small>SERVICE & SOLUTIONS</small></div>
+        </div>
+        <p>High-power digital infrastructure & automation for Mumbai's rising business community. MSME Registered & trusted by 150+ local shops.</p>
+        <div class="fsc">
+          <a href="https://wa.me/918779266408" target="_blank" rel="noopener" class="fsi wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/vishalmhaske__" target="_blank" rel="noopener" class="fsi ig" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#" onclick="goSec('hero')"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="#" onclick="goSec('services')"><i class="fas fa-cogs"></i> Services</a></li>
+          <li><a href="#" onclick="goSec('tools')"><i class="fas fa-robot"></i> Automation</a></li>
+          <li><a href="#" onclick="goSec('gallery')"><i class="fas fa-images"></i> Gallery</a></li>
+          <li><a href="#" onclick="goSec('pricing')"><i class="fas fa-tags"></i> Pricing</a></li>
+          <li><a href="#" onclick="goPage('terms')"><i class="fas fa-file-alt"></i> Terms</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Website Design</a></li>
+          <li><a href="#">Google Business SEO</a></li>
+          <li><a href="#">Business Automation</a></li>
+          <li><a href="#">QR Feedback Systems</a></li>
+          <li><a href="#">Logo & Branding</a></li>
+          <li><a href="#">IT Support</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Contact</h4>
+        <ul class="fct">
+          <li><i class="fas fa-map-marker-alt"></i>Samrat Ashok Nagar, Mumbai 400099</li>
+          <li><i class="fas fa-phone-alt"></i><a href="tel:+919892415819">+91 98924 15819</a></li>
+          <li><i class="fas fa-envelope"></i><a href="mailto:vishalmhaske961@gmail.com">vishalmhaske961@gmail.com</a></li>
+          <li><i class="fas fa-globe"></i><a href="https://truthwear.in" target="_blank" rel="noopener">truthwear.in</a></li>
+          <li><i class="fas fa-clock"></i>Mon–Sat: 9 AM – 8 PM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 Prisha Service & Solutions. Engineered for Growth by <strong style="color:#6366f1">Vishal Mhaske</strong>.</span>
+      <span><a href="#" onclick="goPage('terms')">Terms</a> &nbsp;|&nbsp; <a href="mailto:vishalmhaske961@gmail.com">Contact</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="fzone">
+  <a href="https://wa.me/918779266408" target="_blank" rel="noopener" class="fbtn fwa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://www.instagram.com/vishalmhaske__" target="_blank" rel="noopener" class="fbtn fig" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+
+<!-- TOAST -->
+<div id="toast"><i class="fas fa-info-circle"></i> &nbsp;<span id="toastMsg">Notification</span></div>
+
+<!-- MODAL -->
+<div class="ovl" id="ovl" onclick="ovlClick(event)">
+  <div class="modal" id="modal">
+    <div class="mcl2" onclick="closeModal()"><i class="fas fa-times"></i></div>
+    <div class="mtop">
+      <h3 id="mtitle">🚀 Start Your Project</h3>
+      <p>Fill your details — we'll reply on WhatsApp within 1 hour.</p>
+    </div>
+    <label class="flbl">Owner / Contact Name *</label>
+    <input class="finp" type="text" id="fName" placeholder="e.g. Rahul Sharma" maxlength="60">
+    <label class="flbl">10-Digit Mobile Number *</label>
+    <input class="finp" type="tel" id="fPhone" placeholder="9XXXXXXXXX" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')">
+    <label class="flbl">Business Email (Optional)</label>
+    <input class="finp" type="email" id="fEmail" placeholder="you@yourbusiness.com">
+    <label class="flbl">Describe Your Project</label>
+    <textarea class="finp" id="fDesc" rows="3" placeholder="e.g. I want a website for my kirana store with WhatsApp button..."></textarea>
+    <button class="btn bg1 sbtn" onclick="submitF()"><i class="fas fa-paper-plane"></i> Send via WhatsApp</button>
+  </div>
+</div>
+
+<script>
+// =============================================
+// GLOBAL TOAST SYSTEM (Replaces alert)
+// =============================================
+function showToast(msg, isError = false) {
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  
+  toast.className = ''; // reset classes
+  if (isError) toast.classList.add('err');
+  
+  toastMsg.innerHTML = msg;
+  toast.classList.add('sh');
+  setTimeout(() => toast.classList.remove('sh'), 3500);
+}
+
+// =============================================
+// LOADER & INIT
+// =============================================
+window.addEventListener('load', function() {
+  var ldr = document.getElementById('loader');
+  ldr.classList.add('hide');
+  setTimeout(function(){ ldr.style.display = 'none'; }, 700);
+  initReveal();
+  animateCounters();
+  if (!sessionStorage.getItem('pss_v')) {
+    setTimeout(function(){ openModal(); }, 5000);
+    sessionStorage.setItem('pss_v', '1');
+  }
+});
+
+// =============================================
+// SCROLL
+// =============================================
+window.addEventListener('scroll', function() {
+  var h = document.documentElement;
+  var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('sp').style.width = pct + '%';
+  document.getElementById('hdr').classList.toggle('sc', window.scrollY > 60);
+});
+
+// =============================================
+// REVEAL ON SCROLL
+// =============================================
+function initReveal() {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.classList.add('on');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.rv, .rvl, .rvr').forEach(function(el) {
+    obs.observe(el);
+  });
+}
+
+// =============================================
+// COUNTER ANIMATION
+// =============================================
+function animateCounters() {
+  document.querySelectorAll('[data-target]').forEach(function(el) {
+    var target = parseInt(el.getAttribute('data-target'));
+    var current = 0;
+    var step = Math.max(1, Math.ceil(target / 60));
+    var timer = setInterval(function() {
+      current = Math.min(current + step, target);
+      el.textContent = current + '+';
+      if (current >= target) clearInterval(timer);
+    }, 30);
+  });
+}
+
+// =============================================
+// PAGE NAVIGATION
+// =============================================
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(function(p) {
+    p.classList.remove('ac');
+  });
+  var pg = document.getElementById(id + '-page');
+  if (pg) pg.classList.add('ac');
+  window.scrollTo(0, 0);
+}
+
+function goSec(id) {
+  goPage('home');
+  setTimeout(function() {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, 120);
+}
+
+// =============================================
+// MOBILE NAV
+// =============================================
+function toggleMN() {
+  document.getElementById('mnav').classList.toggle('op');
+  document.getElementById('hbg').classList.toggle('op');
+  document.body.style.overflow = document.getElementById('mnav').classList.contains('op') ? 'hidden' : '';
+}
+function closeMN() {
+  document.getElementById('mnav').classList.remove('op');
+  document.getElementById('hbg').classList.remove('op');
+  document.body.style.overflow = '';
+}
+
+// =============================================
+// MODAL
+// =============================================
+function openModal() {
+  document.getElementById('ovl').classList.add('op');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('ovl').classList.remove('op');
+  document.body.style.overflow = '';
+}
+function ovlClick(e) {
+  if (e.target.id === 'ovl') closeModal();
+}
+function orderP(plan) {
+  document.getElementById('mtitle').textContent = '🚀 Order: ' + plan;
+  openModal();
+}
+
+// =============================================
+// FORM SUBMIT
+// =============================================
+function submitF() {
+  var name  = document.getElementById('fName').value.trim();
+  var phone = document.getElementById('fPhone').value.trim();
+  var email = document.getElementById('fEmail').value.trim();
+  var desc  = document.getElementById('fDesc').value.trim();
+  var plan  = document.getElementById('mtitle').textContent;
+  
+  if (!name) { showToast('Please enter your name.', true); return; }
+  if (phone.length !== 10) { showToast('Please enter a valid 10-digit mobile number.', true); return; }
+  
+  showToast('<i class="fab fa-whatsapp"></i> Redirecting to WhatsApp...');
+  
+  setTimeout(function() {
+    var msg = 'Hi Vishal! 👋\n' + plan + '\n\nName: ' + name + '\nPhone: ' + phone + '\nEmail: ' + (email || 'N/A') + '\nProject: ' + (desc || 'N/A');
+    window.open('https://wa.me/919892415819?text=' + encodeURIComponent(msg), '_blank');
+    closeModal();
+    document.getElementById('fName').value = '';
+    document.getElementById('fPhone').value = '';
+    document.getElementById('fEmail').value = '';
+    document.getElementById('fDesc').value = '';
+  }, 1600);
+}
+
+// =============================================
+// SERVICE TABS
+// =============================================
+function filterS(cat, btn) {
+  document.querySelectorAll('.tbtn').forEach(function(b) { b.classList.remove('ac'); });
+  btn.classList.add('ac');
+  document.querySelectorAll('#sgrid .sc2').forEach(function(card) {
+    var c = card.getAttribute('data-cat');
+    card.style.display = (cat === 'all' || c === cat) ? 'block' : 'none';
+  });
+}
+
+// =============================================
+// CAROUSEL (Improved Scroll-Snap logic)
+// =============================================
+function moveC(dir) {
+  const track = document.getElementById('ctr');
+  const firstCard = track.querySelector('.cc');
+  const cardWidth = firstCard.offsetWidth + 24; // Width + Gap
+  track.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
