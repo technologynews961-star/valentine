@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alohaa Family Salon</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #db2777; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #be185d; 
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-900 bg-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586487/Screenshot_2026-06-04_204656_ahrlgq.png" alt="Alohaa Family Salon" class="h-12 w-auto object-contain rounded" />
+                    <span class="font-serif text-xl md:text-2xl font-bold text-gray-900 tracking-wide">Alohaa<span class="text-pink-600">.</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-pink-600 font-medium transition-colors duration-300">Home</a>
+                    <a href="#offers" class="text-gray-700 hover:text-pink-600 font-medium transition-colors duration-300">Offers</a>
+                    <a href="#services" class="text-gray-700 hover:text-pink-600 font-medium transition-colors duration-300">Services</a>
+                    <a href="#gallery" class="text-gray-700 hover:text-pink-600 font-medium transition-colors duration-300">Gallery</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-pink-600 font-medium transition-colors duration-300">Reviews</a>
+                    <a href="#contact" class="text-gray-700 hover:text-pink-600 font-medium transition-colors duration-300">Contact</a>
+                    
+                    <a href="https://wa.me/919075395755" target="_blank" rel="noopener noreferrer" class="bg-pink-600 hover:bg-pink-700 text-white px-5 py-2.5 rounded-full font-medium transition-colors duration-300 shadow-md flex items-center gap-2">
+                        Book Now
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-pink-600 focus:outline-none">
+                        <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+                        <i data-lucide="x" id="close-icon" class="w-7 h-7 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#home" class="mobile-link block px-3 py-3 text-base font-medium text-gray-800 hover:text-pink-600 hover:bg-pink-50 rounded-md">Home</a>
+                <a href="#offers" class="mobile-link block px-3 py-3 text-base font-medium text-gray-800 hover:text-pink-600 hover:bg-pink-50 rounded-md">Offers</a>
+                <a href="#services" class="mobile-link block px-3 py-3 text-base font-medium text-gray-800 hover:text-pink-600 hover:bg-pink-50 rounded-md">Services</a>
+                <a href="#gallery" class="mobile-link block px-3 py-3 text-base font-medium text-gray-800 hover:text-pink-600 hover:bg-pink-50 rounded-md">Gallery</a>
+                <a href="#reviews" class="mobile-link block px-3 py-3 text-base font-medium text-gray-800 hover:text-pink-600 hover:bg-pink-50 rounded-md">Reviews</a>
+                <a href="#contact" class="mobile-link block px-3 py-3 text-base font-medium text-gray-800 hover:text-pink-600 hover:bg-pink-50 rounded-md">Contact</a>
+                <a href="https://wa.me/919075395755" class="block w-full text-center mt-4 bg-pink-600 text-white px-5 py-3 rounded-md font-medium">
+                    Book Appointment
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 min-h-[80vh] flex items-center bg-gradient-to-br from-pink-100 via-pink-50 to-white">
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10 md:mt-0">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-pink-200 text-gray-800 text-sm font-medium mb-6 shadow-sm">
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        <span>5.0 Rated Best Unisex Salon</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-gray-900 leading-tight mb-6">
+                        Discover Your <br/><span class="text-pink-600">Perfect Look</span>
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-xl font-light">
+                        Expert Hair, Nails, and Skin care services in the heart of Andheri East. Experience luxury grooming at Alohaa Family Salon.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/919075395755" target="_blank" rel="noopener noreferrer" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-full font-semibold text-center transition-all duration-300 shadow-lg shadow-pink-200 flex items-center justify-center gap-2 text-lg">
+                            WhatsApp Us <i data-lucide="phone" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#offers" class="bg-white hover:bg-gray-50 border border-gray-200 text-gray-800 px-8 py-4 rounded-full font-semibold text-center transition-all duration-300 flex items-center justify-center text-lg shadow-sm">
+                            View Offers
+                        </a>
+                    </div>
+
+                    <div class="mt-10 md:mt-12 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 text-gray-600 text-sm">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-pink-600"></i>
+                            <span>Near Udupi Hotel, Andheri E</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="clock" class="w-5 h-5 text-pink-600"></i>
+                            <span>11 AM - 9 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers Section -->
+        <section id="offers" class="py-16 md:py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Exclusive <span class="text-pink-600">Offers</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">Premium services at unbeatable prices. Choose your perfect glow-up package.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Offer 1 -->
+                    <div class="bg-pink-50/50 rounded-2xl shadow-lg border border-pink-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-pink-600 p-5 md:p-6 text-white text-center">
+                            <h3 class="text-xl md:text-2xl font-bold font-serif">Glow-up Packages</h3>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <ul class="space-y-4">
+                                <li class="flex justify-between items-center border-b border-pink-100 pb-3">
+                                    <span class="flex items-center gap-2 text-gray-800 font-medium text-sm md:text-base">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Highlights / Balayage
+                                    </span>
+                                    <span class="font-bold text-pink-600">₹1999</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b border-pink-100 pb-3">
+                                    <span class="flex items-center gap-2 text-gray-800 font-medium text-sm md:text-base">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Global Hair Color
+                                    </span>
+                                    <span class="font-bold text-pink-600">₹2999</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b border-pink-100 pb-3">
+                                    <span class="flex items-center gap-2 text-gray-800 font-medium text-sm md:text-base">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Advance Nanoplasty
+                                    </span>
+                                    <span class="font-bold text-pink-600">₹4499</span>
+                                </li>
+                                <li class="flex justify-between items-center pb-3">
+                                    <span class="flex items-center gap-2 text-gray-800 font-medium text-sm md:text-base">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Botox Treatment
+                                    </span>
+                                    <span class="font-bold text-pink-600">₹3499</span>
+                                </li>
+                            </ul>
+                            <a href="https://wa.me/919075395755?text=Hi, I am interested in the Glow-up Packages offer." class="mt-8 w-full block text-center bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-xl font-medium transition-colors">
+                                Claim Offer
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Offer 2 -->
+                    <div class="bg-pink-50/50 rounded-2xl shadow-lg border border-pink-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-pink-600 p-5 md:p-6 text-white text-center">
+                            <h3 class="text-xl md:text-2xl font-bold font-serif">Nail Glam</h3>
+                            <p class="text-pink-100 mt-1.5 text-xs md:text-sm font-medium">Bring your bestie, mom, or sister! 👯‍♀️✨</p>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <p class="text-gray-600 mb-6 text-sm italic leading-relaxed">Great nails don't just complete your look—they boost your confidence too ✨ Featuring Cat eye nail extensions!</p>
+                            <ul class="space-y-4">
+                                <li class="flex justify-between items-center border-b border-pink-100 pb-3">
+                                    <span class="flex items-center gap-2 text-gray-800 font-medium text-sm md:text-base">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> 1+1 Offer
+                                    </span>
+                                    <span class="font-bold text-pink-600">₹1099</span>
+                                </li>
+                                <li class="flex justify-between items-center pb-3">
+                                    <span class="flex items-center gap-2 text-gray-800 font-medium text-sm md:text-base">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Solo Offer
+                                    </span>
+                                    <span class="font-bold text-pink-600">₹799</span>
+                                </li>
+                            </ul>
+                            <a href="https://wa.me/919075395755?text=Hi, I am interested in the Nail Glam offer." class="mt-8 w-full block text-center bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-xl font-medium transition-colors">
+                                Claim Offer
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Offer 3 -->
+                    <div class="bg-pink-50/50 rounded-2xl shadow-lg border border-pink-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-pink-600 p-5 md:p-6 text-white text-center">
+                            <h3 class="text-xl md:text-2xl font-bold font-serif">Shared Self-Care 🤍</h3>
+                            <p class="text-pink-100 mt-1.5 text-xs md:text-sm font-medium">1+1 Special Offer @ just ₹1999 ✨</p>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <p class="text-gray-600 mb-6 text-sm italic">Choose your perfect path to relaxation:</p>
+                            <ul class="space-y-4">
+                                <li class="flex justify-between items-center border-b border-pink-100 pb-3">
+                                    <span class="flex items-center gap-2 text-gray-800 font-medium text-sm md:text-base">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Hydra Facial
+                                    </span>
+                                    <span class="font-bold text-pink-600">Included</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b border-pink-100 pb-3">
+                                    <span class="flex items-center gap-2 text-gray-800 font-medium text-sm md:text-base">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Mani-Pedi
+                                    </span>
+                                    <span class="font-bold text-pink-600">Included</span>
+                                </li>
+                                <li class="flex justify-between items-center pb-3">
+                                    <span class="flex items-center gap-2 text-gray-800 font-medium text-sm md:text-base">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Protein Spa
+                                    </span>
+                                    <span class="font-bold text-pink-600">Included</span>
+                                </li>
+                            </ul>
+                            <a href="https://wa.me/919075395755?text=Hi, I am interested in the Shared Self-Care 🤍 offer." class="mt-8 w-full block text-center bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-xl font-medium transition-colors">
+                                Claim Offer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop/Services Section -->
+        <section id="services" class="py-16 md:py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center">
+                    <div class="lg:w-1/2 order-2 lg:order-1">
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4 md:mb-6">Experience <span class="text-pink-600">Luxury</span></h2>
+                        <p class="text-gray-600 text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
+                            Step into Alohaa Family Salon, where we blend expertise with a relaxing atmosphere. We use top-tier equipment and premium products to ensure you get the best treatment possible for your hair, nails, and skin.
+                        </p>
+                        <div class="grid grid-cols-2 gap-3 md:gap-4 mb-8">
+                            <div class="bg-white border border-gray-100 shadow-sm p-4 rounded-xl text-center">
+                                <span class="block text-2xl mb-2">💇‍♀️</span>
+                                <h4 class="font-bold text-gray-900 text-sm md:text-base">Hair Styling</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mt-1">Cuts, Colors & Spa</p>
+                            </div>
+                            <div class="bg-white border border-gray-100 shadow-sm p-4 rounded-xl text-center">
+                                <span class="block text-2xl mb-2">💅</span>
+                                <h4 class="font-bold text-gray-900 text-sm md:text-base">Nail Art</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mt-1">Extensions & Care</p>
+                            </div>
+                            <div class="bg-white border border-gray-100 shadow-sm p-4 rounded-xl text-center">
+                                <span class="block text-2xl mb-2">✨</span>
+                                <h4 class="font-bold text-gray-900 text-sm md:text-base">Skin Care</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mt-1">Facials & Treatments</p>
+                            </div>
+                            <div class="bg-white border border-gray-100 shadow-sm p-4 rounded-xl text-center">
+                                <span class="block text-2xl mb-2">👨</span>
+                                <h4 class="font-bold text-gray-900 text-sm md:text-base">Unisex</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mt-1">Services for all</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2 order-1 lg:order-2 w-full">
+                        <div class="grid grid-cols-2 gap-3 md:gap-4">
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586482/Screenshot_2026-06-04_203946_qt2bef.png" alt="Salon Interior" class="w-full h-48 md:h-64 object-cover rounded-2xl shadow-md col-span-2" />
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586483/Screenshot_2026-06-04_204016_a1uh9j.png" alt="Salon Equipment" class="w-full h-32 md:h-48 object-cover rounded-2xl shadow-sm" />
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586483/Screenshot_2026-06-04_204029_u5t500.png" alt="Salon Details" class="w-full h-32 md:h-48 object-cover rounded-2xl shadow-sm" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-16 md:py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10 md:mb-12">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Our <span class="text-pink-600">Work</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">Glimpses of the beautiful transformations created by our expert stylists.</p>
+                </div>
+
+                <div class="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
+                    <!-- Images -->
+                    <div class="break-inside-avoid relative group overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                        <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586482/Screenshot_2026-06-04_204001_ji7yzj.png" alt="Gallery Work 1" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-6 h-6 md:w-8 md:h-8"></i>
+                        </div>
+                    </div>
+                    <div class="break-inside-avoid relative group overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                        <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586482/Screenshot_2026-06-04_204117_ltypjz.png" alt="Gallery Work 2" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-6 h-6 md:w-8 md:h-8"></i>
+                        </div>
+                    </div>
+                    <div class="break-inside-avoid relative group overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                        <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586483/Screenshot_2026-06-04_204105_mxi6vm.png" alt="Gallery Work 3" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-6 h-6 md:w-8 md:h-8"></i>
+                        </div>
+                    </div>
+                    <div class="break-inside-avoid relative group overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                        <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586483/Screenshot_2026-06-04_204131_iizmjm.png" alt="Gallery Work 4" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-6 h-6 md:w-8 md:h-8"></i>
+                        </div>
+                    </div>
+                    <div class="break-inside-avoid relative group overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                        <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586485/Screenshot_2026-06-04_204153_fnf0dj.png" alt="Gallery Work 5" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-6 h-6 md:w-8 md:h-8"></i>
+                        </div>
+                    </div>
+                    <div class="break-inside-avoid relative group overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                        <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586486/Screenshot_2026-06-04_204141_kxkzen.png" alt="Gallery Work 6" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-6 h-6 md:w-8 md:h-8"></i>
+                        </div>
+                    </div>
+                    <div class="break-inside-avoid relative group overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                        <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586485/Screenshot_2026-06-04_204207_wf4auv.png" alt="Gallery Work 7" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-6 h-6 md:w-8 md:h-8"></i>
+                        </div>
+                    </div>
+                    <div class="break-inside-avoid relative group overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                        <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586486/Screenshot_2026-06-04_204222_ib1rsk.png" alt="Gallery Work 8" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500" loading="lazy"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="instagram" class="text-white w-6 h-6 md:w-8 md:h-8"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-10 md:mt-12">
+                    <a href="https://www.instagram.com/alohaa.family.salon?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-6 md:px-8 py-3 rounded-full font-medium hover:opacity-90 transition-opacity shadow-md text-sm md:text-base">
+                        <i data-lucide="instagram" class="w-5 h-5"></i> View More on Instagram
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Slider Section -->
+        <section id="reviews" class="py-16 md:py-20 bg-pink-50/30 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10 md:mb-12">
+                    <div class="flex justify-center items-center gap-1.5 mb-3">
+                        <i data-lucide="star" class="text-yellow-400 fill-yellow-400 w-5 h-5 md:w-6 md:h-6"></i>
+                        <i data-lucide="star" class="text-yellow-400 fill-yellow-400 w-5 h-5 md:w-6 md:h-6"></i>
+                        <i data-lucide="star" class="text-yellow-400 fill-yellow-400 w-5 h-5 md:w-6 md:h-6"></i>
+                        <i data-lucide="star" class="text-yellow-400 fill-yellow-400 w-5 h-5 md:w-6 md:h-6"></i>
+                        <i data-lucide="star" class="text-yellow-400 fill-yellow-400 w-5 h-5 md:w-6 md:h-6"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-3 md:mb-4">Loved by our <span class="text-pink-600">Clients</span></h2>
+                    <p class="text-gray-600 text-base md:text-lg">Rated 5.0 on Google</p>
+                </div>
+
+                <div class="relative w-full max-w-sm md:max-w-lg mx-auto">
+                    <!-- Slider Container (Fixed height to properly contain mobile screenshots) -->
+                    <div class="overflow-hidden rounded-2xl shadow-xl border border-gray-100 h-[380px] sm:h-[450px] relative bg-white flex items-center justify-center px-4 py-6">
+                        <div class="review-slide absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center p-4 opacity-100 z-10">
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586487/Screenshot_2026-06-04_204429_mtrbxn.png" alt="Google Review 1" class="h-full w-auto max-w-full object-contain rounded-lg drop-shadow" />
+                        </div>
+                        <div class="review-slide absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center p-4 opacity-0 z-0">
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586487/Screenshot_2026-06-04_204443_cyrwbc.png" alt="Google Review 2" class="h-full w-auto max-w-full object-contain rounded-lg drop-shadow" />
+                        </div>
+                        <div class="review-slide absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center p-4 opacity-0 z-0">
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586487/Screenshot_2026-06-04_204449_ogcmuc.png" alt="Google Review 3" class="h-full w-auto max-w-full object-contain rounded-lg drop-shadow" />
+                        </div>
+                        <div class="review-slide absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center p-4 opacity-0 z-0">
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586486/Screenshot_2026-06-04_204435_icudl4.png" alt="Google Review 4" class="h-full w-auto max-w-full object-contain rounded-lg drop-shadow" />
+                        </div>
+                        <div class="review-slide absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center p-4 opacity-0 z-0">
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586486/Screenshot_2026-06-04_204413_f7xhdh.png" alt="Google Review 5" class="h-full w-auto max-w-full object-contain rounded-lg drop-shadow" />
+                        </div>
+                        <div class="review-slide absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center p-4 opacity-0 z-0">
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586487/Screenshot_2026-06-04_204456_mn6azd.png" alt="Google Review 6" class="h-full w-auto max-w-full object-contain rounded-lg drop-shadow" />
+                        </div>
+                        <div class="review-slide absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center p-4 opacity-0 z-0">
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586486/Screenshot_2026-06-04_204349_z98oxl.png" alt="Google Review 7" class="h-full w-auto max-w-full object-contain rounded-lg drop-shadow" />
+                        </div>
+                        <div class="review-slide absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center p-4 opacity-0 z-0">
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586486/Screenshot_2026-06-04_204405_sm4yft.png" alt="Google Review 8" class="h-full w-auto max-w-full object-contain rounded-lg drop-shadow" />
+                        </div>
+                        <div class="review-slide absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center justify-center p-4 opacity-0 z-0">
+                            <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586485/Screenshot_2026-06-04_204358_cz8jnr.png" alt="Google Review 9" class="h-full w-auto max-w-full object-contain rounded-lg drop-shadow" />
+                        </div>
+                    </div>
+                    
+                    <!-- Indicators -->
+                    <div class="flex flex-wrap justify-center gap-1.5 md:gap-2 mt-6 px-4" id="review-indicators">
+                        <button onclick="goToSlide(0)" class="indicator w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors duration-300 bg-pink-600" aria-label="Go to slide 1"></button>
+                        <button onclick="goToSlide(1)" class="indicator w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-pink-400" aria-label="Go to slide 2"></button>
+                        <button onclick="goToSlide(2)" class="indicator w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-pink-400" aria-label="Go to slide 3"></button>
+                        <button onclick="goToSlide(3)" class="indicator w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-pink-400" aria-label="Go to slide 4"></button>
+                        <button onclick="goToSlide(4)" class="indicator w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-pink-400" aria-label="Go to slide 5"></button>
+                        <button onclick="goToSlide(5)" class="indicator w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-pink-400" aria-label="Go to slide 6"></button>
+                        <button onclick="goToSlide(6)" class="indicator w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-pink-400" aria-label="Go to slide 7"></button>
+                        <button onclick="goToSlide(7)" class="indicator w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-pink-400" aria-label="Go to slide 8"></button>
+                        <button onclick="goToSlide(8)" class="indicator w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-pink-400" aria-label="Go to slide 9"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white pt-16 md:pt-20 pb-8 md:pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
+                
+                <!-- Brand Col -->
+                <div class="space-y-5 md:space-y-6">
+                    <div class="flex items-center gap-3 bg-white/10 p-3 rounded-xl inline-flex">
+                        <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780586487/Screenshot_2026-06-04_204656_ahrlgq.png" alt="Alohaa Logo" class="h-10 w-auto bg-white rounded" />
+                        <span class="font-serif text-xl md:text-2xl font-bold tracking-wide">Alohaa<span class="text-pink-500">.</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        The Best Unisex Salon in Andheri East. We specialize in Hair, Nails, and Skin care, providing top-notch services to make you look and feel your best.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/alohaa.family.salon?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="bg-white/10 p-2.5 rounded-full hover:bg-pink-600 transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="mailto:thealohaasalon@gmail.com" class="bg-white/10 p-2.5 rounded-full hover:bg-pink-600 transition-colors">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Col -->
+                <div>
+                    <h4 class="text-base md:text-lg font-bold mb-4 md:mb-6 font-serif border-b border-gray-700 pb-2">Contact Us</h4>
+                    <ul class="space-y-4 text-gray-300 text-sm md:text-base">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="phone" class="text-pink-500 shrink-0 mt-1 w-4.5 h-4.5"></i>
+                            <div>
+                                <a href="tel:9075395755" class="hover:text-pink-400 block py-1">9075395755</a>
+                                <a href="tel:9173332931" class="hover:text-pink-400 block py-1">9173332931</a>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-green-500 font-bold shrink-0">Wa</span>
+                            <a href="https://wa.me/919075395755" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400 py-1">
+                                9075395755
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="text-pink-500 shrink-0 w-4.5 h-4.5"></i>
+                            <a href="mailto:thealohaasalon@gmail.com" class="hover:text-pink-400 break-all py-1">
+                                thealohaasalon@gmail.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Visit Us Col -->
+                <div>
+                    <h4 class="text-base md:text-lg font-bold mb-4 md:mb-6 font-serif border-b border-gray-700 pb-2">Visit Us</h4>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="text-pink-500 shrink-0 mt-1 w-4.5 h-4.5"></i>
+                            <span class="text-sm leading-relaxed">Shop No. 7, Gokul Arcade, Sahar Rd, near udupi hotel, opp. NITYANANDA MARG MUNICIPAL PRIMARY SCHOOL, A-Wing, Navpada, Netaji Subhash Nagar, Andheri East, Mumbai, Maharashtra 400057</span>
+                        </li>
+                        <li class="flex items-start gap-3 mt-4">
+                            <i data-lucide="clock" class="text-pink-500 shrink-0 mt-1 w-4.5 h-4.5"></i>
+                            <span class="text-sm">Open All Day | 11:00 AM – 9:00 PM</span>
+                        </li>
+                    </ul>
+                    <a href="https://maps.app.goo.gl/xQ564onuRtKc3gtc7" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block bg-white/10 hover:bg-white/20 text-white px-6 py-2.5 rounded text-sm font-medium transition-colors border border-gray-700 w-full md:w-auto text-center">
+                        Get Directions
+                    </a>
+                </div>
+
+                <!-- Quick Links Col -->
+                <div>
+                    <h4 class="text-base md:text-lg font-bold mb-4 md:mb-6 font-serif border-b border-gray-700 pb-2">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-300 text-sm md:text-base">
+                        <li><a href="#home" class="hover:text-pink-400 transition-colors block py-1">Home</a></li>
+                        <li><a href="#offers" class="hover:text-pink-400 transition-colors block py-1">Special Offers</a></li>
+                        <li><a href="#services" class="hover:text-pink-400 transition-colors block py-1">Our Services</a></li>
+                        <li><a href="#gallery" class="hover:text-pink-400 transition-colors block py-1">Work Gallery</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; <span id="current-year"></span> Alohaa Family Salon. All rights reserved.</p>
+                <p class="mt-2 text-xs">Plus Code: 4V52+VP Mumbai, Maharashtra</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set Current Year dynamically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Reviews Auto-Slider Logic
+        const slides = document.querySelectorAll('.review-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.replace('opacity-0', 'opacity-100');
+                    slide.classList.replace('z-0', 'z-10');
+                    indicators[i].classList.replace('bg-gray-300', 'bg-pink-600');
+                } else {
+                    slide.classList.replace('opacity-100', 'opacity-0');
+                    slide.classList.replace('z-10', 'z-0');
+                    indicators[i].classList.replace('bg-pink-600', 'bg-gray-300');
+                }
+            });
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            const nextIndex = (currentSlide + 1) % totalSlides;
+            showSlide(nextIndex);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            // Reset timer on manual click
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 3500);
+        }
+
+        // Start Auto-slider
+        slideInterval = setInterval(nextSlide, 3500);
+    </script>
+</body>
+</html>
