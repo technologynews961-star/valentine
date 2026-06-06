@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahavir Real Estate | Full Website</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1E3A8A;
+            --secondary-color: #F59E0B;
+            --text-color: #333;
+            --bg-light: #F9FAFB;
+            --border-color: #E5E7EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            height: 50px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-links button:hover, .nav-links button.active-nav {
+            color: var(--secondary-color);
+        }
+
+        .contact-btn {
+            background-color: #25D366;
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-btn:hover {
+            background-color: #128C7E;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* --- Page Sections --- */
+        .page-section {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+        }
+
+        /* --- Hero & Reviews --- */
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.85)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+            overflow: hidden;
+            height: 220px;
+        }
+
+        .review-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s;
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .review-slide.active { opacity: 1; z-index: 1; }
+
+        /* --- Properties Page --- */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .property-card {
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .property-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .property-details {
+            padding: 20px;
+        }
+
+        .property-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .property-features {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        /* --- About Page --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .owner-card {
+            text-align: center;
+        }
+
+        .owner-card img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary-color);
+        }
+
+        .vision-text {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-item i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        /* --- Contact Page & Map --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-container {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #111;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            .mobile-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.show { display: flex; }
+        }
+
+        @media (min-width: 768px) {
+            .about-grid, .contact-grid { grid-template-columns: 1fr 1fr; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <div class="logo" onclick="switchPage('home')">
+                <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780728524/ChatGPT_Image_Jun_6_2026_12_18_39_PM_incvea.png" alt="Mahavir Real Estate Logo">
+            </div>
+            
+            <button class="mobile-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+            
+            <div class="nav-links" id="navLinks">
+                <button class="active-nav" onclick="switchPage('home')">Home</button>
+                <button onclick="switchPage('properties')">Properties</button>
+                <button onclick="switchPage('about')">About Us</button>
+                <button onclick="switchPage('contact')">Contact</button>
+                <button class="contact-btn" onclick="switchPage('contact')"><i class="fab fa-whatsapp"></i> Enquire Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= SECTION: HERO & REVIEWS ================= -->
+    <div id="home-hero" class="page-section">
+        <section class="hero">
+            <h1>Mahavir Real Estate</h1>
+            <p>Your Trusted Real Estate Partner in Andheri East, Mumbai</p>
+            <button class="contact-btn" style="display: inline-block; font-size: 1.1rem; padding: 12px 30px; margin-top:20px; background-color: var(--secondary-color);" onclick="switchPage('properties')">
+                Explore Properties
+            </button>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Client Reviews</h2>
+            <div style="text-align: center; margin-bottom: 20px; font-size: 1.2rem; font-weight: bold;">
+                Google Rating: 4.6 <span style="color:var(--secondary-color)"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+            </div>
+            <div class="slider-container">
+                <div class="review-slide active">
+                    <p>"Excellent service! Hasmukha Karia and the team helped us find our dream apartment in Navpada quickly."</p>
+                    <br><strong>- Rahul M.</strong>
+                </div>
+                <div class="review-slide">
+                    <p>"Very professional. The property options they showed were exactly what we requested. Hassle-free paperwork."</p>
+                    <br><strong>- Sneha P.</strong>
+                </div>
+                <div class="review-slide">
+                    <p>"Great experience dealing with Mahavir Real Estate. They understand requirements perfectly."</p>
+                    <br><strong>- Amit S.</strong>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= SECTION: PROPERTIES ================= -->
+    <div id="properties" class="page-section">
+        <section class="section" style="background-color: var(--bg-light);">
+            <h2 class="section-title">Featured Listings</h2>
+            <div class="properties-grid">
+                <!-- Demo Property 1 -->
+                <div class="property-card" style="background:white;">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Apartment">
+                    <div class="property-details">
+                        <h3>Premium 2 BHK Apartment</h3>
+                        <p class="property-price">₹ 1.85 Cr</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Navpada, Andheri East</p>
+                        <div class="property-features">
+                            <span><i class="fas fa-bed"></i> 2 Beds</span>
+                            <span><i class="fas fa-bath"></i> 2 Baths</span>
+                            <span><i class="fas fa-ruler-combined"></i> 850 sqft</span>
+                        </div>
+                        <button class="submit-btn" style="margin-top:10px" onclick="switchPage('contact')">Enquire</button>
+                    </div>
+                </div>
+                <!-- Demo Property 2 -->
+                <div class="property-card" style="background:white;">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Commercial">
+                    <div class="property-details">
+                        <h3>Commercial Shop Space</h3>
+                        <p class="property-price">₹ 65,000 / month</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Station Road, Andheri East</p>
+                        <div class="property-features">
+                            <span><i class="fas fa-store"></i> Ground Flr</span>
+                            <span><i class="fas fa-ruler-combined"></i> 400 sqft</span>
+                        </div>
+                        <button class="submit-btn" style="margin-top:10px" onclick="switchPage('contact')">Enquire</button>
+                    </div>
+                </div>
+                <!-- Demo Property 3 -->
+                <div class="property-card" style="background:white;">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Apartment">
+                    <div class="property-details">
+                        <h3>Luxury 3 BHK Flat</h3>
+                        <p class="property-price">₹ 2.90 Cr</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Sahar Rd, Andheri East</p>
+                        <div class="property-features">
+                            <span><i class="fas fa-bed"></i> 3 Beds</span>
+                            <span><i class="fas fa-bath"></i> 3 Baths</span>
+                            <span><i class="fas fa-car"></i> Parking</span>
+                        </div>
+                        <button class="submit-btn" style="margin-top:10px" onclick="switchPage('contact')">Enquire</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= SECTION: ABOUT US ================= -->
+    <div id="about" class="page-section">
+        <section class="section">
+            <h2 class="section-title">About Mahavir Real Estate</h2>
+            <div class="about-grid">
+                <div class="owner-card">
+                    <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780728301/ChatGPT_Image_Jun_6_2026_12_14_49_PM_a2prls.png" alt="Hasmukha Karia">
+                    <h3>Hasmukha Karia</h3>
+                    <p style="color:var(--primary-color); font-weight:600;">Founder & Owner</p>
+                </div>
+                <div class="vision-text">
+                    <h3 style="margin-bottom: 15px;"><i class="fas fa-bullseye"></i> Our Vision</h3>
+                    <p>"At Mahavir Real Estate, our vision is to transform the property buying and renting experience into a seamless, transparent, and joyful journey. Driven by integrity and a deep understanding of the Mumbai real estate landscape, we strive to build lasting relationships and provide every client with options that perfectly match their needs, budget, and aspirations."</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 60px; text-align: center; font-size: 1.8rem; color: var(--primary-color);">Facilities & Inclusivity</h3>
+            <div class="features-grid">
+                <div class="feature-item"><i class="fas fa-rainbow"></i> LGBTQ+ Friendly Space</div>
+                <div class="feature-item"><i class="fas fa-wheelchair"></i> Wheelchair-Accessible Seating & Toilet</div>
+                <div class="feature-item"><i class="fas fa-deaf"></i> Assistive Hearing Loop Available</div>
+                <div class="feature-item"><i class="fas fa-laptop-house"></i> Online & On-site Appointments</div>
+                <div class="feature-item"><i class="fas fa-parking"></i> Free Street & On-site Parking</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= SECTION: CONTACT & MAP ================= -->
+    <div id="contact" class="page-section">
+        <section class="section" style="background-color: var(--bg-light);">
+            <h2 class="section-title">Contact Us</h2>
+            
+            <div class="contact-grid">
+                <!-- Enquiry Form -->
+                <div class="form-container" style="background: white;">
+                    <h3 style="margin-bottom: 20px;">Send a WhatsApp Enquiry</h3>
+                    <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="clientName" required placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Number *</label>
+                            <input type="tel" id="clientPhone" required placeholder="e.g. 9876543210">
+                        </div>
+                        <div class="form-group">
+                            <label>Looking For *</label>
+                            <select id="requirementType" required>
+                                <option value="">Select Requirement</option>
+                                <option value="Buy Residential">Buy Residential</option>
+                                <option value="Rent Residential">Rent Residential</option>
+                                <option value="Buy Commercial">Buy Commercial</option>
+                                <option value="Rent Commercial">Rent Commercial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea id="clientMessage" rows="3" placeholder="Budget, specific location, etc."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</button>
+                    </form>
+                </div>
+
+                <!-- Google Maps Embed -->
+                <div>
+                    <h3 style="margin-bottom: 20px;">Our Office Location</h3>
+                    <div class="map-container">
+                        <!-- Dynamic map embed searching for the exact business address -->
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Mahavir+Real+Estate,+Shop+No+3,+Sahar+Rd,+opposite+Dmart,+Navpada,+Andheri+East,+Mumbai&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div style="margin-top: 20px; background: white; padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
+                        <p><strong><i class="fas fa-map-marker-alt"></i> Address:</strong> Shop no 3, Sahar Rd, opposite Dmart, Navpada, Station Road, Andheri East, Mumbai 400069</p>
+                        <p><strong><i class="fas fa-clock"></i> Hours:</strong> Everyday 9 am – 8 pm</p>
+                        <p><strong><i class="fas fa-envelope"></i> Email:</strong> mahavirrealestateandheri@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Mahavir Real Estate</h3>
+                <p style="margin-top: 15px;"><i class="fas fa-map-marker-alt"></i> Shop No 3, Sahar Rd, opposite Dmart, Navpada, Andheri East, Mumbai, Maharashtra 400069</p>
+                <p><i class="fas fa-map-pin"></i> Plus Code: 4R7W+PW</p>
+            </div>
+            <div>
+                <h3>Get in Touch</h3>
+                <p style="margin-top: 15px;"><i class="fas fa-phone"></i> +91 9326099974</p>
+                <p><i class="fab fa-whatsapp"></i> +91 9326099974</p>
+                <p><i class="fas fa-envelope"></i> mahavirrealestateandheri@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for SPA Hybrid Display, Menu, Form, and Slider -->
+    <script>
+        // --- 1. Hybrid Page Application Logic ---
+        function switchPage(pageId) {
+            const allSections = ['home-hero', 'properties', 'about', 'contact'];
+
+            if (pageId === 'home') {
+                // If Home is clicked, show ALL sections to create a long scrolling homepage
+                allSections.forEach(id => {
+                    document.getElementById(id).style.display = 'block';
+                });
+            } else {
+                // If a specific tab is clicked, hide everything else and only show that section
+                allSections.forEach(id => {
+                    document.getElementById(id).style.display = 'none';
+                });
+                document.getElementById(pageId).style.display = 'block';
+            }
+            
+            // Update active nav button colors
+            document.querySelectorAll('.nav-links button').forEach(btn => {
+                btn.classList.remove('active-nav');
+            });
+            
+            const clickedBtn = Array.from(document.querySelectorAll('.nav-links button'))
+                .find(btn => btn.textContent.toLowerCase().includes(pageId) || 
+                            (pageId === 'about' && btn.textContent.includes('About')));
+            
+            if(clickedBtn && !clickedBtn.classList.contains('contact-btn')) {
+                clickedBtn.classList.add('active-nav');
+            }
+
+            // Close mobile menu if open
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks.classList.contains('show')) {
+                navLinks.classList.remove('show');
+            }
+
+            // Scroll to top instantly when switching tabs
+            window.scrollTo(0, 0);
+        }
+
+        // --- 2. Mobile Menu Toggle ---
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('show');
+        }
+
+        // --- 3. WhatsApp Redirect Form ---
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            const type = document.getElementById('requirementType').value;
+            const message = document.getElementById('clientMessage').value;
+
+            const whatsappNumber = "919326099974";
+            let waText = `*New Property Enquiry from Website*%0A%0A`;
+            waText += `*Name:* ${name}%0A`;
+            waText += `*Contact:* ${phone}%0A`;
+            waText += `*Looking For:* ${type}%0A`;
+            if(message) waText += `*Message:* ${message}%0A`;
+
+            window.open(`https://wa.me/${whatsappNumber}?text=${waText}`, '_blank');
+        }
+
+        // --- 4. Auto-Sliding Reviews ---
+        const slides = document.querySelectorAll('.review-slide');
+        let currentSlide = 0;
+        setInterval(() => {
+            if(slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+        }, 4000);
+
+        // Ensure Home state is fully visible on first load
+        window.onload = () => switchPage('home');
+    </script>
+</body>
+</html>
