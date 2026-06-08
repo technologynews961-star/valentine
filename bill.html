@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETHIOPIA COFFEE HOUSE - Intelligent POS System</title>
-    <!-- Tailwind CSS CDN for rapid layout styling -->
+    <title>ETHIOPIA COFFEE HOUSE - Thermal POS</title>
+    <!-- Tailwind CSS CDN for POS Panel UI -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- html2pdf.js CDN for reliable PDF export -->
+    <!-- html2pdf.js CDN for PDF export backups -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        :root {
-            --coffee-dark: #3c2a21;
-        }
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.2s, color 0.2s;
         }
-        /* 80mm Thermal Printer Media Rules optimized for Generic / ESC/POS / Scanlife XP-A260H */
+        
+        /* Strict 80mm Layout targeting for Thermal / ESC-POS / Scanlife Paper Feeds */
         @media print {
             @page {
                 size: 80mm auto;
@@ -35,22 +33,16 @@
             .print-only {
                 display: block !important;
             }
-            .receipt-container {
-                width: 76mm !important;
+            
+            /* Emulate image_2.png native font layout constraints */
+            .receipt-print-wrapper {
+                width: 74mm !important;
                 margin: 0 auto !important;
-                padding: 4mm 2mm !important;
+                padding: 4mm 1mm !important;
                 font-family: 'Courier New', Courier, monospace !important;
-                font-size: 12px !important;
+                font-size: 13px !important;
                 line-height: 1.3 !important;
-                color: #000 !important;
-            }
-            .receipt-container * {
-                color: #000 !important;
-                background: transparent !important;
-            }
-            .receipt-border {
-                border-bottom: 1px dashed #000 !important;
-                margin: 6px 0 !important;
+                color: #000000 !important;
             }
         }
         .print-only {
@@ -58,153 +50,146 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 transition-colors duration-200" id="bodyNode">
+<body class="bg-gray-100 text-gray-900 transition-colors" id="appBody">
 
-    <!-- Header Panel -->
-    <header class="bg-[#3c2a21] text-white p-4 shadow-md no-print flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div class="text-center sm:text-left">
-            <h1 class="text-2xl font-bold tracking-wide">ETHIOPIA COFFEE HOUSE</h1>
-            <p class="text-xs text-amber-100/80 max-w-xl mt-0.5">
-                Cafe no-06, next to SBI Bank, Below Metro Station, Chakala, J B Nagar, Andheri East, Mumbai, Maharashtra 400059
-            </p>
+    <!-- POS Header Control Strip -->
+    <header class="bg-[#3c2a21] text-white p-4 shadow-sm no-print flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div>
+            <h1 class="text-xl font-bold tracking-wide">ETHIOPIA COFFEE HOUSE</h1>
+            <p class="text-xs text-amber-100/70 mt-0.5">POS Console Control Panel & Registry Dashboard</p>
         </div>
         <div class="flex items-center gap-3">
-            <button onclick="toggleDarkMode()" class="bg-amber-900/40 hover:bg-amber-900/60 text-white px-3 py-1.5 rounded-lg text-sm border border-amber-700/50 flex items-center gap-2 cursor-pointer transition">
-                <span>🌙</span> Dark Mode
+            <button onclick="toggleDarkMode()" class="bg-amber-900/40 hover:bg-amber-900/60 text-white px-3 py-1.5 rounded-lg text-xs font-medium border border-amber-800 transition cursor-pointer">
+                🌓 Dark Mode
             </button>
-            <div class="bg-amber-900/60 px-3 py-1.5 rounded-lg text-sm border border-amber-800 font-mono text-amber-200">
-                Live: <span id="liveClock">--:--:--</span>
+            <div class="bg-black/30 px-3 py-1.5 rounded-lg font-mono text-xs text-amber-200">
+                Clock: <span id="clockNode">--:--:--</span>
             </div>
         </div>
     </header>
 
-    <!-- Main Workspace -->
+    <!-- App Content Wrapper -->
     <main class="max-w-7xl mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 no-print">
         
-        <!-- Left Column: POS Operations Workspace -->
-        <section class="lg:col-span-8 space-y-6">
+        <!-- Left Column: Order Generation Desk -->
+        <section class="lg:col-span-7 space-y-6">
             
-            <!-- Customer Section -->
-            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-xs border border-gray-100 dark:border-gray-700 space-y-4">
+            <!-- Customer Profiling Registry Card -->
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700 space-y-4 shadow-xs">
                 <div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-700 pb-2">
-                    <h2 class="text-lg font-bold text-[#3c2a21] dark:text-amber-400 flex items-center gap-2">
-                        👤 Customer & Registry Information
-                    </h2>
-                    <span class="text-xs bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 px-3 py-1 rounded-full font-mono font-bold" id="billNoDisplay">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-[#3c2a21] dark:text-amber-400">👤 Customer Registry</h2>
+                    <span class="text-xs font-mono font-bold bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 px-3 py-1 rounded-md" id="billIdNode">
                         ECH-000001
                     </span>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Customer Name</label>
-                        <input type="text" id="custName" oninput="updatePreview()" placeholder="Walk-in Customer" class="w-full px-3.5 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 bg-transparent dark:text-white">
+                        <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">Customer Name</label>
+                        <input type="text" id="cNameInput" oninput="updateReceiptPreview()" placeholder="vishal" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-amber-700">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Mobile Number</label>
-                        <input type="tel" id="custMobile" oninput="updatePreview()" placeholder="e.g. 9876543210" maxlength="10" class="w-full px-3.5 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 bg-transparent dark:text-white">
+                        <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">Mobile Number</label>
+                        <input type="tel" id="cMobileInput" oninput="updateReceiptPreview()" placeholder="9892415819" maxlength="10" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-amber-700">
                     </div>
                 </div>
             </div>
 
-            <!-- Dynamic Items Checkout Desk -->
-            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-xs border border-gray-100 dark:border-gray-700 space-y-4">
+            <!-- Items Datagrid Module -->
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700 space-y-4 shadow-xs">
                 <div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-700 pb-2">
-                    <h2 class="text-lg font-bold text-[#3c2a21] dark:text-amber-400 flex items-center gap-2">
-                        ☕ Billing Desk Items
-                    </h2>
-                    <button onclick="addNewRow()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-1 cursor-pointer transition">
-                        ➕ Add Item
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-[#3c2a21] dark:text-amber-400">☕ Cart Contents</h2>
+                    <button onclick="createNewItemRow()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition cursor-pointer">
+                        ➕ Add Row
                     </button>
                 </div>
 
-                <!-- Transaction Matrix -->
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse min-w-[650px]">
+                    <table class="w-full border-collapse min-w-[600px] text-left">
                         <thead>
-                            <tr class="border-b border-gray-200 dark:border-gray-700 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase bg-gray-50 dark:bg-gray-900/50">
+                            <tr class="border-b border-gray-200 dark:border-gray-700 text-[11px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50 dark:bg-gray-900/30">
                                 <th class="p-3 w-3/12">Category</th>
-                                <th class="p-3 w-3/12">Item Name</th>
+                                <th class="p-3 w-3/12">Item</th>
                                 <th class="p-3 w-2/12 text-center">Size</th>
                                 <th class="p-3 w-1/12 text-center">Qty</th>
                                 <th class="p-3 w-1/12 text-right">Price</th>
                                 <th class="p-3 w-1/12 text-right">Total</th>
-                                <th class="p-3 w-1/12 text-center">Action</th>
+                                <th class="p-3 w-1/12 text-center">Clear</th>
                             </tr>
                         </thead>
-                        <tbody id="invoiceTableBody">
-                            <!-- Dynamic cascading menu nodes will render here -->
+                        <tbody id="invoiceItemsTbody">
+                            <!-- Rows generated programmatically via application logic loops -->
                         </tbody>
                     </table>
                 </div>
 
-                <!-- System Discounts Modifier Section -->
-                <div class="pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-end gap-4 text-right">
-                    <div class="w-44">
-                        <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Apply Discount (₹)</label>
-                        <input type="number" id="discountInput" oninput="updatePreview()" placeholder="0" min="0" class="w-full text-right px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent dark:text-white focus:outline-none focus:ring-1 focus:ring-amber-700">
+                <!-- Custom Discount System -->
+                <div class="pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-end">
+                    <div class="w-40">
+                        <label class="block text-[11px] font-bold text-gray-400 uppercase mb-1 text-right">Apply Discount (₹)</label>
+                        <input type="number" id="discountValueInput" oninput="updateReceiptPreview()" placeholder="0" min="0" class="w-full text-right px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent text-sm dark:text-white focus:outline-none">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Right Column: 80mm Thermal Virtual Paper Canvas Sheet -->
-        <section class="lg:col-span-4 space-y-6">
-            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-xs border border-gray-100 dark:border-gray-700 flex flex-col h-full">
-                <h2 class="text-lg font-bold text-[#3c2a21] dark:text-amber-400 border-b border-gray-100 dark:border-gray-700 pb-2 mb-4 flex items-center gap-2">
-                    📄 Live 80mm Receipt Print View
+        <!-- Right Column: Live Emulator matching image_2.png exactly -->
+        <section class="lg:col-span-5">
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700 flex flex-col h-full shadow-xs">
+                <h2 class="text-sm font-bold uppercase tracking-wider text-[#3c2a21] dark:text-amber-400 border-b border-gray-100 dark:border-gray-700 pb-2 mb-4">
+                    📄 Live 80mm Virtual Print Mirror
                 </h2>
                 
-                <!-- 80mm Emulator Shell Box -->
-                <div class="bg-gray-100 dark:bg-gray-900 p-3 rounded-xl flex-1 flex justify-center items-start overflow-y-auto max-h-[520px]">
-                    <div id="receiptFrame" class="bg-white text-black p-4 w-[80mm] shadow-sm font-mono text-xs leading-tight">
-                        <!-- Bound dynamically via UI rendering engines -->
+                <!-- Fixed Height Scrollable Terminal Preview Paper Canvas Box -->
+                <div class="bg-gray-200 dark:bg-gray-900 p-4 rounded-xl flex justify-center items-start overflow-y-auto max-h-[550px]">
+                    <div id="receiptLiveCanvas" class="bg-white text-black p-4 w-[80mm] shadow-md font-mono text-xs leading-tight border border-gray-300">
+                        <!-- Populated programmatically inside updateReceiptPreview framework functions -->
                     </div>
                 </div>
 
-                <!-- Control Execution Cluster -->
+                <!-- System Dispatch Actions Grid -->
                 <div class="mt-4 space-y-2">
-                    <button onclick="printThermalReceipt()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 shadow-sm transition cursor-pointer">
-                        🖨️ Print Bill (ESC/POS)
+                    <button onclick="commitAndPrintReceipt()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 transition shadow-xs cursor-pointer">
+                        🖨️ Print Receipt Bill
                     </button>
                     <div class="grid grid-cols-2 gap-2">
-                        <button onclick="exportAsPDF()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 rounded-lg font-medium text-xs transition cursor-pointer">
-                            📥 Save File PDF
+                        <button onclick="triggerPDFExport()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2 px-3 rounded-lg transition cursor-pointer">
+                            📥 Save Receipt PDF
                         </button>
-                        <button onclick="clearCurrentForm()" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 text-gray-700 py-2 px-3 rounded-lg font-medium text-xs transition cursor-pointer">
-                            🔄 Reset Workspace
+                        <button onclick="wipeWorkspace()" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 text-xs font-semibold py-2 px-3 rounded-lg transition cursor-pointer">
+                            🔄 Wipe Workspace
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Persistent Registry Ledger Log Board -->
-        <section class="lg:col-span-12 border-t border-gray-200 dark:border-gray-700 pt-6">
-            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-xs border border-gray-100 dark:border-gray-700">
+        <!-- Searchable Ledger Storage Log Board -->
+        <section class="lg:col-span-12 pt-4">
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700 shadow-xs">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-100 dark:border-gray-700 pb-4 mb-4">
                     <div>
-                        <h2 class="text-lg font-bold text-[#3c2a21] dark:text-amber-400">📜 Historic Bills Database Table</h2>
-                        <p class="text-xs text-gray-500">Maintains and indexes the last 100 system receipts within LocalStorage</p>
+                        <h2 class="text-sm font-bold uppercase text-[#3c2a21] dark:text-amber-400">📜 Historic Sales Logs Database</h2>
+                        <p class="text-xs text-gray-400">Stores and indexes previous 100 entries locally</p>
                     </div>
-                    <div class="w-full md:w-80 relative">
-                        <input type="text" id="searchInput" oninput="renderHistoryTable()" placeholder="🔍 Search by Mobile Number..." class="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm bg-transparent dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-700">
+                    <div class="w-full md:w-80">
+                        <input type="text" id="searchLogInput" oninput="renderHistoryTable()" placeholder="🔍 Filter rows by mobile number..." class="w-full px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg text-xs bg-transparent dark:text-white focus:outline-none">
                     </div>
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
+                    <table class="w-full border-collapse text-left text-xs">
                         <thead>
-                            <tr class="border-b border-gray-200 dark:border-gray-700 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase bg-gray-50 dark:bg-gray-900/50">
-                                <th class="p-3">Bill Number</th>
-                                <th class="p-3">Timestamp Date</th>
+                            <tr class="border-b border-gray-200 dark:border-gray-700 font-bold uppercase text-gray-400 bg-gray-50 dark:bg-gray-900/20">
+                                <th class="p-3">Bill No</th>
+                                <th class="p-3">Timestamp</th>
                                 <th class="p-3">Customer Profile</th>
                                 <th class="p-3 text-right">Items Snapshot</th>
-                                <th class="p-3 text-right">Total (₹)</th>
-                                <th class="p-3 text-center">Action</th>
+                                <th class="p-3 text-right">Grand Total</th>
+                                <th class="p-3尊 text-center">Action</th>
                             </tr>
                         </thead>
-                        <tbody id="historyTableBody" class="divide-y divide-gray-100 dark:divide-gray-700 text-sm">
-                            <!-- Populated dynamically via state-machine parsing loops -->
+                        <tbody id="historyTableBody" class="divide-y divide-gray-100 dark:divide-gray-700">
+                            <!-- Populated dynamically via State Machine updates -->
                         </tbody>
                     </table>
                 </div>
@@ -212,12 +197,12 @@
         </section>
     </main>
 
-    <!-- Invisible Printing Portals Mirror Hook for clean page targeting layout updates -->
-    <div id="printRenderingWrapper" class="print-only"></div>
+    <!-- Invisible target portal container wrapper for pure printable execution frames -->
+    <div id="hardwarePrintWrapper" class="print-only"></div>
 
-    <!-- Application Script Engine Engine Layer -->
+    <!-- Application Script Logic Controller Frame -->
     <script>
-        // Inbuilt Coffee House Master Menu Record Database
+        // Master Catalog Databank
         const menuData = {
             "Classic Cold Brew":[
                 {"name":"Espresso","R":180},
@@ -297,57 +282,57 @@
             ]
         };
 
-        // System Core State Containers 
-        let activeBillItems = [];
-        let runningBillNumber = 1;
-        let billsDatabase = [];
+        // Application Global Memory Models
+        let activeItemsList = [];
+        let globalBillCounter = 1;
+        let logsDatabase = [];
 
         window.onload = function() {
-            initializeDatabase();
-            startLiveClock();
-            clearCurrentForm();
-            if (localStorage.getItem('ethiopia_dark_mode') === 'true') {
+            syncDatabaseState();
+            trackLiveClock();
+            wipeWorkspace();
+            if (localStorage.getItem('ech_dark_pref') === 'true') {
                 document.documentElement.classList.add('dark');
-                document.getElementById('bodyNode').classList.add('bg-gray-900', 'text-white');
+                document.getElementById('appBody').classList.add('bg-gray-900', 'text-white');
             }
         };
 
-        function startLiveClock() {
+        function trackLiveClock() {
             setInterval(() => {
                 const now = new Date();
-                document.getElementById('liveClock').innerText = now.toLocaleTimeString('en-US', { hour12: true });
+                document.getElementById('clockNode').innerText = now.toLocaleTimeString('en-US', { hour12: true });
             }, 1000);
         }
 
-        function initializeDatabase() {
-            if (localStorage.getItem('ech_bill_counter')) {
-                runningBillNumber = parseInt(localStorage.getItem('ech_bill_counter'));
+        function syncDatabaseState() {
+            if (localStorage.getItem('ech_bill_counter_v2')) {
+                globalBillCounter = parseInt(localStorage.getItem('ech_bill_counter_v2'));
             } else {
-                localStorage.setItem('ech_bill_counter', runningBillNumber);
+                localStorage.setItem('ech_bill_counter_v2', globalBillCounter);
             }
 
-            if (localStorage.getItem('ech_bills_history')) {
-                billsDatabase = JSON.parse(localStorage.getItem('ech_bills_history'));
+            if (localStorage.getItem('ech_logs_history_v2')) {
+                logsDatabase = JSON.parse(localStorage.getItem('ech_logs_history_v2'));
             } else {
-                localStorage.setItem('ech_bills_history', JSON.stringify([]));
+                localStorage.setItem('ech_logs_history_v2', JSON.stringify([]));
             }
-            document.getElementById('billNoDisplay').innerText = `ECH-${String(runningBillNumber).padStart(6, '0')}`;
+            document.getElementById('billIdNode').innerText = `ECH-${String(globalBillCounter).padStart(6, '0')}`;
             renderHistoryTable();
         }
 
-        function clearCurrentForm() {
-            document.getElementById('custName').value = '';
-            document.getElementById('custMobile').value = '';
-            document.getElementById('discountInput').value = '';
-            activeBillItems = [];
-            addNewRow();
-            updatePreview();
+        function wipeWorkspace() {
+            document.getElementById('cNameInput').value = '';
+            document.getElementById('cMobileInput').value = '';
+            document.getElementById('discountValueInput').value = '';
+            activeItemsList = [];
+            createNewItemRow();
+            updateReceiptPreview();
         }
 
-        function addNewRow() {
-            const currentId = Date.now() + Math.random();
-            activeBillItems.push({
-                id: currentId,
+        function createNewItemRow() {
+            const rowIdentity = Date.now() + Math.random();
+            activeItemsList.push({
+                id: rowIdentity,
                 category: '',
                 name: '',
                 size: '',
@@ -355,107 +340,95 @@
                 price: 0,
                 total: 0
             });
-            renderFormRows();
-            updatePreview();
+            renderInteractiveFormRows();
+            updateReceiptPreview();
         }
 
-        function removeRow(id) {
-            if (activeBillItems.length <= 1) {
-                activeBillItems = [{ id: Date.now(), category: '', name: '', size: '', qty: 1, price: 0, total: 0 }];
+        function deleteRowItem(id) {
+            if (activeItemsList.length <= 1) {
+                activeItemsList = [{ id: Date.now(), category: '', name: '', size: '', qty: 1, price: 0, total: 0 }];
             } else {
-                activeBillItems = activeBillItems.filter(item => item.id !== id);
+                activeItemsList = activeItemsList.filter(row => row.id !== id);
             }
-            renderFormRows();
-            updatePreview();
+            renderInteractiveFormRows();
+            updateReceiptPreview();
         }
 
-        function handleCategoryChange(id, categoryValue) {
-            const index = activeBillItems.findIndex(item => item.id === id);
+        function triggerCategorySelect(id, catValue) {
+            const index = activeItemsList.findIndex(row => row.id === id);
             if (index !== -1) {
-                activeBillItems[index].category = categoryValue;
-                activeBillItems[index].name = '';
-                activeBillItems[index].size = '';
-                activeBillItems[index].price = 0;
-                activeBillItems[index].total = 0;
-                
-                renderFormRows();
-                updatePreview();
+                activeItemsList[index].category = catValue;
+                activeItemsList[index].name = '';
+                activeItemsList[index].size = '';
+                activeItemsList[index].price = 0;
+                activeItemsList[index].total = 0;
+                renderInteractiveFormRows();
+                updateReceiptPreview();
             }
         }
 
-        function handleItemChange(id, itemNameValue) {
-            const index = activeBillItems.findIndex(item => item.id === id);
+        function triggerItemSelect(id, itemName) {
+            const index = activeItemsList.findIndex(row => row.id === id);
             if (index !== -1) {
-                const category = activeBillItems[index].category;
-                const matchItem = menuData[category].find(i => i.name === itemNameValue);
+                const cat = activeItemsList[index].category;
+                const dataMatch = menuData[cat].find(i => i.name === itemName);
                 
-                activeBillItems[index].name = itemNameValue;
-                
-                if (matchItem) {
-                    if ('price' in matchItem) {
-                        // Standard non-sized items flat price assignment block
-                        activeBillItems[index].size = '-';
-                        activeBillItems[index].price = matchItem.price;
+                activeItemsList[index].name = itemName;
+                if (dataMatch) {
+                    if ('price' in dataMatch) {
+                        activeItemsList[index].size = '-';
+                        activeItemsList[index].price = dataMatch.price;
                     } else {
-                        // Sized variant evaluation routing configuration block
-                        if (matchItem.R && !matchItem.M && !matchItem.L) {
-                            activeBillItems[index].size = 'R';
-                            activeBillItems[index].price = matchItem.R;
-                        } else {
-                            // Defaults allocation to let user explicitly choose variation
-                            activeBillItems[index].size = 'R';
-                            activeBillItems[index].price = matchItem.R || 0;
-                        }
+                        // Fallback automatically to Regular sizing defaults
+                        activeItemsList[index].size = 'R';
+                        activeItemsList[index].price = dataMatch.R || 0;
                     }
                 }
-                activeBillItems[index].total = activeBillItems[index].qty * activeBillItems[index].price;
-                renderFormRows();
-                updatePreview();
+                activeItemsList[index].total = activeItemsList[index].qty * activeItemsList[index].price;
+                renderInteractiveFormRows();
+                updateReceiptPreview();
             }
         }
 
-        function handleSizeChange(id, sizeValue) {
-            const index = activeBillItems.findIndex(item => item.id === id);
+        function triggerSizeSelect(id, sizeValue) {
+            const index = activeItemsList.findIndex(row => row.id === id);
             if (index !== -1) {
-                const itemObj = activeBillItems[index];
-                const matchItem = menuData[itemObj.category].find(i => i.name === itemObj.name);
+                const targetRowObj = activeItemsList[index];
+                const dataMatch = menuData[targetRowObj.category].find(i => i.name === targetRowObj.name);
                 
-                itemObj.size = sizeValue;
-                if (matchItem && sizeValue in matchItem) {
-                    itemObj.price = matchItem[sizeValue];
+                targetRowObj.size = sizeValue;
+                if (dataMatch && sizeValue in dataMatch) {
+                    targetRowObj.price = dataMatch[sizeValue];
                 }
-                itemObj.total = itemObj.qty * itemObj.price;
-                renderFormRows();
-                updatePreview();
+                targetRowObj.total = targetRowObj.qty * targetRowObj.price;
+                renderInteractiveFormRows();
+                updateReceiptPreview();
             }
         }
 
-        function handleQtyChange(id, qtyValue) {
-            const index = activeBillItems.findIndex(item => item.id === id);
+        function triggerQtySelect(id, qtyInputVal) {
+            const index = activeItemsList.findIndex(row => row.id === id);
             if (index !== -1) {
-                activeBillItems[index].qty = parseInt(qtyValue) || 1;
-                activeBillItems[index].total = activeBillItems[index].qty * activeBillItems[index].price;
-                
-                document.getElementById(`total-${id}`).innerText = `₹${activeBillItems[index].total.toFixed(2)}`;
-                updatePreview();
+                activeItemsList[index].qty = parseInt(qtyInputVal) || 1;
+                activeItemsList[index].total = activeItemsList[index].qty * activeItemsList[index].price;
+                document.getElementById(`row-total-node-${id}`).innerText = `₹${activeItemsList[index].total.toFixed(2)}`;
+                updateReceiptPreview();
             }
         }
 
-        function renderFormRows() {
-            const tbody = document.getElementById('invoiceTableBody');
+        function renderInteractiveFormRows() {
+            const tbody = document.getElementById('invoiceItemsTbody');
             tbody.innerHTML = '';
 
-            activeBillItems.forEach(item => {
+            activeItemsList.forEach(item => {
                 const tr = document.createElement('tr');
-                tr.className = "border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50/50 dark:hover:bg-gray-900/30 text-xs";
+                tr.className = "border-b border-gray-100 dark:border-gray-700/60 hover:bg-gray-50/50 dark:hover:bg-gray-900/20 text-xs";
 
-                // Generate Category options 
                 let catOptions = `<option value="">-- Select Category --</option>`;
-                Object.keys(menuData).forEach(cat => {
-                    catOptions += `<option value="${cat}" ${item.category === cat ? 'selected' : ''}>${cat}</option>`;
+                Object.keys(menuData).forEach(c => {
+                    catOptions += `<option value="${c}" ${item.category === c ? 'selected' : ''}>${c}</option>`;
                 });
 
-                // Generate Items options conditional to Category value mapping array definitions
                 let itemOptions = `<option value="">-- Select Item --</option>`;
                 if (item.category && menuData[item.category]) {
                     menuData[item.category].forEach(i => {
@@ -463,232 +436,251 @@
                     });
                 }
 
-                // Generate Size options conditional block tracking properties assignment
                 let sizeOptionsHTML = `<option value="-">-</option>`;
                 if (item.category && item.name) {
-                    const matchedMenuObj = menuData[item.category].find(i => i.name === item.name);
-                    if (matchedMenuObj && !('price' in matchedMenuObj)) {
+                    const underlyingRecord = menuData[item.category].find(i => i.name === item.name);
+                    if (underlyingRecord && !('price' in underlyingRecord)) {
                         sizeOptionsHTML = '';
-                        if (matchedMenuObj.R) sizeOptionsHTML += `<option value="R" ${item.size === 'R' ? 'selected' : ''}>R</option>`;
-                        if (matchedMenuObj.M) sizeOptionsHTML += `<option value="M" ${item.size === 'M' ? 'selected' : ''}>M</option>`;
-                        if (matchedMenuObj.L) sizeOptionsHTML += `<option value="L" ${item.size === 'L' ? 'selected' : ''}>L</option>`;
+                        if (underlyingRecord.R) sizeOptionsHTML += `<option value="R" ${item.size === 'R' ? 'selected' : ''}>R</option>`;
+                        if (underlyingRecord.M) sizeOptionsHTML += `<option value="M" ${item.size === 'M' ? 'selected' : ''}>M</option>`;
+                        if (underlyingRecord.L) sizeOptionsHTML += `<option value="L" ${item.size === 'L' ? 'selected' : ''}>L</option>`;
                     }
                 }
 
                 tr.innerHTML = `
                     <td class="p-2">
-                        <select onchange="handleCategoryChange(${item.id}, this.value)" class="w-full px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent dark:text-white focus:outline-none">
+                        <select onchange="triggerCategorySelect(${item.id}, this.value)" class="w-full p-1.5 border border-gray-300 dark:border-gray-600 rounded-md bg-transparent dark:text-white text-xs focus:outline-none">
                             ${catOptions}
                         </select>
                     </td>
                     <td class="p-2">
-                        <select onchange="handleItemChange(${item.id}, this.value)" ${!item.category ? 'disabled' : ''} class="w-full px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent dark:text-white focus:outline-none disabled:opacity-40">
+                        <select onchange="triggerItemSelect(${item.id}, this.value)" ${!item.category ? 'disabled' : ''} class="w-full p-1.5 border border-gray-300 dark:border-gray-600 rounded-md bg-transparent dark:text-white text-xs focus:outline-none disabled:opacity-40">
                             ${itemOptions}
                         </select>
                     </td>
                     <td class="p-2 text-center">
-                        <select onchange="handleSizeChange(${item.id}, this.value)" ${!item.name || sizeOptionsHTML === '<option value="-">-</option>' ? 'disabled' : ''} class="w-full max-w-[70px] mx-auto px-1 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent text-center dark:text-white focus:outline-none disabled:opacity-40">
+                        <select onchange="triggerSizeSelect(${item.id}, this.value)" ${!item.name || sizeOptionsHTML === '<option value="-">-</option>' ? 'disabled' : ''} class="w-full max-w-[65px] mx-auto p-1.5 border border-gray-300 dark:border-gray-600 rounded-md bg-transparent text-center dark:text-white text-xs focus:outline-none disabled:opacity-40">
                             ${sizeOptionsHTML}
                         </select>
                     </td>
                     <td class="p-2 text-center">
-                        <input type="number" value="${item.qty}" min="1" oninput="handleQtyChange(${item.id}, this.value)" ${!item.name ? 'disabled' : ''} class="w-14 text-center px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent dark:text-white focus:outline-none disabled:opacity-40">
+                        <input type="number" value="${item.qty}" min="1" oninput="triggerQtySelect(${item.id}, this.value)" ${!item.name ? 'disabled' : ''} class="w-12 text-center p-1.5 border border-gray-300 dark:border-gray-600 rounded-md bg-transparent dark:text-white text-xs focus:outline-none disabled:opacity-40">
                     </td>
-                    <td class="p-2 text-right font-mono text-gray-600 dark:text-gray-300">
+                    <td class="p-2 text-right font-mono text-gray-500">
                         ₹${item.price.toFixed(2)}
                     </td>
-                    <td class="p-2 text-right font-mono font-bold text-gray-900 dark:text-white" id="total-${item.id}">
+                    <td class="p-2 text-right font-mono font-bold text-gray-800 dark:text-gray-200" id="row-total-node-${item.id}">
                         ₹${item.total.toFixed(2)}
                     </td>
                     <td class="p-2 text-center">
-                        <button onclick="removeRow(${item.id})" class="text-red-500 hover:text-red-700 p-1 rounded font-medium transition cursor-pointer">❌</button>
+                        <button onclick="deleteRowItem(${item.id})" class="text-red-500 hover:text-red-700 font-bold transition cursor-pointer">✕</button>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        function computeCalculations() {
+        function runCalculations() {
             let subtotal = 0;
-            activeBillItems.forEach(item => {
-                subtotal += item.total;
-            });
-            const discount = parseFloat(document.getElementById('discountInput').value) || 0;
+            activeItemsList.forEach(row => { subtotal += row.total; });
+            const discount = parseFloat(document.getElementById('discountValueInput').value) || 0;
             const grandTotal = Math.max(0, subtotal - discount);
-            
             return { subtotal, discount, grandTotal };
         }
 
-        function generateReceiptHTML(billNumber, dateStr, timeStr, customerName, customerMobile, calculationsObj, itemsArr) {
-            let itemsRowsHTML = '';
-            itemsArr.forEach(item => {
-                if(!item.name) return; 
-                const sizeLabel = item.size && item.size !== '-' ? `(${item.size})` : '';
-                itemsRowsHTML += `
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
-                        <div style="max-width: 55%; word-break: break-word;">${item.name} ${sizeLabel}</div>
-                        <div>${item.qty} x ${item.price.toFixed(0)}</div>
-                        <div style="min-width: 65px; text-align: right;">₹${item.total.toFixed(2)}</div>
-                    </div>
+        // Output Layout Generator engineered to match image_2.png explicitly
+        function compileStructuralReceiptHTML(billNumber, dateStr, timeStr, name, mobile, calculations, items) {
+            let rowBodyBuffer = '';
+            
+            items.forEach(item => {
+                if(!item.name) return;
+                const sizeFlag = item.size && item.size !== '-' ? `\n(${item.size})` : '';
+                const titleLabel = `${item.name}${sizeFlag}`;
+                const compositionSummary = `${item.qty} x ${item.price.toFixed(0)}`;
+                
+                rowBodyBuffer += `
+                    <tr style="font-size: 13px; font-family: 'Courier New', Courier, monospace; vertical-align: top;">
+                        <td style="width: 48%; text-align: left; padding: 3px 0; white-space: pre-line; word-break: break-word;">${titleLabel}</td>
+                        <td style="width: 24%; text-align: center; padding: 3px 0;">${compositionSummary}</td>
+                        <td style="width: 28%; text-align: right; padding: 3px 0; font-weight: bold;">₹${item.total.toFixed(2)}</td>
+                    </tr>
                 `;
             });
 
             return `
-                <div class="receipt-container">
-                    <div style="font-size: 15px; font-weight: bold; text-align: center; letter-spacing: 0.5px; text-transform: uppercase;">ETHIOPIA COFFEE HOUSE</div>
-                    <div style="font-size: 11px; text-align: center;">Cafe no-06, next to SBI Bank</div>
-                    <div style="font-size: 11px; text-align: center;">Below Metro Station, Chakala</div>
-                    <div style="font-size: 11px; text-align: center;">J B Nagar, Andheri East</div>
-                    <div style="font-size: 11px; text-align: center; margin-bottom: 2px;">Mumbai, Maharashtra 400059</div>
+                <div class="receipt-container" style="width: 74mm; margin: 0 auto; padding: 1mm; font-family: 'Courier New', Courier, monospace; color: #000000; background-color: #ffffff;">
                     
-                    <div class="receipt-border"></div>
+                    <!-- Branding Header matching image_2.png -->
+                    <div style="text-align: center; font-weight: bold; font-size: 16px; margin-bottom: 3px; letter-spacing: 0.3px;">ETHIOPIA COFFEE HOUSE</div>
+                    <div style="text-align: center; font-size: 12px; font-weight: 500;">Cafe no-06, next to SBI Bank</div>
+                    <div style="text-align: center; font-size: 12px; font-weight: 500;">Below Metro Station, Chakala</div>
+                    <div style="text-align: center; font-size: 12px; font-weight: 500;">J B Nagar, Andheri East</div>
+                    <div style="text-align: center; font-size: 12px; font-weight: 500; margin-bottom: 4px;">Mumbai, Maharashtra 400059</div>
                     
-                    <div style="font-size: 11px; space-y: 1px;">
-                        <div><b>Bill No :</b> ${billNumber}</div>
-                        <div><b>Date    :</b> ${dateStr}</div>
-                        <div><b>Time    :</b> ${timeStr}</div>
-                        <div><b>Customer:</b> ${customerName || 'Walk-in Customer'}</div>
-                        <div><b>Mobile  :</b> ${customerMobile || '9876543210'}</div>
-                    </div>
+                    <div style="text-align: center; font-size: 12px; margin: 2px 0;">******************************************</div>
                     
-                    <div class="receipt-border"></div>
+                    <!-- Metadata Block matching image_2.png format -->
+                    <table style="width: 100%; font-size: 13px; border-collapse: collapse; font-family: 'Courier New', Courier, monospace;">
+                        <tr><td style="width: 32%; text-align: left; font-weight: bold; padding: 1px 0;">Bill No</td><td style="width: 68%; text-align: left;">: ${billNumber}</td></tr>
+                        <tr><td style="font-weight: bold; padding: 1px 0;">Date</td><td>: ${dateStr}</td></tr>
+                        <tr><td style="font-weight: bold; padding: 1px 0;">Time</td><td>: ${timeStr}</td></tr>
+                        <tr><td style="font-weight: bold; padding: 1px 0;">Customer</td><td>: ${name || 'vishal'}</td></tr>
+                        <tr><td style="font-weight: bold; padding: 1px 0;">Mobile</td><td>: ${mobile || '9892415819'}</td></tr>
+                    </table>
                     
-                    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 11px; margin-bottom: 2px;">
-                        <span style="width: 50%; text-align: left;">Item</span>
-                        <span style="width: 20%; text-align: center;">Qty</span>
-                        <span style="width: 30%; text-align: right;">Amt</span>
-                    </div>
+                    <div style="text-align: center; font-size: 12px; margin: 2px 0;">******************************************</div>
                     
-                    <div class="receipt-border"></div>
+                    <!-- Tabular Header Item Matrix matching image_2.png -->
+                    <table style="width: 100%; border-collapse: collapse; font-family: 'Courier New', Courier, monospace;">
+                        <thead>
+                            <tr style="font-weight: bold; font-size: 13px;">
+                                <th style="width: 48%; text-align: left; padding-bottom: 4px;">Item</th>
+                                <th style="width: 24%; text-align: center; padding-bottom: 4px;">Qty</th>
+                                <th style="width: 28%; text-align: right; padding-bottom: 4px;">Amt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rowBodyBuffer || '<tr><td colspan="3" style="text-align:center; padding:10px;">Cart is Empty</td></tr>'}
+                        </tbody>
+                    </table>
                     
-                    <div style="font-size: 11px;">
-                        ${itemsRowsHTML || '<div style="text-align:center; padding:4px;">No items selected</div>'}
-                    </div>
+                    <div style="text-align: center; font-size: 12px; margin: 2px 0;">==========================================</div>
                     
-                    <div class="receipt-border"></div>
+                    <!-- Total Computations Row Grid matching image_2.png alignment -->
+                    <table style="width: 100%; font-size: 13px; border-collapse: collapse; font-family: 'Courier New', Courier, monospace;">
+                        <tr>
+                            <td style="width: 60%; text-align: right; padding: 2px 0;">Subtotal:</td>
+                            <td style="width: 40%; text-align: right; padding: 2px 0; font-weight: bold;">₹${calculations.subtotal.toFixed(2)}</td>
+                        </tr>
+                        ${calculations.discount > 0 ? `
+                        <tr>
+                            <td style="text-align: right; padding: 2px 0; color: #000;">Discount:</td>
+                            <td style="text-align: right; padding: 2px 0; font-weight: bold;">-₹${calculations.discount.toFixed(2)}</td>
+                        </tr>` : ''}
+                    </table>
                     
-                    <div style="text-align: right; font-size: 11px; line-height: 1.4;">
-                        <div>Subtotal: ₹${calculationsObj.subtotal.toFixed(2)}</div>
-                        ${calculationsObj.discount > 0 ? `<div>Discount: -₹${calculationsObj.discount.toFixed(2)}</div>` : ''}
-                        <div style="font-size: 13px; font-weight: bold; margin-top: 4px; border-top: 1px dashed #000; padding-top: 4px; text-align: right;">
-                            TOTAL AMOUNT: ₹${calculationsObj.grandTotal.toFixed(2)}
-                        </div>
-                    </div>
+                    <div style="text-align: center; font-size: 12px; margin: 2px 0;">******************************************</div>
                     
-                    <div class="receipt-border"></div>
+                    <table style="width: 100%; font-size: 14px; border-collapse: collapse; font-family: 'Courier New', Courier, monospace;">
+                        <tr>
+                            <td style="width: 55%; text-align: right; font-weight: bold; padding: 2px 0;">TOTAL AMOUNT:</td>
+                            <td style="width: 45%; text-align: right; font-weight: bold; padding: 2px 0; font-size: 15px;">₹${calculations.grandTotal.toFixed(2)}</td>
+                        </tr>
+                    </table>
                     
-                    <div style="font-size: 11px; text-align: center; margin-top: 4px; font-style: italic;">No GST Applicable</div>
-                    <div style="font-size: 11px; font-weight: bold; text-align: center; margin: 4px 0;">Thank You! Visit Again ☕</div>
-                    <div style="font-size: 10px; text-align: center; opacity: 0.8; text-transform: uppercase;">ETHIOPIA COFFEE HOUSE</div>
+                    <div style="text-align: center; font-size: 12px; margin: 2px 0;">------------------------------------------</div>
+                    
+                    <!-- Footer Information Context Block -->
+                    <div style="font-size: 12px; text-align: center; margin-top: 4px; font-weight: bold; font-style: italic; font-family: 'Courier New', Courier, monospace;">No GST Applicable</div>
+                    <div style="font-size: 13px; font-weight: bold; text-align: center; margin: 4px 0; font-family: 'Courier New', Courier, monospace;">Thank You! Visit Again ☕</div>
+                    <div style="font-size: 10px; text-align: center; opacity: 0.6; text-transform: uppercase; font-family: 'Courier New', Courier, monospace;">* ETHIOPIA COFFEE HOUSE</div>
                 </div>
             `;
         }
 
-        function updatePreview() {
-            const calcs = computeCalculations();
+        function updateReceiptPreview() {
+            const calcs = runCalculations();
             const now = new Date();
-            const dateStr = now.toLocaleDateString('en-GB'); 
-            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            const dStr = now.toLocaleDateString('en-GB'); 
+            const tStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
             
-            const currentBillFormatted = `ECH-${String(runningBillNumber).padStart(6, '0')}`;
-            const name = document.getElementById('custName').value;
-            const mobile = document.getElementById('custMobile').value;
+            const currentBillFormatted = `ECH-${String(globalBillCounter).padStart(6, '0')}`;
+            const name = document.getElementById('cNameInput').value;
+            const mobile = document.getElementById('cMobileInput').value;
 
-            const htmlPayload = generateReceiptHTML(currentBillFormatted, dateStr, timeStr, name, mobile, calcs, activeBillItems);
-            document.getElementById('receiptFrame').innerHTML = htmlPayload;
+            const finalMarkup = compileStructuralReceiptHTML(currentBillFormatted, dStr, tStr, name, mobile, calcs, activeItemsList);
+            document.getElementById('receiptLiveCanvas').innerHTML = finalMarkup;
         }
 
-        function printThermalReceipt() {
-            const validItems = activeBillItems.filter(i => i.name.trim() !== '');
-            if(validItems.length === 0) {
-                alert('⚠️ Cannot print empty bill. Please assign a valid menu selection first.');
+        function commitAndPrintReceipt() {
+            const verifiedRows = activeItemsList.filter(row => row.name.trim() !== '');
+            if(verifiedRows.length === 0) {
+                alert('⚠️ Cannot print empty bill. Please configure an item entry first.');
                 return;
             }
 
-            const calcs = computeCalculations();
+            const calcs = runCalculations();
             const now = new Date();
-            const dateStr = now.toLocaleDateString('en-GB');
-            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-            const currentBillFormatted = `ECH-${String(runningBillNumber).padStart(6, '0')}`;
-            const name = document.getElementById('custName').value || 'Walk-in Customer';
-            const mobile = document.getElementById('custMobile').value || '9876543210';
+            const dStr = now.toLocaleDateString('en-GB');
+            const tStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            const currentBillFormatted = `ECH-${String(globalBillCounter).padStart(6, '0')}`;
+            const name = document.getElementById('cNameInput').value || 'vishal';
+            const mobile = document.getElementById('cMobileInput').value || '9892415819';
 
-            // Save transaction record to browser history array
-            const transactionRecord = {
+            // Push transaction record directly into storage engine arrays
+            const logItem = {
                 billNo: currentBillFormatted,
-                timestamp: `${dateStr} ${timeStr}`,
+                timestamp: `${dStr} ${tStr}`,
                 customerName: name,
                 customerMobile: mobile,
                 calculations: calcs,
-                items: validItems
+                items: verifiedRows
             };
 
-            billsDatabase.unshift(transactionRecord); 
-            if(billsDatabase.length > 100) {
-                billsDatabase.pop(); 
-            }
-            localStorage.setItem('ech_bills_history', JSON.stringify(billsDatabase));
+            logsDatabase.unshift(logItem);
+            if(logsDatabase.length > 100) logsDatabase.pop();
+            localStorage.setItem('ech_logs_history_v2', JSON.stringify(logsDatabase));
 
-            // Up-tick bill numerical token indices
-            runningBillNumber++;
-            localStorage.setItem('ech_bill_counter', runningBillNumber);
-            document.getElementById('billNoDisplay').innerText = `ECH-${String(runningBillNumber).padStart(6, '0')}`;
+            // Up-tick persistent sequence numbers indices
+            globalBillCounter++;
+            localStorage.setItem('ech_bill_counter_v2', globalBillCounter);
+            document.getElementById('billIdNode').innerText = `ECH-${String(globalBillCounter).padStart(6, '0')}`;
 
             renderHistoryTable();
 
-            // Inject targeted markup into pure structural print mirror shell portal
-            const printWrapper = document.getElementById('printRenderingWrapper');
-            printWrapper.innerHTML = generateReceiptHTML(currentBillFormatted, dateStr, timeStr, name, mobile, calcs, validItems);
+            // Direct standard DOM injection routing for system driver targeting properties
+            const wrapper = document.getElementById('hardwarePrintWrapper');
+            wrapper.innerHTML = compileStructuralReceiptHTML(currentBillFormatted, dStr, tStr, name, mobile, calcs, verifiedRows);
 
-            // Open window hardware print driver context layout instances
             window.print();
-            clearCurrentForm();
+            wipeWorkspace();
         }
 
-        function exportAsPDF() {
-            const previewEl = document.getElementById('receiptFrame');
-            const opt = {
+        function triggerPDFExport() {
+            const el = document.getElementById('receiptLiveCanvas');
+            const targetFilename = `ETHIOPIA_RECEIPT_${document.getElementById('billIdNode').innerText}.pdf`;
+            const configurationSettings = {
                 margin:       0.1,
-                filename:     `ETHIOPIA_POS_${document.getElementById('billNoDisplay').innerText}.pdf`,
+                filename:     targetFilename,
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2, backgroundColor: '#ffffff' },
-                jsPDF:        { unit: 'in', format: [3.15, 6.5], orientation: 'portrait' }
+                jsPDF:        { unit: 'in', format: [3.15, 6.2], orientation: 'portrait' }
             };
-            html2pdf().set(opt).from(previewEl).save();
+            html2pdf().set(configurationSettings).from(el).save();
         }
 
         function renderHistoryTable() {
-            const searchToken = document.getElementById('searchInput').value.trim();
+            const query = document.getElementById('searchLogInput').value.trim();
             const tbody = document.getElementById('historyTableBody');
             tbody.innerHTML = '';
 
-            const itemsToRender = billsDatabase.filter(bill => {
-                if(!searchToken) return true;
-                return bill.customerMobile.includes(searchToken);
+            const filteredLogs = logsDatabase.filter(bill => {
+                if(!query) return true;
+                return bill.customerMobile.includes(query);
             });
 
-            if(itemsToRender.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-400 italic">No matching historic transaction logs registered.</td></tr>`;
+            if(filteredLogs.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-400 italic bg-gray-50/50 dark:bg-transparent">No records match the active filters.</td></tr>`;
                 return;
             }
 
-            itemsToRender.forEach(bill => {
+            filteredLogs.forEach(bill => {
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-gray-50 dark:hover:bg-gray-900/40 text-xs text-gray-700 dark:text-gray-300 transition-colors";
+                tr.className = "hover:bg-gray-50 dark:hover:bg-gray-900/40 text-xs text-gray-600 dark:text-gray-300 transition-colors";
                 
-                const itemsSummarizedList = bill.items.map(i => `${i.name}${i.size && i.size !== '-'? `(${i.size})`:''}[${i.qty}]`).join(', ');
+                const itemLabelSummaryStr = bill.items.map(i => `${i.name}${i.size && i.size !== '-' ? `(${i.size})`:''}[${i.qty}]`).join(', ');
 
                 tr.innerHTML = `
                     <td class="p-3 font-mono font-bold text-amber-900 dark:text-amber-400">${bill.billNo}</td>
-                    <td class="p-3 text-gray-500 whitespace-nowrap">${bill.timestamp}</td>
-                    <td class="p-3">
-                        <div class="font-medium text-gray-900 dark:text-white">${bill.customerName}</div>
-                        <div class="text-[11px] text-gray-400">${bill.customerMobile}</div>
+                    <td class="p-3 whitespace-nowrap text-gray-400">${bill.timestamp}</td>
+                    <td class="p-3 font-medium">
+                        <div class="text-gray-900 dark:text-white">${bill.customerName}</div>
+                        <div class="text-[10px] text-gray-400">${bill.customerMobile}</div>
                     </td>
-                    <td class="p-3 text-right max-w-xs truncate" title="${itemsSummarizedList}">${itemsSummarizedList}</td>
+                    <td class="p-3 max-w-xs truncate text-right text-[11px]" title="${itemLabelSummaryStr}">${itemLabelSummaryStr}</td>
                     <td class="p-3 text-right font-mono font-bold text-gray-900 dark:text-white">₹${bill.calculations.grandTotal.toFixed(2)}</td>
                     <td class="p-3 text-center">
-                        <button onclick="reprintPastWithId('${bill.billNo}')" class="bg-gray-100 dark:bg-gray-700 hover:bg-amber-100 dark:hover:bg-amber-950 px-2 py-1 rounded text-gray-600 dark:text-gray-300 hover:text-amber-900 font-semibold transition text-[11px] cursor-pointer">
+                        <button onclick="reprintPastReceiptById('${bill.billNo}')" class="bg-gray-100 dark:bg-gray-700 hover:bg-amber-100 dark:hover:bg-amber-950 text-[#3c2a21] dark:text-amber-200 px-2.5 py-1 rounded text-[11px] font-bold cursor-pointer transition">
                             🖨️ Reprint
                         </button>
                     </td>
@@ -697,36 +689,30 @@
             });
         }
 
-        function reprintPastWithId(targetBillNo) {
-            const historyMatch = billsDatabase.find(b => b.billNo === targetBillNo);
-            if(historyMatch) {
-                const parts = historyMatch.timestamp.split(' ');
-                const dateStr = parts[0];
-                const timeStr = parts.slice(1).join(' ');
+        function reprintPastReceiptById(id) {
+            const match = logsDatabase.find(b => b.billNo === id);
+            if(match) {
+                const structuralSegments = match.timestamp.split(' ');
+                const targetDStr = structuralSegments[0];
+                const targetTStr = structuralSegments.slice(1).join(' ');
 
-                const printWrapper = document.getElementById('printRenderingWrapper');
-                printWrapper.innerHTML = generateReceiptHTML(
-                    historyMatch.billNo, 
-                    dateStr, 
-                    timeStr, 
-                    historyMatch.customerName, 
-                    historyMatch.customerMobile, 
-                    historyMatch.calculations, 
-                    historyMatch.items
+                const printWrapper = document.getElementById('hardwarePrintWrapper');
+                printWrapper.innerHTML = compileStructuralReceiptHTML(
+                    match.billNo, targetDStr, targetTStr, match.customerName, match.customerMobile, match.calculations, match.items
                 );
                 window.print();
             }
         }
 
         function toggleDarkMode() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            const bodyNode = document.getElementById('bodyNode');
-            if (isDark) {
-                bodyNode.classList.add('bg-gray-900', 'text-white');
-                localStorage.setItem('ethiopia_dark_mode', 'true');
+            const node = document.getElementById('appBody');
+            const state = document.documentElement.classList.toggle('dark');
+            if(state) {
+                node.classList.add('bg-gray-900', 'text-white');
+                localStorage.setItem('ech_dark_pref', 'true');
             } else {
-                bodyNode.classList.remove('bg-gray-900', 'text-white');
-                localStorage.setItem('ethiopia_dark_mode', 'false');
+                node.classList.remove('bg-gray-900', 'text-white');
+                localStorage.setItem('ech_dark_pref', 'false');
             }
         }
     </script>
