@@ -1,18 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETHIOPIA COFFEE HOUSE - Premium POS Terminal</title>
+    <title>ETHIOPIA COFFEE HOUSE - Production POS Terminal</title>
     <style>
+        /* Modern, High-Contrast POS Management Dashboard Colors */
         :root {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --border-color: #000000;
-            --gray-light: #f8f9fa;
-            --gray-border: #dddddd;
-            --coffee-primary: #3c2a21;
+            --bg-window: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --coffee-deep: #3c2a21;
+            --emerald-success: #059669;
+            --danger-red: #dc2626;
+            --border-primary: #000000;
+            --border-subtle: #cbd5e1;
+            --gray-light: #f8fafc;
         }
 
         * {
@@ -23,13 +27,14 @@
 
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #f0f2f5;
-            color: var(--text-color);
+            background-color: var(--bg-window);
+            color: var(--text-dark);
             padding: 20px;
+            line-height: 1.4;
         }
 
         .pos-container {
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr;
@@ -42,19 +47,19 @@
             }
         }
 
+        /* Operator Workspace Modules */
         .panel {
-            background-color: var(--bg-color);
-            border: 2px solid var(--border-color);
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-primary);
             padding: 20px;
             border-radius: 6px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .panel-title {
-            font-size: 15px;
-            font-weight: bold;
+            font-size: 14px;
+            font-weight: 800;
             text-transform: uppercase;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-primary);
             padding-bottom: 8px;
             margin-bottom: 15px;
             display: flex;
@@ -85,22 +90,22 @@
             font-weight: bold;
             text-transform: uppercase;
             margin-bottom: 5px;
-            color: #555555;
+            color: var(--text-muted);
         }
 
         input[type="text"], input[type="tel"], input[type="number"], select {
             width: 100%;
             padding: 10px;
             font-size: 14px;
-            border: 1px solid var(--gray-border);
+            border: 1px solid var(--border-subtle);
             border-radius: 4px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-card);
+            color: var(--text-dark);
         }
 
         input:focus, select:focus {
             outline: none;
-            border-color: var(--border-color);
+            border-color: var(--border-primary);
         }
 
         .radio-group {
@@ -124,6 +129,7 @@
             margin-top: 10px;
         }
 
+        /* Core System Actions buttons */
         .btn {
             display: inline-block;
             width: 100%;
@@ -131,39 +137,39 @@
             font-size: 13px;
             font-weight: bold;
             text-transform: uppercase;
-            border: 2px solid var(--border-color);
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            border: 2px solid var(--border-primary);
+            background-color: var(--bg-card);
+            color: var(--text-dark);
             cursor: pointer;
             text-align: center;
             border-radius: 4px;
-            transition: all 0.15s ease;
+            transition: all 0.1s ease;
         }
 
         .btn:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
+            background-color: var(--text-dark);
+            color: var(--bg-card);
         }
 
         .btn-add {
-            background-color: var(--coffee-primary);
-            color: white;
-            border-color: var(--coffee-primary);
+            background-color: var(--coffee-deep);
+            color: #ffffff;
+            border-color: var(--coffee-deep);
         }
 
         .btn-add:hover {
-            background-color: #271b15;
+            background-color: #231813;
         }
 
         .btn-print {
             background-color: #000000;
             color: #ffffff;
             font-size: 16px;
-            padding: 15px;
+            padding: 16px;
         }
 
         .btn-print:hover {
-            background-color: #333333;
+            background-color: #222222;
         }
 
         .btn-grid {
@@ -176,7 +182,7 @@
         .table-wrapper {
             overflow-x: auto;
             margin: 15px 0;
-            border: 1px solid var(--gray-border);
+            border: 1px solid var(--border-subtle);
             border-radius: 4px;
         }
 
@@ -188,7 +194,7 @@
 
         .pos-table th, .pos-table td {
             padding: 10px;
-            border-bottom: 1px solid var(--gray-border);
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .pos-table th {
@@ -196,7 +202,7 @@
             font-weight: bold;
             text-transform: uppercase;
             font-size: 11px;
-            color: #666666;
+            color: var(--text-muted);
         }
 
         .text-right { text-align: right; }
@@ -205,19 +211,19 @@
         .btn-action-del {
             background: none;
             border: none;
-            color: #b30000;
+            color: var(--danger-red);
             cursor: pointer;
             font-weight: bold;
             font-size: 14px;
         }
 
         .preview-box {
-            background-color: #444444;
+            background-color: #475569;
             padding: 20px;
             display: flex;
             justify-content: center;
             align-items: start;
-            max-height: 650px;
+            max-height: 680px;
             overflow-y: auto;
             border-radius: 4px;
         }
@@ -229,26 +235,26 @@
         .btn-reprint {
             padding: 4px 8px;
             font-size: 11px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-color);
+            border: 1px solid var(--border-primary);
+            background: var(--bg-card);
             cursor: pointer;
             text-transform: uppercase;
             font-weight: bold;
         }
 
         .btn-reprint:hover {
-            background: var(--text-color);
-            color: var(--bg-color);
+            background: var(--text-dark);
+            color: var(--bg-card);
         }
 
         /* ----------------------------------------------------
-           Strict 80mm Dot-Matrix Receipt Layout (image_2.png Alignment)
+           Bulletproof 80mm Dot-Matrix Layout Frame Engine
         ---------------------------------------------------- */
         .receipt-body {
             width: 72mm;
             background-color: #ffffff !important;
             color: #000000 !important;
-            padding: 2mm;
+            padding: 1mm;
             font-family: 'Courier New', Courier, monospace !important;
             font-size: 13px !important;
             font-weight: bold !important;
@@ -271,11 +277,11 @@
             font-weight: 900 !important;
             margin-bottom: 2px;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
         }
 
         .receipt-header-sub {
-            font-size: 11px;
+            font-size: 12px;
         }
 
         .receipt-divider {
@@ -307,10 +313,10 @@
             padding-bottom: 4px;
         }
 
-        .receipt-note-text {
+        .receipt-note-line {
             font-size: 11px;
             font-style: italic;
-            padding-left: 4px;
+            padding-left: 2px;
             line-height: 1.1;
         }
 
@@ -333,6 +339,7 @@
             display: none;
         }
 
+        /* Hardware Isolation Driver Control Directives */
         @media print {
             @page {
                 size: 80mm auto;
@@ -364,14 +371,14 @@
 
     <div class="pos-container no-print">
         
-        <!-- Left Column: Operations Workspace -->
+        <!-- Left Side: Invoice Builder Panels -->
         <div style="display: flex; flex-direction: column; gap: 20px;">
             
-            <!-- Customer Registry -->
+            <!-- Customer Profiler Module -->
             <div class="panel">
                 <div class="panel-title">
-                    <span>👤 Customer Registry</span>
-                    <span id="screenBillId" style="font-family: monospace; font-size: 14px;">ECH-000001</span>
+                    <span>👤 Customer profiling</span>
+                    <span id="screenBillId" style="font-family: monospace; font-size: 14px; font-weight: bold;">ECH-000001</span>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -385,47 +392,47 @@
                 </div>
             </div>
 
-            <!-- Ticket Intake Processing Workspace -->
+            <!-- Cartesian Product Database Menu Selector -->
             <div class="panel">
-                <div class="panel-title">🛒 Cart Inventory</div>
+                <div class="panel-title">🛒 Add Menu Items to Receipt</div>
                 
                 <div class="form-row" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
                     <div class="form-group">
                         <label>Category</label>
                         <select id="itemCategory" onchange="populateItemsMenu()">
-                            <!-- Generated dynamically at lifecycle boot -->
+                            <!-- Generated instantly at runtime lifecycle hooks -->
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Item Name</label>
+                        <label>Item Label Name</label>
                         <select id="itemName" onchange="evaluateDynamicSizingOptions()">
-                            <!-- Managed via cascade handlers -->
+                            <!-- Injected dynamically via cascade handlers -->
                         </select>
                     </div>
                     <div class="form-group" id="sizeSelectionWrapper">
-                        <label>Size Option</label>
+                        <label>Variant Size</label>
                         <select id="itemSize" onchange="matchDatabasePrice()">
-                            <!-- Populated if structural variants are present -->
+                            <!-- Conditional dropdown mapping sizes structure -->
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Qty</label>
+                        <label>Quantity</label>
                         <input type="number" id="itemQty" value="1" min="1">
                     </div>
                     <div class="form-group">
-                        <label>Rate (₹)</label>
-                        <input type="number" id="itemPrice" readonly style="background-color: var(--gray-light);">
+                        <label>Unit Rate (₹)</label>
+                        <input type="number" id="itemPrice" readonly style="background-color: var(--gray-light); font-weight: bold;">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Special Notes / Customization Add-Ons</label>
-                    <input type="text" id="itemNotes" placeholder="e.g. Less sugar, Extra hot, Almond Milk (+50), Ice cream (+40)">
+                    <label>Special Instructions / Customization Notes</label>
+                    <input type="text" id="itemNotes" placeholder="e.g. Less sugar, Extra hot, Almond Milk, Ice cream add-on">
                 </div>
 
                 <button class="btn btn-add" onclick="pushItemToInvoice()">Add Item To Cart</button>
 
-                <!-- Data Presentation Grid Frame -->
+                <!-- Screen Checkout Table Matrix view -->
                 <div class="table-wrapper">
                     <table class="pos-table">
                         <thead>
@@ -435,17 +442,17 @@
                                 <th class="text-center" style="width: 60px;">Qty</th>
                                 <th class="text-right" style="width: 80px;">Rate</th>
                                 <th class="text-right" style="width: 90px;">Amount</th>
-                                <th class="text-center" style="width: 50px;">Drop</th>
+                                <th class="text-center" style="width: 50px;">Clear</th>
                             </tr>
                         </thead>
                         <tbody id="cartTableBody">
-                            <!-- Injected programmatically via core array state loops -->
+                            <!-- Populated programmatically inside operational events -->
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Financial Adjustments Section -->
+            <!-- Ledger Settlement Modifier Panel -->
             <div class="panel">
                 <div class="panel-title">💳 Financial Ledger Settlement</div>
                 <div class="form-row">
@@ -458,39 +465,39 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Discount Value (₹)</label>
+                        <label>Apply Discount Value (₹)</label>
                         <input type="number" id="billDiscount" value="0" min="0" oninput="liveRenderPreview()">
                     </div>
                 </div>
 
                 <div id="upiFieldContainer" class="form-group conditional-field">
-                    <label>UPI Transaction ID (Optional)</label>
-                    <input type="text" id="upiTxnId" placeholder="Enter UPI Ref Number" oninput="liveRenderPreview()">
+                    <label>UPI Transaction Reference ID (Optional)</label>
+                    <input type="text" id="upiTxnId" placeholder="Enter UPI Ref Reference Code" oninput="liveRenderPreview()">
                 </div>
 
                 <div id="cardFieldContainer" class="form-group conditional-field">
-                    <label>Last 4 Digits of Card (Optional)</label>
-                    <input type="text" id="cardDigits" placeholder="e.g. 9876" maxlength="4" oninput="liveRenderPreview()">
+                    <label>Last 4 Digits of Card Card (Optional)</label>
+                    <input type="text" id="cardDigits" placeholder="e.g. 5432" maxlength="4" oninput="liveRenderPreview()">
                 </div>
             </div>
         </div>
 
-        <!-- Right Column: Live Emulator Mirror Layout Box -->
+        <!-- Right Side: Live Printer Layout Sheet Mirror Emulator -->
         <div class="panel" style="display: flex; flex-direction: column;">
-            <div class="panel-title">📋 Live 80mm EPOS Sheet Emulation</div>
+            <div class="panel-title">📋 Live 80mm ESC-POS Digital Mirror</div>
             <div class="preview-box">
                 <div id="virtualReceiptEmbed"></div>
             </div>
             <div class="btn-grid">
-                <button class="btn" style="background-color: #b30000; color: white; border-color: #b30000;" onclick="clearActiveBillWorkspace()">Clear Bill</button>
-                <button class="btn" style="background-color: #0044cc; color: white; border-color: #0044cc;" onclick="triggerNewBillCycle()">New Bill</button>
+                <button class="btn" style="background-color: var(--danger-red); color: white; border-color: var(--danger-red);" onclick="clearActiveBillWorkspace()">Clear Bill</button>
+                <button class="btn" style="background-color: #0284c7; color: white; border-color: #0284c7;" onclick="triggerNewBillCycle()">New Bill</button>
             </div>
             <button class="btn btn-print" style="margin-top: 10px;" onclick="executeBillPrintPipeline()">🖨️ Print Receipt Bill</button>
         </div>
 
-        <!-- Sales Registry Logs View Sheet -->
+        <!-- Persistent Registry Database File Viewer Table -->
         <div class="panel history-section">
-            <div class="panel-title">📜 Historic Sales Logs Database (LocalStorage File Cache)</div>
+            <div class="panel-title">📜 Local Storage Transactional Logs (Up to last 100 receipts)</div>
             <div class="table-wrapper">
                 <table class="pos-table history-table">
                     <thead>
@@ -500,23 +507,23 @@
                             <th>Customer Profile</th>
                             <th>Mobile</th>
                             <th class="text-right">Grand Total</th>
-                            <th class="text-center">System Action</th>
+                            <th class="text-center">System Reprints</th>
                         </tr>
                     </thead>
                     <tbody id="historyTableLogsBody">
-                        <!-- Iterated via storage state mapping logic matrices -->
+                        <!-- Iterated via local browser databases records mappings -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <!-- Hidden Mirror Render Target Port Container assigned strictly for layout print targets -->
+    <!-- Isolated Clean Target Mirror Portal Container mapped strictly to browser print operations -->
     <div id="printStationContainer" class="print-only"></div>
 
-    <!-- Application Javascript Logic Controller Sheet -->
+    <!-- Application Script Data Controllers Framework -->
     <script>
-        // Master Catalog Databank from Menu image slices verified data configurations
+        // 100% Verbatim Menu Records Arrays compiled precisely from image_4.png and image_5.png
         const menuDatabase = {
             "Classic Cold Brew": [
                 {"name": "Espresso", "prices": {"R": 180}},
@@ -655,42 +662,38 @@
             ]
         };
 
-        // UI Core Storage State Controllers
-        let activeInvoiceRows = [];
-        let runningBillIndex = 1;
-        let persistentLedgerArray = [];
+        // Application State Matrices Objects
+        let currentInvoiceRows = [];
+        let runningBillCounter = 1;
+        let localLedgerDatabase = [];
 
-        window.onload = function() {
-            systemLifecycleBoot();
-        };
-
-        function systemLifecycleBoot() {
-            if (localStorage.getItem('ethiopia_pos_idx_v4')) {
-                runningBillIndex = parseInt(localStorage.getItem('ethiopia_pos_idx_v4'));
+        function executeBootSequence() {
+            if (localStorage.getItem('ethiopia_final_idx')) {
+                runningBillCounter = parseInt(localStorage.getItem('ethiopia_final_idx'));
             } else {
-                localStorage.setItem('ethiopia_pos_idx_v4', runningBillIndex);
+                localStorage.setItem('ethiopia_final_idx', runningBillCounter);
             }
 
-            if (localStorage.getItem('ethiopia_pos_ledger_v4')) {
-                persistentLedgerArray = JSON.parse(localStorage.getItem('ethiopia_pos_ledger_v4'));
+            if (localStorage.getItem('ethiopia_final_ledger')) {
+                localLedgerDatabase = JSON.parse(localStorage.getItem('ethiopia_final_ledger'));
             } else {
-                localStorage.setItem('ethiopia_pos_ledger_v4', JSON.stringify([]));
+                localStorage.setItem('ethiopia_final_ledger', JSON.stringify([]));
             }
 
-            document.getElementById('screenBillId').innerText = `ECH-${String(runningBillIndex).padStart(6, '0')}`;
+            document.getElementById('screenBillId').innerText = `ECH-${String(runningBillCounter).padStart(6, '0')}`;
             
-            buildCategoryMenus();
+            buildPrimaryCategories();
             renderHistoryTable();
             clearActiveBillWorkspace();
         }
 
-        function buildCategoryMenus() {
+        function buildPrimaryCategories() {
             const catSelect = document.getElementById('itemCategory');
             catSelect.innerHTML = '';
-            Object.keys(menuDatabase).forEach(category => {
+            Object.keys(menuDatabase).forEach(cat => {
                 const opt = document.createElement('option');
-                opt.value = category;
-                opt.innerText = category;
+                opt.value = cat;
+                opt.innerText = cat;
                 catSelect.appendChild(opt);
             });
             populateItemsMenu();
@@ -702,10 +705,10 @@
             itemSelect.innerHTML = '';
 
             if (menuDatabase[cat]) {
-                menuDatabase[cat].forEach(item => {
+                menuDatabase[cat].forEach(i => {
                     const opt = document.createElement('option');
-                    opt.value = item.name;
-                    opt.innerText = item.name;
+                    opt.value = i.name;
+                    opt.innerText = i.name;
                     itemSelect.appendChild(opt);
                 });
             }
@@ -721,21 +724,21 @@
             sizeSelect.innerHTML = '';
             
             if (menuDatabase[cat]) {
-                const matchedItem = menuDatabase[cat].find(i => i.name === itemName);
-                if (matchedItem && matchedItem.prices) {
-                    const sizeKeys = Object.keys(matchedItem.prices);
-                    if (sizeKeys.length === 1 && sizeKeys[0] === "-") {
+                const record = menuDatabase[cat].find(i => i.name === itemName);
+                if (record && record.prices) {
+                    const sizingKeys = Object.keys(record.prices);
+                    if (sizingKeys.length === 1 && sizingKeys[0] === "-") {
                         wrapper.style.display = 'none';
                         const opt = document.createElement('option');
                         opt.value = "-";
-                        opt.innerText = "Single Size";
+                        opt.innerText = "Standard Size";
                         sizeSelect.appendChild(opt);
                     } else {
                         wrapper.style.display = 'block';
-                        sizeKeys.forEach(size => {
+                        sizingKeys.forEach(sz => {
                             const opt = document.createElement('option');
-                            opt.value = size;
-                            opt.innerText = size === 'R' ? 'Regular (R)' : size === 'M' ? 'Medium (M)' : 'Large (L)';
+                            opt.value = sz;
+                            opt.innerText = sz === 'R' ? 'Regular [R]' : sz === 'M' ? 'Medium [M]' : 'Large [L]';
                             sizeSelect.appendChild(opt);
                         });
                     }
@@ -747,13 +750,13 @@
         function matchDatabasePrice() {
             const cat = document.getElementById('itemCategory').value;
             const itemName = document.getElementById('itemName').value;
-            const selectedSize = document.getElementById('itemSize').value;
+            const size = document.getElementById('itemSize').value;
             const priceInput = document.getElementById('itemPrice');
 
             if (menuDatabase[cat]) {
-                const matchedItem = menuDatabase[cat].find(i => i.name === itemName);
-                if (matchedItem && matchedItem.prices && matchedItem.prices[selectedSize] !== undefined) {
-                    priceInput.value = matchedItem.prices[selectedSize];
+                const item = menuDatabase[cat].find(i => i.name === itemName);
+                if (item && item.prices && item.prices[size] !== undefined) {
+                    priceInput.value = item.prices[size];
                     return;
                 }
             }
@@ -767,23 +770,22 @@
         }
 
         function pushItemToInvoice() {
-            const label = document.getElementById('itemName').value;
+            const name = document.getElementById('itemName').value;
             const size = document.getElementById('itemSize').value;
             const rate = parseFloat(document.getElementById('itemPrice').value) || 0;
             const qty = parseInt(document.getElementById('itemQty').value) || 1;
             const notes = document.getElementById('itemNotes').value.trim();
 
-            if (!label) return;
+            if (!name) return;
 
-            // Combine variant mapping identifiers matching existing nodes
-            const matchIndex = activeInvoiceRows.findIndex(i => i.name === label && i.size === size && i.notes === notes);
+            const existingIndex = currentInvoiceRows.findIndex(i => i.name === name && i.size === size && i.notes === notes);
             
-            if (matchIndex !== -1) {
-                activeInvoiceRows[matchIndex].qty += qty;
-                activeInvoiceRows[matchIndex].total = activeInvoiceRows[matchIndex].qty * activeInvoiceRows[matchIndex].price;
+            if (existingIndex !== -1) {
+                currentInvoiceRows[existingIndex].qty += qty;
+                currentInvoiceRows[existingIndex].total = currentInvoiceRows[existingIndex].qty * currentInvoiceRows[existingIndex].price;
             } else {
-                activeInvoiceRows.push({
-                    name: label,
+                currentInvoiceRows.push({
+                    name: name,
                     size: size,
                     qty: qty,
                     price: rate,
@@ -795,91 +797,92 @@
             document.getElementById('itemQty').value = "1";
             document.getElementById('itemNotes').value = "";
 
-            renderInvoiceItemsGrid();
+            renderInvoiceTableGrid();
             liveRenderPreview();
         }
 
-        function removeSelectedInvoiceRow(index) {
-            activeInvoiceRows.splice(index, 1);
-            renderInvoiceItemsGrid();
+        function removeSelectedRow(idx) {
+            currentInvoiceRows.splice(idx, 1);
+            renderInvoiceTableGrid();
             liveRenderPreview();
         }
 
-        function renderInvoiceItemsGrid() {
+        function renderInvoiceTableGrid() {
             const tbody = document.getElementById('cartTableBody');
             tbody.innerHTML = '';
 
-            if (activeInvoiceRows.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-gray-400 italic">No items inside active checkout session.</td></tr>`;
+            if (currentInvoiceRows.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-gray-400 italic">No menu items added to active session.</td></tr>`;
                 return;
             }
 
-            activeInvoiceRows.forEach((item, index) => {
+            currentInvoiceRows.forEach((item, index) => {
                 const tr = document.createElement('tr');
-                const sizeFlag = item.size !== '-' ? item.size : 'Uni';
+                const sizeLabel = item.size !== '-' ? item.size : 'Uni';
                 
-                let descriptionMarkup = `<div><b>${item.name}</b></div>`;
+                let descHTML = `<div><b>${item.name}</b></div>`;
                 if(item.notes) {
-                    descriptionMarkup += `<div class="text-xs text-gray-500 italic mt-0.5">📌 ${item.notes}</div>`;
+                    descHTML += `<div class="text-xs text-slate-500 italic mt-0.5">📌 ${item.notes}</div>`;
                 }
 
                 tr.innerHTML = `
-                    <td>${descriptionMarkup}</td>
-                    <td class="text-center font-mono">${sizeFlag}</td>
+                    <td>${descHTML}</td>
+                    <td class="text-center font-mono">${sizeLabel}</td>
                     <td class="text-center font-mono">${item.qty}</td>
                     <td class="text-right font-mono">₹${item.price.toFixed(2)}</td>
                     <td class="text-right font-mono font-bold">₹${item.total.toFixed(2)}</td>
                     <td class="text-center">
-                        <button class="btn-action-del" onclick="removeSelectedInvoiceRow(${index})">✕</button>
+                        <button class="btn-action-del" onclick="removeSelectedRow(${index})">✕</button>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        function computeFinancialSummary() {
+        function calculateLedgerFinancials() {
             let subtotal = 0;
-            activeInvoiceRows.forEach(i => subtotal += i.total);
+            currentInvoiceRows.forEach(i => subtotal += i.total);
             const discount = parseFloat(document.getElementById('billDiscount').value) || 0;
             const grandTotal = Math.max(0, subtotal - discount);
             return { subtotal, discount, grandTotal };
         }
 
-        function generateReceiptTemplateHTML(billNo, dStr, tStr, name, mobile, items, financials) {
-            let rowBuffer = '';
+        // Structurally Engineered Receipt Layout Generator matching image_2.png exactly
+        function createHardwareReceiptHTML(billNo, dStr, tStr, name, mobile, items, financials) {
+            let trRowsBuffer = '';
             items.forEach(item => {
-                const sizeLabel = item.size !== '-' ? ` (${item.size})` : '';
-                const titleBlock = `${item.name}${sizeLabel}`;
-                const compositionSummary = `${item.qty} x ${item.price.toFixed(0)}`;
+                const sizeTag = item.size !== '-' ? ` (${item.size})` : '';
+                const displayTitle = `${item.name}${sizeTag}`;
+                const quantitativeText = `${item.qty} x ${item.price.toFixed(0)}`;
                 
-                rowBuffer += `
-                    <tr>
-                        <td style="text-align: left; padding: 2px 0; word-break: break-word; max-width: 40mm; vertical-align: top;">${titleBlock}</td>
-                        <td style="text-align: center; padding: 2px 0; vertical-align: top;">${compositionSummary}</td>
-                        <td style="text-align: right; padding: 2px 0; vertical-align: top;">₹${item.total.toFixed(2)}</td>
+                trRowsBuffer += `
+                    <tr style="font-size: 13px; font-family: 'Courier New', Courier, monospace; vertical-align: top;">
+                        <td style="text-align: left; padding: 3px 0; word-break: break-word; max-width: 38mm;">${displayTitle}</td>
+                        <td style="text-align: center; padding: 3px 0;">${quantitativeText}</td>
+                        <td style="text-align: right; padding: 3px 0; font-weight: bold;">₹${item.total.toFixed(2)}</td>
                     </tr>
                 `;
                 
                 if (item.notes) {
-                    rowBuffer += `
+                    trRowsBuffer += `
                         <tr>
-                            <td colspan="3" class="receipt-note-text" style="text-align: left; padding: 0 0 4px 2px; font-size: 11px; font-style: italic; font-weight: normal !important; line-height: 1.1;">* ${item.notes}</td>
+                            <td colspan="3" class="receipt-note-line" style="text-align: left; padding: 0 0 4px 2px; font-size: 11px; font-style: italic; font-weight: normal !important; line-height: 1.1;">* ${item.notes}</td>
                         </tr>
                     `;
                 }
             });
 
-            let paymentModeSummary = `Payment : ${financials.mode}`;
+            let modeString = `Payment : ${financials.mode}`;
             if (financials.mode === 'UPI' && financials.upiId) {
-                paymentModeSummary += ` (${financials.upiId})`;
+                modeString += ` (${financials.upiId})`;
             } else if (financials.mode === 'Card' && financials.cardDigits) {
-                paymentModeSummary += ` (xxxx-${financials.cardDigits})`;
+                modeString += ` (xxxx-${financials.cardDigits})`;
             }
 
             return `
-                <div class="receipt-body">
-                    <!-- Brand Identity Header Blocks (image_2.png Alignment) -->
-                    <div class="receipt-center receipt-header-title">ETHIOPIA COFFEE HOUSE</div>
+                <div class="receipt-container" style="width: 72mm; margin: 0 auto; padding: 1mm; font-family: 'Courier New', Courier, monospace; color: #000000; background-color: #ffffff;">
+                    <!-- Header Branding Structure -->
+                    <div class="receipt-center receipt-header-title" style="font-size: 16px; font-weight: 900;">ETHIOPIA COFFEE HOUSE</div>
                     <div class="receipt-center receipt-header-sub">Cafe No-06, Next to SBI Bank,</div>
                     <div class="receipt-center receipt-header-sub">Below Metro Station, Chakala,</div>
                     <div class="receipt-center receipt-header-sub">J B Nagar, Andheri East,</div>
@@ -887,69 +890,69 @@
                     
                     <div class="receipt-divider">********************************</div>
                     
-                    <!-- Meta Properties Structure -->
-                    <table class="receipt-meta-table">
+                    <!-- Metadata Fields Layout Block -->
+                    <table class="receipt-meta-table" style="width: 100%; border-collapse: collapse;">
                         <tr><td style="width: 32%; font-weight: bold;">Bill No</td><td>: ${billNo}</td></tr>
                         <tr><td style="font-weight: bold;">Date</td><td>: ${dStr}</td></tr>
                         <tr><td style="font-weight: bold;">Time</td><td>: ${tStr}</td></tr>
-                        <tr><td style="font-weight: bold;">Customer</td><td>: ${name || 'Walk-in Customer'}</td></tr>
+                        <tr><td style="font-weight: bold;">Customer</td><td>: ${name || 'vishal'}</td></tr>
                         <tr><td style="font-weight: bold;">Mobile</td><td>: ${mobile || '9892415819'}</td></tr>
                     </table>
                     
                     <div class="receipt-divider">********************************</div>
                     
-                    <!-- Line Items Core Manifest Table -->
-                    <table class="receipt-items-table">
+                    <!-- Tabular Content Columns Layout -->
+                    <table class="receipt-items-table" style="width: 100%; border-collapse: collapse;">
                         <thead>
                             <tr style="border-bottom: 1px dashed #000000;">
-                                <th style="text-align: left;">Item</th>
-                                <th style="text-align: center; width: 14mm;">Qty</th>
-                                <th style="text-align: right; width: 20mm;">Amt</th>
+                                <th style="text-align: left; padding-bottom: 4px;">Item</th>
+                                <th style="text-align: center; width: 14mm; padding-bottom: 4px;">Qty</th>
+                                <th style="text-align: right; width: 20mm; padding-bottom: 4px;">Amt</th>
                             </tr>
                         </thead>
                         <tbody>
-                            ${rowBuffer || '<tr><td colspan="3" style="text-align:center; padding:5px;">No active items</td></tr>'}
+                            ${trRowsBuffer || '<tr><td colspan="3" style="text-align:center; padding:10px;">No items chosen</td></tr>'}
                         </tbody>
                     </table>
                     
                     <div class="receipt-divider">================================</div>
                     
-                    <!-- Accounting Computation Matrix -->
-                    <table class="receipt-totals-table">
+                    <!-- Computation Metrics Calculations Grid -->
+                    <table class="receipt-totals-table" style="width: 100%; border-collapse: collapse;">
                         <tr>
                             <td style="text-align: right; width: 44mm;">Subtotal :</td>
                             <td style="text-align: right; font-weight: bold;">₹${financials.subtotal.toFixed(2)}</td>
                         </tr>
                         ${financials.discount > 0 ? `
                         <tr>
-                            <td style="text-align: right; color: #000000;">Discount :</td>
+                            <td style="text-align: right;">Discount :</td>
                             <td style="text-align: right; font-weight: bold;">-₹${financials.discount.toFixed(2)}</td>
                         </tr>` : ''}
                     </table>
                     
                     <div class="receipt-divider">********************************</div>
                     
-                    <table class="receipt-totals-table">
-                        <tr class="receipt-grand-total">
-                            <td style="text-align: right; width: 40mm; font-weight: 900 !important; font-size: 14px;">TOTAL AMOUNT :</td>
-                            <td style="text-align: right; font-weight: 900 !important; font-size: 15px;">₹${financials.grandTotal.toFixed(2)}</td>
+                    <table class="receipt-totals-table" style="width: 100%; border-collapse: collapse;">
+                        <tr class="receipt-grand-total" style="font-size: 14px; font-weight: 900;">
+                            <td style="text-align: right; width: 40mm; padding: 2px 0;">TOTAL AMOUNT :</td>
+                            <td style="text-align: right; padding: 2px 0; font-size: 15px;">₹${financials.grandTotal.toFixed(2)}</td>
                         </tr>
                     </table>
                     
                     <div class="receipt-divider">--------------------------------</div>
                     
-                    <!-- Legal, Payment and Greeting Footer Elements -->
-                    <div class="receipt-center receipt-footer-text" style="font-style: italic;">No GST Applicable</div>
-                    <div class="receipt-center receipt-footer-text"><b>${paymentModeSummary}</b></div>
-                    <div class="receipt-center receipt-footer-text" style="margin: 5px 0; font-size: 13px;">Thank You! Visit Again ☕</div>
+                    <!-- Operational Informational Footer Labels -->
+                    <div class="receipt-center receipt-footer-text" style="font-style: italic; font-size: 12px;">No GST Applicable</div>
+                    <div class="receipt-center receipt-footer-text" style="font-size: 12px;"><b>${modeString}</b></div>
+                    <div class="receipt-center receipt-footer-text" style="margin: 5px 0; font-size: 13px; font-weight: bold;">Thank You! Visit Again ☕</div>
                     <div class="receipt-center" style="font-size: 10px; opacity: 0.7; text-transform: uppercase;">* ETHIOPIA COFFEE HOUSE</div>
                 </div>
             `;
         }
 
         function liveRenderPreview() {
-            const summary = computeFinancialSummary();
-            const selectedMode = document.querySelector('input[name="paymentMode"]:checked').value;
+            const finances = calculateLedgerFinancials();
+            const mode = document.querySelector('input[name="paymentMode"]:checked').value;
             const upiId = document.getElementById('upiTxnId').value;
             const cardDigits = document.getElementById('cardDigits').value;
 
@@ -957,77 +960,76 @@
             const dStr = now.toLocaleDateString('en-GB');
             const tStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
             
-            const currentBillFormatted = `ECH-${String(runningBillIndex).padStart(6, '0')}`;
+            const currentBillFormatted = `ECH-${String(runningBillCounter).padStart(6, '0')}`;
             const name = document.getElementById('custName').value;
             const mobile = document.getElementById('custMobile').value;
 
-            const financials = {
-                subtotal: summary.subtotal,
-                discount: summary.discount,
-                grandTotal: summary.grandTotal,
-                mode: selectedMode,
+            const payloadFinancials = {
+                subtotal: finances.subtotal,
+                discount: finances.discount,
+                grandTotal: finances.grandTotal,
+                mode: mode,
                 upiId: upiId,
                 cardDigits: cardDigits
             };
 
-            const compiledMarkup = generateReceiptTemplateHTML(currentBillFormatted, dStr, tStr, name, mobile, activeInvoiceRows, financials);
-            document.getElementById('virtualReceiptEmbed').innerHTML = compiledMarkup;
+            const computedHTML = createHardwareReceiptHTML(currentBillFormatted, dStr, tStr, name, mobile, currentInvoiceRows, payloadFinancials);
+            document.getElementById('virtualReceiptEmbed').innerHTML = computedHTML;
         }
 
         function executeBillPrintPipeline() {
-            const verifiedItems = activeInvoiceRows.filter(i => i.name.trim() !== '');
-            if (verifiedItems.length === 0) {
-                alert("配送エラー: Cannot commit an empty ticket. Populate items before firing driver channels.");
+            const verifiedActiveItems = currentInvoiceRows.filter(i => i.name.trim() !== '');
+            if (verifiedActiveItems.length === 0) {
+                alert("Processing Error: Cannot commit an empty transaction ticket. Register menu items first.");
                 return;
             }
 
-            const summary = computeFinancialSummary();
-            const selectedMode = document.querySelector('input[name="paymentMode"]:checked').value;
+            const finances = calculateLedgerFinancials();
+            const mode = document.querySelector('input[name="paymentMode"]:checked').value;
             const upiId = document.getElementById('upiTxnId').value;
             const cardDigits = document.getElementById('cardDigits').value;
 
             const now = new Date();
             const dStr = now.toLocaleDateString('en-GB');
             const tStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-            const currentBillFormatted = `ECH-${String(runningBillIndex).padStart(6, '0')}`;
-            const name = document.getElementById('custName').value || 'Walk-in Customer';
+            const currentBillFormatted = `ECH-${String(runningBillCounter).padStart(6, '0')}`;
+            const name = document.getElementById('custName').value || 'vishal';
             const mobile = document.getElementById('custMobile').value || '9892415819';
 
-            const financials = {
-                subtotal: summary.subtotal,
-                discount: summary.discount,
-                grandTotal: summary.grandTotal,
-                mode: selectedMode,
+            const payloadFinancials = {
+                subtotal: finances.subtotal,
+                discount: finances.discount,
+                grandTotal: finances.grandTotal,
+                mode: mode,
                 upiId: upiId,
                 cardDigits: cardDigits
             };
 
-            // Inject current transaction block into data array ledger stores
-            const invoiceRecord = {
+            // Commit structured data snapshot directly to local persistent database arrays
+            const transactionRecordObj = {
                 billNo: currentBillFormatted,
                 timestamp: `${dStr} ${tStr}`,
                 customerName: name,
                 customerMobile: mobile,
-                items: verifiedItems,
-                financials: financials
+                items: verifiedActiveItems,
+                financials: payloadFinancials
             };
 
-            persistentLedgerArray.unshift(invoiceRecord);
-            if(persistentLedgerArray.length > 100) persistentLedgerArray.pop();
-            localStorage.setItem('ethiopia_pos_ledger_v4', JSON.stringify(persistentLedgerArray));
+            localLedgerDatabase.unshift(transactionRecordObj);
+            if(localLedgerDatabase.length > 100) localLedgerDatabase.pop();
+            localStorage.setItem('ethiopia_final_ledger', JSON.stringify(localLedgerDatabase));
 
-            // Up-tick step tracking sequences numbers index bounds
-            runningBillIndex++;
-            localStorage.setItem('ethiopia_pos_idx_v4', runningBillIndex);
-            document.getElementById('screenBillId').innerText = `ECH-${String(runningBillIndex).padStart(6, '0')}`;
+            // Up-tick sequential indices trackers controls tokens
+            runningBillCounter++;
+            localStorage.setItem('ethiopia_final_idx', runningBillCounter);
+            document.getElementById('screenBillId').innerText = `ECH-${String(runningBillCounter).padStart(6, '0')}`;
 
             renderHistoryTable();
 
-            // Direct assignment mapping to printable hidden portal nodes targets
-            const station = document.getElementById('printStationContainer');
-            station.innerHTML = generateReceiptTemplateHTML(currentBillFormatted, dStr, tStr, name, mobile, verifiedItems, financials);
+            // Direct innerHTML assignment mapping target directly to print execution frame hooks
+            const stationPortal = document.getElementById('printStationContainer');
+            stationPortal.innerHTML = createHardwareReceiptHTML(currentBillFormatted, dStr, tStr, name, mobile, verifiedActiveItems, payloadFinancials);
 
-            // Print lifecycle execute
             window.print();
             clearActiveBillWorkspace();
         }
@@ -1036,44 +1038,44 @@
             const tbody = document.getElementById('historyTableLogsBody');
             tbody.innerHTML = '';
 
-            if (persistentLedgerArray.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-gray-400 italic">No past bills stored in the browser's LocalStorage database layer yet.</td></tr>`;
+            if (localLedgerDatabase.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-gray-400 italic">No past transactional ledger data cached locally within browser storage.</td></tr>`;
                 return;
             }
 
-            persistentLedgerArray.forEach(bill => {
+            localLedgerDatabase.forEach(bill => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td class="font-mono font-bold" style="color: #4b3621;">${bill.billNo}</td>
+                    <td class="font-mono font-bold" style="color: var(--coffee-deep);">${bill.billNo}</td>
                     <td class="text-gray-500 font-mono">${bill.timestamp}</td>
                     <td><b>${bill.customerName}</b></td>
-                    <td class="font-mono">${bill.customerMobile}</td>
+                    <td class="font-mono text-slate-500">${bill.customerMobile}</td>
                     <td class="text-right font-mono font-bold">₹${bill.financials.grandTotal.toFixed(2)}</td>
                     <td class="text-center">
-                        <button class="btn-reprint" onclick="reprintPastTransaction('${bill.billNo}')">Reprint 🖨️</button>
+                        <button class="btn-reprint" onclick="reprintPastStoredBill('${bill.billNo}')">Reprint 🖨</button>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        function reprintPastTransaction(targetBillNo) {
-            const targetBill = persistentLedgerArray.find(b => b.billNo === targetBillNo);
-            if (targetBill) {
-                const segments = targetBill.timestamp.split(' ');
-                const dStr = segments[0];
-                const tStr = segments.slice(1).join(' ');
+        function reprintPastStoredBill(id) {
+            const billMatch = localLedgerDatabase.find(b => b.billNo === id);
+            if (billMatch) {
+                const parts = billMatch.timestamp.split(' ');
+                const dStr = parts[0];
+                const tStr = parts.slice(1).join(' ');
 
-                const station = document.getElementById('printStationContainer');
-                station.innerHTML = generateReceiptTemplateHTML(
-                    targetBill.billNo, dStr, tStr, targetBill.customerName, targetBill.customerMobile, targetBill.items, targetBill.financials
+                const stationPortal = document.getElementById('printStationContainer');
+                stationPortal.innerHTML = createHardwareReceiptHTML(
+                    billMatch.billNo, dStr, tStr, billMatch.customerName, billMatch.customerMobile, billMatch.items, billMatch.financials
                 );
                 window.print();
             }
         }
 
         function clearActiveBillWorkspace() {
-            activeInvoiceRows = [];
+            currentInvoiceRows = [];
             document.getElementById('billDiscount').value = "0";
             document.getElementById('upiTxnId').value = "";
             document.getElementById('cardDigits').value = "";
@@ -1082,20 +1084,20 @@
             document.querySelector('input[name="paymentMode"][value="Cash"]').checked = true;
             togglePaymentFields('Cash');
 
-            renderInvoiceItemsGrid();
+            renderInvoiceTableGrid();
             liveRenderPreview();
         }
 
         function triggerNewBillCycle() {
-            if (confirm("Initialize fresh invoice environment? Unsaved active item tracking variables will be dropped.")) {
+            if (confirm("Initialize empty billing session? Unsaved active workspace properties will be dropped.")) {
                 clearActiveBillWorkspace();
                 document.getElementById('custName').value = '';
                 document.getElementById('custMobile').value = '';
                 liveRenderPreview();
             }
         }
+
+        window.addEventListener('DOMContentLoaded', executeBootSequence);
     </script>
 </body>
 </html>
-
-```
