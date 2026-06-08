@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETHIOPIA COFFEE HOUSE - Intelligent POS System</title>
+    <!-- Tailwind CSS CDN for rapid layout styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- html2pdf.js CDN for reliable PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --coffee-dark: #3c2a21;
+        }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* 80mm Thermal Printer Media Rules optimized for Generic / ESC/POS / Scanlife XP-A260H */
+        @media print {
+            @page {
+                size: 80mm auto;
+                margin: 0;
+            }
+            body {
+                width: 80mm;
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                padding: 0;
+                margin: 0;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            .receipt-container {
+                width: 76mm !important;
+                margin: 0 auto !important;
+                padding: 4mm 2mm !important;
+                font-family: 'Courier New', Courier, monospace !important;
+                font-size: 12px !important;
+                line-height: 1.3 !important;
+                color: #000 !important;
+            }
+            .receipt-container * {
+                color: #000 !important;
+                background: transparent !important;
+            }
+            .receipt-border {
+                border-bottom: 1px dashed #000 !important;
+                margin: 6px 0 !important;
+            }
+        }
+        .print-only {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 transition-colors duration-200" id="bodyNode">
+
+    <!-- Header Panel -->
+    <header class="bg-[#3c2a21] text-white p-4 shadow-md no-print flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="text-center sm:text-left">
+            <h1 class="text-2xl font-bold tracking-wide">ETHIOPIA COFFEE HOUSE</h1>
+            <p class="text-xs text-amber-100/80 max-w-xl mt-0.5">
+                Cafe no-06, next to SBI Bank, Below Metro Station, Chakala, J B Nagar, Andheri East, Mumbai, Maharashtra 400059
+            </p>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="toggleDarkMode()" class="bg-amber-900/40 hover:bg-amber-900/60 text-white px-3 py-1.5 rounded-lg text-sm border border-amber-700/50 flex items-center gap-2 cursor-pointer transition">
+                <span>🌙</span> Dark Mode
+            </button>
+            <div class="bg-amber-900/60 px-3 py-1.5 rounded-lg text-sm border border-amber-800 font-mono text-amber-200">
+                Live: <span id="liveClock">--:--:--</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="max-w-7xl mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 no-print">
+        
+        <!-- Left Column: POS Operations Workspace -->
+        <section class="lg:col-span-8 space-y-6">
+            
+            <!-- Customer Section -->
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-xs border border-gray-100 dark:border-gray-700 space-y-4">
+                <div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-700 pb-2">
+                    <h2 class="text-lg font-bold text-[#3c2a21] dark:text-amber-400 flex items-center gap-2">
+                        👤 Customer & Registry Information
+                    </h2>
+                    <span class="text-xs bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 px-3 py-1 rounded-full font-mono font-bold" id="billNoDisplay">
+                        ECH-000001
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Customer Name</label>
+                        <input type="text" id="custName" oninput="updatePreview()" placeholder="Walk-in Customer" class="w-full px-3.5 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 bg-transparent dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Mobile Number</label>
+                        <input type="tel" id="custMobile" oninput="updatePreview()" placeholder="e.g. 9876543210" maxlength="10" class="w-full px-3.5 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 bg-transparent dark:text-white">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Items Checkout Desk -->
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-xs border border-gray-100 dark:border-gray-700 space-y-4">
+                <div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-700 pb-2">
+                    <h2 class="text-lg font-bold text-[#3c2a21] dark:text-amber-400 flex items-center gap-2">
+                        ☕ Billing Desk Items
+                    </h2>
+                    <button onclick="addNewRow()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-1 cursor-pointer transition">
+                        ➕ Add Item
+                    </button>
+                </div>
+
+                <!-- Transaction Matrix -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[650px]">
+                        <thead>
+                            <tr class="border-b border-gray-200 dark:border-gray-700 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase bg-gray-50 dark:bg-gray-900/50">
+                                <th class="p-3 w-3/12">Category</th>
+                                <th class="p-3 w-3/12">Item Name</th>
+                                <th class="p-3 w-2/12 text-center">Size</th>
+                                <th class="p-3 w-1/12 text-center">Qty</th>
+                                <th class="p-3 w-1/12 text-right">Price</th>
+                                <th class="p-3 w-1/12 text-right">Total</th>
+                                <th class="p-3 w-1/12 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invoiceTableBody">
+                            <!-- Dynamic cascading menu nodes will render here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- System Discounts Modifier Section -->
+                <div class="pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-end gap-4 text-right">
+                    <div class="w-44">
+                        <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Apply Discount (₹)</label>
+                        <input type="number" id="discountInput" oninput="updatePreview()" placeholder="0" min="0" class="w-full text-right px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent dark:text-white focus:outline-none focus:ring-1 focus:ring-amber-700">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Column: 80mm Thermal Virtual Paper Canvas Sheet -->
+        <section class="lg:col-span-4 space-y-6">
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-xs border border-gray-100 dark:border-gray-700 flex flex-col h-full">
+                <h2 class="text-lg font-bold text-[#3c2a21] dark:text-amber-400 border-b border-gray-100 dark:border-gray-700 pb-2 mb-4 flex items-center gap-2">
+                    📄 Live 80mm Receipt Print View
+                </h2>
+                
+                <!-- 80mm Emulator Shell Box -->
+                <div class="bg-gray-100 dark:bg-gray-900 p-3 rounded-xl flex-1 flex justify-center items-start overflow-y-auto max-h-[520px]">
+                    <div id="receiptFrame" class="bg-white text-black p-4 w-[80mm] shadow-sm font-mono text-xs leading-tight">
+                        <!-- Bound dynamically via UI rendering engines -->
+                    </div>
+                </div>
+
+                <!-- Control Execution Cluster -->
+                <div class="mt-4 space-y-2">
+                    <button onclick="printThermalReceipt()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 shadow-sm transition cursor-pointer">
+                        🖨️ Print Bill (ESC/POS)
+                    </button>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="exportAsPDF()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 rounded-lg font-medium text-xs transition cursor-pointer">
+                            📥 Save File PDF
+                        </button>
+                        <button onclick="clearCurrentForm()" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 text-gray-700 py-2 px-3 rounded-lg font-medium text-xs transition cursor-pointer">
+                            🔄 Reset Workspace
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Persistent Registry Ledger Log Board -->
+        <section class="lg:col-span-12 border-t border-gray-200 dark:border-gray-700 pt-6">
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-xs border border-gray-100 dark:border-gray-700">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-100 dark:border-gray-700 pb-4 mb-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-[#3c2a21] dark:text-amber-400">📜 Historic Bills Database Table</h2>
+                        <p class="text-xs text-gray-500">Maintains and indexes the last 100 system receipts within LocalStorage</p>
+                    </div>
+                    <div class="w-full md:w-80 relative">
+                        <input type="text" id="searchInput" oninput="renderHistoryTable()" placeholder="🔍 Search by Mobile Number..." class="w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm bg-transparent dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-700">
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-gray-200 dark:border-gray-700 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase bg-gray-50 dark:bg-gray-900/50">
+                                <th class="p-3">Bill Number</th>
+                                <th class="p-3">Timestamp Date</th>
+                                <th class="p-3">Customer Profile</th>
+                                <th class="p-3 text-right">Items Snapshot</th>
+                                <th class="p-3 text-right">Total (₹)</th>
+                                <th class="p-3 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody" class="divide-y divide-gray-100 dark:divide-gray-700 text-sm">
+                            <!-- Populated dynamically via state-machine parsing loops -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Invisible Printing Portals Mirror Hook for clean page targeting layout updates -->
+    <div id="printRenderingWrapper" class="print-only"></div>
+
+    <!-- Application Script Engine Engine Layer -->
+    <script>
+        // Inbuilt Coffee House Master Menu Record Database
+        const menuData = {
+            "Classic Cold Brew":[
+                {"name":"Espresso","R":180},
+                {"name":"Americano","R":220,"M":240,"L":270},
+                {"name":"Cappuccino","R":230,"M":250,"L":280},
+                {"name":"Flat White","R":240,"M":260,"L":290},
+                {"name":"Latte","R":240,"M":260,"L":290},
+                {"name":"Cafe Mocha","R":290,"M":320,"L":370},
+                {"name":"Sea Salt Mocha","R":300,"M":330,"L":380},
+                {"name":"Caramel Macchiato","R":310,"M":340,"L":390}
+            ],
+            "Cold Coffee":[
+                {"name":"Classic Cold Coffee","R":275,"M":315,"L":360},
+                {"name":"Hazelnut Cold Coffee","R":325,"M":375,"L":430},
+                {"name":"Toffeenut Cold Coffee","R":360,"M":415,"L":485},
+                {"name":"Caramel Cold Coffee","R":315,"M":360,"L":410}
+            ],
+            "Iced Latte":[
+                {"name":"Lemon Ice Tea","R":240,"M":265,"L":300},
+                {"name":"Peach Ice Tea","R":270,"M":300,"L":330},
+                {"name":"Passion Ice Tea","R":270,"M":300,"L":330},
+                {"name":"Strawberry Ice Tea","R":270,"M":300,"L":330}
+            ],
+            "Hot Chocolate":[
+                {"name":"Dark Hot Chocolate","R":235,"M":260,"L":290},
+                {"name":"Oreo Hot Chocolate","R":245,"M":270,"L":300}
+            ],
+            "Ethiopia Coffee House Speciality":[
+                {"name":"Sea Salt Caramel Iced Americano","R":300,"M":330,"L":380},
+                {"name":"Iced Espresso Shake","R":290,"M":320,"L":370},
+                {"name":"Mocha Choco Chip Cold Coffee","R":335,"M":385,"L":400},
+                {"name":"Hot Spanish Latte","R":300,"M":330,"L":380},
+                {"name":"Affogato","R":290}
+            ],
+            "Cold Brew & Iced Coffee":[
+                {"name":"Classic Cold Brew","R":270,"M":300,"L":320},
+                {"name":"Espresso with Ginger Ale & Tonic Water","R":270,"M":300,"L":320},
+                {"name":"Vietnamese Iced Coffee","R":270,"M":290,"L":310},
+                {"name":"Salted Coffee Float","R":290,"M":310,"L":330},
+                {"name":"Iced Latte","R":260,"M":280,"L":300},
+                {"name":"Iced Americano","R":260,"M":280,"L":300},
+                {"name":"Iced Mocha","R":270,"M":280,"L":300}
+            ],
+            "Boba Ice Tea":[
+                {"name":"Blueberry Boba Ice Tea","R":320,"M":350,"L":380},
+                {"name":"Strawberry Boba Ice Tea","R":320,"M":350,"L":380},
+                {"name":"Peach Boba Ice Tea","R":320,"M":350,"L":380},
+                {"name":"Lemon Boba Ice Tea","R":290,"M":320,"L":350}
+            ],
+            "Fusion Sides":[
+                {"name":"Korean Cream Cheese Bun","price":199},
+                {"name":"Crinkle Peri Peri Fries","price":199},
+                {"name":"Veggie Pizza Pockets (6pcs)","price":229},
+                {"name":"Pizza Canapes (4pcs)","price":239},
+                {"name":"Chaat Style Makhana Bhel","price":249},
+                {"name":"Spinach Cheese Corn Tarts (4pcs)","price":249},
+                {"name":"Spicy Paneer Fingers (6pcs)","price":249},
+                {"name":"Maggi Cheese Balls (5pcs)","price":249},
+                {"name":"Avocado Sev Puri","price":249},
+                {"name":"Crispy Cajun Onion Rings (8pcs)","price":259},
+                {"name":"Beetroot Tikki (5pcs)","price":259},
+                {"name":"Lebanese Falafel Kebabs (6pcs)","price":269},
+                {"name":"Beetroot Hummus & Peta Bread","price":279}
+            ],
+            "Healthy Rolls Veg":[
+                {"name":"Exotic Pesto Wrap Veg","price":199},
+                {"name":"Mushroom Cream Cheese Wrap","price":229},
+                {"name":"Avocado Guacamole & Feta Cheese Wrap","price":229},
+                {"name":"Paneer Tikka Avocado Wrap","price":239},
+                {"name":"Cottage Cheese Pesto Protein Wrap","price":239}
+            ],
+            "Panini Grilled":[
+                {"name":"Italian Exotic Pesto Delight","price":199},
+                {"name":"Paneer Bhurji Grilled Sandwich","price":229},
+                {"name":"Paneer Tikka Grilled Sandwich","price":239},
+                {"name":"Paneer Popeye Pesto Sandwich","price":239}
+            ]
+        };
+
+        // System Core State Containers 
+        let activeBillItems = [];
+        let runningBillNumber = 1;
+        let billsDatabase = [];
+
+        window.onload = function() {
+            initializeDatabase();
+            startLiveClock();
+            clearCurrentForm();
+            if (localStorage.getItem('ethiopia_dark_mode') === 'true') {
+                document.documentElement.classList.add('dark');
+                document.getElementById('bodyNode').classList.add('bg-gray-900', 'text-white');
+            }
+        };
+
+        function startLiveClock() {
+            setInterval(() => {
+                const now = new Date();
+                document.getElementById('liveClock').innerText = now.toLocaleTimeString('en-US', { hour12: true });
+            }, 1000);
+        }
+
+        function initializeDatabase() {
+            if (localStorage.getItem('ech_bill_counter')) {
+                runningBillNumber = parseInt(localStorage.getItem('ech_bill_counter'));
+            } else {
+                localStorage.setItem('ech_bill_counter', runningBillNumber);
+            }
+
+            if (localStorage.getItem('ech_bills_history')) {
+                billsDatabase = JSON.parse(localStorage.getItem('ech_bills_history'));
+            } else {
+                localStorage.setItem('ech_bills_history', JSON.stringify([]));
+            }
+            document.getElementById('billNoDisplay').innerText = `ECH-${String(runningBillNumber).padStart(6, '0')}`;
+            renderHistoryTable();
+        }
+
+        function clearCurrentForm() {
+            document.getElementById('custName').value = '';
+            document.getElementById('custMobile').value = '';
+            document.getElementById('discountInput').value = '';
+            activeBillItems = [];
+            addNewRow();
+            updatePreview();
+        }
+
+        function addNewRow() {
+            const currentId = Date.now() + Math.random();
+            activeBillItems.push({
+                id: currentId,
+                category: '',
+                name: '',
+                size: '',
+                qty: 1,
+                price: 0,
+                total: 0
+            });
+            renderFormRows();
+            updatePreview();
+        }
+
+        function removeRow(id) {
+            if (activeBillItems.length <= 1) {
+                activeBillItems = [{ id: Date.now(), category: '', name: '', size: '', qty: 1, price: 0, total: 0 }];
+            } else {
+                activeBillItems = activeBillItems.filter(item => item.id !== id);
+            }
+            renderFormRows();
+            updatePreview();
+        }
+
+        function handleCategoryChange(id, categoryValue) {
+            const index = activeBillItems.findIndex(item => item.id === id);
+            if (index !== -1) {
+                activeBillItems[index].category = categoryValue;
+                activeBillItems[index].name = '';
+                activeBillItems[index].size = '';
+                activeBillItems[index].price = 0;
+                activeBillItems[index].total = 0;
+                
+                renderFormRows();
+                updatePreview();
+            }
+        }
+
+        function handleItemChange(id, itemNameValue) {
+            const index = activeBillItems.findIndex(item => item.id === id);
+            if (index !== -1) {
+                const category = activeBillItems[index].category;
+                const matchItem = menuData[category].find(i => i.name === itemNameValue);
+                
+                activeBillItems[index].name = itemNameValue;
+                
+                if (matchItem) {
+                    if ('price' in matchItem) {
+                        // Standard non-sized items flat price assignment block
+                        activeBillItems[index].size = '-';
+                        activeBillItems[index].price = matchItem.price;
+                    } else {
+                        // Sized variant evaluation routing configuration block
+                        if (matchItem.R && !matchItem.M && !matchItem.L) {
+                            activeBillItems[index].size = 'R';
+                            activeBillItems[index].price = matchItem.R;
+                        } else {
+                            // Defaults allocation to let user explicitly choose variation
+                            activeBillItems[index].size = 'R';
+                            activeBillItems[index].price = matchItem.R || 0;
+                        }
+                    }
+                }
+                activeBillItems[index].total = activeBillItems[index].qty * activeBillItems[index].price;
+                renderFormRows();
+                updatePreview();
+            }
+        }
+
+        function handleSizeChange(id, sizeValue) {
+            const index = activeBillItems.findIndex(item => item.id === id);
+            if (index !== -1) {
+                const itemObj = activeBillItems[index];
+                const matchItem = menuData[itemObj.category].find(i => i.name === itemObj.name);
+                
+                itemObj.size = sizeValue;
+                if (matchItem && sizeValue in matchItem) {
+                    itemObj.price = matchItem[sizeValue];
+                }
+                itemObj.total = itemObj.qty * itemObj.price;
+                renderFormRows();
+                updatePreview();
+            }
+        }
+
+        function handleQtyChange(id, qtyValue) {
+            const index = activeBillItems.findIndex(item => item.id === id);
+            if (index !== -1) {
+                activeBillItems[index].qty = parseInt(qtyValue) || 1;
+                activeBillItems[index].total = activeBillItems[index].qty * activeBillItems[index].price;
+                
+                document.getElementById(`total-${id}`).innerText = `₹${activeBillItems[index].total.toFixed(2)}`;
+                updatePreview();
+            }
+        }
+
+        function renderFormRows() {
+            const tbody = document.getElementById('invoiceTableBody');
+            tbody.innerHTML = '';
+
+            activeBillItems.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50/50 dark:hover:bg-gray-900/30 text-xs";
+
+                // Generate Category options 
+                let catOptions = `<option value="">-- Select Category --</option>`;
+                Object.keys(menuData).forEach(cat => {
+                    catOptions += `<option value="${cat}" ${item.category === cat ? 'selected' : ''}>${cat}</option>`;
+                });
+
+                // Generate Items options conditional to Category value mapping array definitions
+                let itemOptions = `<option value="">-- Select Item --</option>`;
+                if (item.category && menuData[item.category]) {
+                    menuData[item.category].forEach(i => {
+                        itemOptions += `<option value="${i.name}" ${item.name === i.name ? 'selected' : ''}>${i.name}</option>`;
+                    });
+                }
+
+                // Generate Size options conditional block tracking properties assignment
+                let sizeOptionsHTML = `<option value="-">-</option>`;
+                if (item.category && item.name) {
+                    const matchedMenuObj = menuData[item.category].find(i => i.name === item.name);
+                    if (matchedMenuObj && !('price' in matchedMenuObj)) {
+                        sizeOptionsHTML = '';
+                        if (matchedMenuObj.R) sizeOptionsHTML += `<option value="R" ${item.size === 'R' ? 'selected' : ''}>R</option>`;
+                        if (matchedMenuObj.M) sizeOptionsHTML += `<option value="M" ${item.size === 'M' ? 'selected' : ''}>M</option>`;
+                        if (matchedMenuObj.L) sizeOptionsHTML += `<option value="L" ${item.size === 'L' ? 'selected' : ''}>L</option>`;
+                    }
+                }
+
+                tr.innerHTML = `
+                    <td class="p-2">
+                        <select onchange="handleCategoryChange(${item.id}, this.value)" class="w-full px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent dark:text-white focus:outline-none">
+                            ${catOptions}
+                        </select>
+                    </td>
+                    <td class="p-2">
+                        <select onchange="handleItemChange(${item.id}, this.value)" ${!item.category ? 'disabled' : ''} class="w-full px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent dark:text-white focus:outline-none disabled:opacity-40">
+                            ${itemOptions}
+                        </select>
+                    </td>
+                    <td class="p-2 text-center">
+                        <select onchange="handleSizeChange(${item.id}, this.value)" ${!item.name || sizeOptionsHTML === '<option value="-">-</option>' ? 'disabled' : ''} class="w-full max-w-[70px] mx-auto px-1 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent text-center dark:text-white focus:outline-none disabled:opacity-40">
+                            ${sizeOptionsHTML}
+                        </select>
+                    </td>
+                    <td class="p-2 text-center">
+                        <input type="number" value="${item.qty}" min="1" oninput="handleQtyChange(${item.id}, this.value)" ${!item.name ? 'disabled' : ''} class="w-14 text-center px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent dark:text-white focus:outline-none disabled:opacity-40">
+                    </td>
+                    <td class="p-2 text-right font-mono text-gray-600 dark:text-gray-300">
+                        ₹${item.price.toFixed(2)}
+                    </td>
+                    <td class="p-2 text-right font-mono font-bold text-gray-900 dark:text-white" id="total-${item.id}">
+                        ₹${item.total.toFixed(2)}
+                    </td>
+                    <td class="p-2 text-center">
+                        <button onclick="removeRow(${item.id})" class="text-red-500 hover:text-red-700 p-1 rounded font-medium transition cursor-pointer">❌</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function computeCalculations() {
+            let subtotal = 0;
+            activeBillItems.forEach(item => {
+                subtotal += item.total;
+            });
+            const discount = parseFloat(document.getElementById('discountInput').value) || 0;
+            const grandTotal = Math.max(0, subtotal - discount);
+            
+            return { subtotal, discount, grandTotal };
+        }
+
+        function generateReceiptHTML(billNumber, dateStr, timeStr, customerName, customerMobile, calculationsObj, itemsArr) {
+            let itemsRowsHTML = '';
+            itemsArr.forEach(item => {
+                if(!item.name) return; 
+                const sizeLabel = item.size && item.size !== '-' ? `(${item.size})` : '';
+                itemsRowsHTML += `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                        <div style="max-width: 55%; word-break: break-word;">${item.name} ${sizeLabel}</div>
+                        <div>${item.qty} x ${item.price.toFixed(0)}</div>
+                        <div style="min-width: 65px; text-align: right;">₹${item.total.toFixed(2)}</div>
+                    </div>
+                `;
+            });
+
+            return `
+                <div class="receipt-container">
+                    <div style="font-size: 15px; font-weight: bold; text-align: center; letter-spacing: 0.5px; text-transform: uppercase;">ETHIOPIA COFFEE HOUSE</div>
+                    <div style="font-size: 11px; text-align: center;">Cafe no-06, next to SBI Bank</div>
+                    <div style="font-size: 11px; text-align: center;">Below Metro Station, Chakala</div>
+                    <div style="font-size: 11px; text-align: center;">J B Nagar, Andheri East</div>
+                    <div style="font-size: 11px; text-align: center; margin-bottom: 2px;">Mumbai, Maharashtra 400059</div>
+                    
+                    <div class="receipt-border"></div>
+                    
+                    <div style="font-size: 11px; space-y: 1px;">
+                        <div><b>Bill No :</b> ${billNumber}</div>
+                        <div><b>Date    :</b> ${dateStr}</div>
+                        <div><b>Time    :</b> ${timeStr}</div>
+                        <div><b>Customer:</b> ${customerName || 'Walk-in Customer'}</div>
+                        <div><b>Mobile  :</b> ${customerMobile || '9876543210'}</div>
+                    </div>
+                    
+                    <div class="receipt-border"></div>
+                    
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 11px; margin-bottom: 2px;">
+                        <span style="width: 50%; text-align: left;">Item</span>
+                        <span style="width: 20%; text-align: center;">Qty</span>
+                        <span style="width: 30%; text-align: right;">Amt</span>
+                    </div>
+                    
+                    <div class="receipt-border"></div>
+                    
+                    <div style="font-size: 11px;">
+                        ${itemsRowsHTML || '<div style="text-align:center; padding:4px;">No items selected</div>'}
+                    </div>
+                    
+                    <div class="receipt-border"></div>
+                    
+                    <div style="text-align: right; font-size: 11px; line-height: 1.4;">
+                        <div>Subtotal: ₹${calculationsObj.subtotal.toFixed(2)}</div>
+                        ${calculationsObj.discount > 0 ? `<div>Discount: -₹${calculationsObj.discount.toFixed(2)}</div>` : ''}
+                        <div style="font-size: 13px; font-weight: bold; margin-top: 4px; border-top: 1px dashed #000; padding-top: 4px; text-align: right;">
+                            TOTAL AMOUNT: ₹${calculationsObj.grandTotal.toFixed(2)}
+                        </div>
+                    </div>
+                    
+                    <div class="receipt-border"></div>
+                    
+                    <div style="font-size: 11px; text-align: center; margin-top: 4px; font-style: italic;">No GST Applicable</div>
+                    <div style="font-size: 11px; font-weight: bold; text-align: center; margin: 4px 0;">Thank You! Visit Again ☕</div>
+                    <div style="font-size: 10px; text-align: center; opacity: 0.8; text-transform: uppercase;">ETHIOPIA COFFEE HOUSE</div>
+                </div>
+            `;
+        }
+
+        function updatePreview() {
+            const calcs = computeCalculations();
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-GB'); 
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            
+            const currentBillFormatted = `ECH-${String(runningBillNumber).padStart(6, '0')}`;
+            const name = document.getElementById('custName').value;
+            const mobile = document.getElementById('custMobile').value;
+
+            const htmlPayload = generateReceiptHTML(currentBillFormatted, dateStr, timeStr, name, mobile, calcs, activeBillItems);
+            document.getElementById('receiptFrame').innerHTML = htmlPayload;
+        }
+
+        function printThermalReceipt() {
+            const validItems = activeBillItems.filter(i => i.name.trim() !== '');
+            if(validItems.length === 0) {
+                alert('⚠️ Cannot print empty bill. Please assign a valid menu selection first.');
+                return;
+            }
+
+            const calcs = computeCalculations();
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-GB');
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            const currentBillFormatted = `ECH-${String(runningBillNumber).padStart(6, '0')}`;
+            const name = document.getElementById('custName').value || 'Walk-in Customer';
+            const mobile = document.getElementById('custMobile').value || '9876543210';
+
+            // Save transaction record to browser history array
+            const transactionRecord = {
+                billNo: currentBillFormatted,
+                timestamp: `${dateStr} ${timeStr}`,
+                customerName: name,
+                customerMobile: mobile,
+                calculations: calcs,
+                items: validItems
+            };
+
+            billsDatabase.unshift(transactionRecord); 
+            if(billsDatabase.length > 100) {
+                billsDatabase.pop(); 
+            }
+            localStorage.setItem('ech_bills_history', JSON.stringify(billsDatabase));
+
+            // Up-tick bill numerical token indices
+            runningBillNumber++;
+            localStorage.setItem('ech_bill_counter', runningBillNumber);
+            document.getElementById('billNoDisplay').innerText = `ECH-${String(runningBillNumber).padStart(6, '0')}`;
+
+            renderHistoryTable();
+
+            // Inject targeted markup into pure structural print mirror shell portal
+            const printWrapper = document.getElementById('printRenderingWrapper');
+            printWrapper.innerHTML = generateReceiptHTML(currentBillFormatted, dateStr, timeStr, name, mobile, calcs, validItems);
+
+            // Open window hardware print driver context layout instances
+            window.print();
+            clearCurrentForm();
+        }
+
+        function exportAsPDF() {
+            const previewEl = document.getElementById('receiptFrame');
+            const opt = {
+                margin:       0.1,
+                filename:     `ETHIOPIA_POS_${document.getElementById('billNoDisplay').innerText}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, backgroundColor: '#ffffff' },
+                jsPDF:        { unit: 'in', format: [3.15, 6.5], orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(previewEl).save();
+        }
+
+        function renderHistoryTable() {
+            const searchToken = document.getElementById('searchInput').value.trim();
+            const tbody = document.getElementById('historyTableBody');
+            tbody.innerHTML = '';
+
+            const itemsToRender = billsDatabase.filter(bill => {
+                if(!searchToken) return true;
+                return bill.customerMobile.includes(searchToken);
+            });
+
+            if(itemsToRender.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-400 italic">No matching historic transaction logs registered.</td></tr>`;
+                return;
+            }
+
+            itemsToRender.forEach(bill => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-gray-50 dark:hover:bg-gray-900/40 text-xs text-gray-700 dark:text-gray-300 transition-colors";
+                
+                const itemsSummarizedList = bill.items.map(i => `${i.name}${i.size && i.size !== '-'? `(${i.size})`:''}[${i.qty}]`).join(', ');
+
+                tr.innerHTML = `
+                    <td class="p-3 font-mono font-bold text-amber-900 dark:text-amber-400">${bill.billNo}</td>
+                    <td class="p-3 text-gray-500 whitespace-nowrap">${bill.timestamp}</td>
+                    <td class="p-3">
+                        <div class="font-medium text-gray-900 dark:text-white">${bill.customerName}</div>
+                        <div class="text-[11px] text-gray-400">${bill.customerMobile}</div>
+                    </td>
+                    <td class="p-3 text-right max-w-xs truncate" title="${itemsSummarizedList}">${itemsSummarizedList}</td>
+                    <td class="p-3 text-right font-mono font-bold text-gray-900 dark:text-white">₹${bill.calculations.grandTotal.toFixed(2)}</td>
+                    <td class="p-3 text-center">
+                        <button onclick="reprintPastWithId('${bill.billNo}')" class="bg-gray-100 dark:bg-gray-700 hover:bg-amber-100 dark:hover:bg-amber-950 px-2 py-1 rounded text-gray-600 dark:text-gray-300 hover:text-amber-900 font-semibold transition text-[11px] cursor-pointer">
+                            🖨️ Reprint
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function reprintPastWithId(targetBillNo) {
+            const historyMatch = billsDatabase.find(b => b.billNo === targetBillNo);
+            if(historyMatch) {
+                const parts = historyMatch.timestamp.split(' ');
+                const dateStr = parts[0];
+                const timeStr = parts.slice(1).join(' ');
+
+                const printWrapper = document.getElementById('printRenderingWrapper');
+                printWrapper.innerHTML = generateReceiptHTML(
+                    historyMatch.billNo, 
+                    dateStr, 
+                    timeStr, 
+                    historyMatch.customerName, 
+                    historyMatch.customerMobile, 
+                    historyMatch.calculations, 
+                    historyMatch.items
+                );
+                window.print();
+            }
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            const bodyNode = document.getElementById('bodyNode');
+            if (isDark) {
+                bodyNode.classList.add('bg-gray-900', 'text-white');
+                localStorage.setItem('ethiopia_dark_mode', 'true');
+            } else {
+                bodyNode.classList.remove('bg-gray-900', 'text-white');
+                localStorage.setItem('ethiopia_dark_mode', 'false');
+            }
+        }
+    </script>
+</body>
+</html>
