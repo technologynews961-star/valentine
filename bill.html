@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETHIOPIA COFFEE HOUSE - Premium POS Terminal</title>
-    <!-- Embedded self-contained print & styling setup. No external dependencies required -->
     <style>
         :root {
             --bg-window: #f1f5f9;
@@ -94,11 +93,10 @@
             letter-spacing: 0.3px;
         }
 
-        /* Enhanced Larger Sizing for Data Filling Columns */
         input[type="text"], input[type="tel"], input[type="number"], select {
             width: 100%;
-            padding: 14px 16px; /* Increased padding for better visibility and ergonomics */
-            font-size: 16px;    /* Larger clear text readability */
+            padding: 14px 16px;
+            font-size: 16px;
             font-weight: 600;
             border: 2px solid var(--border-subtle);
             border-radius: 6px;
@@ -129,18 +127,11 @@
             cursor: pointer;
         }
 
-        .radio-label input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
         .conditional-field {
             display: none;
             margin-top: 10px;
         }
 
-        /* System Action Buttons */
         .btn {
             display: flex;
             align-items: center;
@@ -271,6 +262,27 @@
             color: var(--bg-card);
         }
 
+        /* Software Brand Logo Alignment */
+        .software-logo-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: var(--coffee-deep);
+            color: white;
+            padding: 15px 20px;
+            border: 2px solid var(--border-primary);
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .software-logo-header img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
         /* ----------------------------------------------------
            Strict 80mm Dot-Matrix Layout Frame Engine
         ---------------------------------------------------- */
@@ -294,6 +306,19 @@
 
         .receipt-center {
             text-align: center;
+        }
+
+        .receipt-logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 6px;
+        }
+
+        .receipt-logo {
+            width: 55px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .receipt-header-title {
@@ -363,7 +388,6 @@
             display: none;
         }
 
-        /* Print Override Hooks */
         @media print {
             @page {
                 size: 80mm auto;
@@ -390,20 +414,29 @@
             }
         }
     </style>
-    <!-- Native self-contained client-side canvas snapshot tool for clean PDF conversion checks -->
+    <!-- Native HTML-to-Canvas Engine for pristine local PDF conversions -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
+    <!-- Software Branding Header Block -->
+    <div class="software-logo-header no-print">
+        <img src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780915022/WhatsApp_Image_2026-06-08_at_4.04.17_PM_cggn54.jpg" alt="Ethiopia Coffee House Logo">
+        <div>
+            <h1 style="font-size: 22px; font-weight: 900; tracking-wide; text-transform: uppercase;">ETHIOPIA COFFEE HOUSE</h1>
+            <p style="font-size: 12px; color: #cbd5e1; font-weight: 500;">Enterprise Billing Management Suite v4.0</p>
+        </div>
+    </div>
+
     <div class="pos-container no-print">
         
-        <!-- Left Side: Invoice Entry Configurations -->
+        <!-- Left Side: Interactive Workspace Configurations -->
         <div style="display: flex; flex-direction: column; gap: 20px;">
             
-            <!-- Customer Profiler Module -->
+            <!-- Customer Module -->
             <div class="panel">
                 <div class="panel-title">
-                    <span>👤 Customer Details</span>
+                    <span>👤 Customer Information</span>
                     <span id="screenBillId" style="font-family: monospace; font-size: 15px; font-weight: 900;">ECH-000001</span>
                 </div>
                 <div class="form-row">
@@ -418,27 +451,27 @@
                 </div>
             </div>
 
-            <!-- Core Cart Selection Console -->
+            <!-- Cart Selection Module -->
             <div class="panel">
-                <div class="panel-title">🛒 Add Menu Items to Receipt</div>
+                <div class="panel-title">🛒 Catalog Checkout Intake</div>
                 
                 <div class="form-row" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
                     <div class="form-group">
                         <label>Category</label>
                         <select id="itemCategory" onchange="populateItemsMenu()">
-                            <!-- Managed dynamically at system lifecycle execution bounds -->
+                            <!-- Managed dynamically at runtime init lifecycle loops -->
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Item Selection</label>
+                        <label>Item Name</label>
                         <select id="itemName" onchange="evaluateDynamicSizingOptions()">
-                            <!-- Populated cascade handlers mapping -->
+                            <!-- Cascade populator logic handlers -->
                         </select>
                     </div>
                     <div class="form-group" id="sizeSelectionWrapper">
                         <label>Size Variant</label>
                         <select id="itemSize" onchange="matchDatabasePrice()">
-                            <!-- Adaptive layout size arrays keys tracking -->
+                            <!-- Adaptive layout size metrics dropdown -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -458,7 +491,7 @@
 
                 <button class="btn btn-add" onclick="pushItemToInvoice()">Add Item To Cart</button>
 
-                <!-- Current Data Intake Grid View Wrapper -->
+                <!-- Workspace Datagrid Table view -->
                 <div class="table-wrapper">
                     <table class="pos-table">
                         <thead>
@@ -472,13 +505,13 @@
                             </tr>
                         </thead>
                         <tbody id="cartTableBody">
-                            <!-- Appended dynamically via internal Javascript state layers -->
+                            <!-- Injected programmatically via active local arrays state hooks -->
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Financial Ledger Settlement Panel -->
+            <!-- Settlement Modifier Configuration Module -->
             <div class="panel">
                 <div class="panel-title">💳 Financial Ledger Settlement</div>
                 <div class="form-row">
@@ -508,10 +541,11 @@
             </div>
         </div>
 
-        <!-- Right Side: Live Continuous 80mm Emulator Shell Box -->
+        <!-- Right Side: Continuous 80mm ESC-POS Virtual Paper Sheet Live Preview -->
         <div class="panel" style="display: flex; flex-direction: column;">
             <div class="panel-title">📋 Live 80mm ESC-POS Digital Mirror</div>
             <div class="preview-box">
+                <!-- Mapped context container displaying immediate live structural preview configurations -->
                 <div id="virtualReceiptEmbed"></div>
             </div>
             <div class="btn-grid">
@@ -524,7 +558,7 @@
             </div>
         </div>
 
-        <!-- Stored Sales Registry History Logs Engine Frame -->
+        <!-- Historic Logs Database Panel -->
         <div class="panel history-section">
             <div class="panel-title">📜 Local Storage Transactional Logs (Up to last 100 receipts)</div>
             <div class="table-wrapper">
@@ -540,18 +574,21 @@
                         </tr>
                     </thead>
                     <tbody id="historyTableLogsBody">
-                        <!-- Populated programmatically inside lifecycle callbacks -->
+                        <!-- Iterated structurally loop mapping -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <!-- Targeted printing container mirror node configuration layer styles -->
+    <!-- Hidden portal wrapper node bound completely to standard layout browser print windows drivers -->
     <div id="printStationContainer" class="print-only"></div>
 
+    <!-- Dedicated Isolated Flash Target Holder Node for html2pdf conversion cycles (avoids blank white sheets rendering errors completely) -->
+    <div id="pdfHeadlessRenderingPortal" style="position: absolute; left: -9999px; top: -9999px; width: 72mm; background: #ffffff;"></div>
+
     <script>
-        // Master Catalog Databank mapping image data sets completely
+        // Immutably structured master pricing database sets completely compiled from menu photo sheets
         const menuDatabase = {
             "Classic Cold Brew": [
                 {"name": "Espresso", "prices": {"R": 180}},
@@ -695,16 +732,16 @@
         let genericLedgerStorageArray = [];
 
         function initSystemLifecycle() {
-            if (localStorage.getItem('ethiopia_pos_idx_v5')) {
-                systemBillIndexCounter = parseInt(localStorage.getItem('ethiopia_pos_idx_v5'));
+            if (localStorage.getItem('ethiopia_pos_idx_v6')) {
+                systemBillIndexCounter = parseInt(localStorage.getItem('ethiopia_pos_idx_v6'));
             } else {
-                localStorage.setItem('ethiopia_pos_idx_v5', systemBillIndexCounter);
+                localStorage.setItem('ethiopia_pos_idx_v6', systemBillIndexCounter);
             }
 
-            if (localStorage.getItem('ethiopia_pos_ledger_v5')) {
-                genericLedgerStorageArray = JSON.parse(localStorage.getItem('ethiopia_pos_ledger_v5'));
+            if (localStorage.getItem('ethiopia_pos_ledger_v6')) {
+                genericLedgerStorageArray = JSON.parse(localStorage.getItem('ethiopia_pos_ledger_v6'));
             } else {
-                localStorage.setItem('ethiopia_pos_ledger_v5', JSON.stringify([]));
+                localStorage.setItem('ethiopia_pos_ledger_v6', JSON.stringify([]));
             }
 
             document.getElementById('screenBillId').innerText = `ECH-${String(systemBillIndexCounter).padStart(6, '0')}`;
@@ -874,7 +911,7 @@
             return { subtotal, discount, grandTotal };
         }
 
-        // Structural HTML Template Layer explicitly styled via <table> columns to guarantee zero text layout shift
+        // Structurally isolated HTML Template engine utilizing cross-origin Cloudinary logo structures
         function createHardwareReceiptHTML(billNo, dateString, timeString, name, mobile, items, financials) {
             let itemLinesBuffer = '';
             items.forEach(item => {
@@ -908,8 +945,13 @@
 
             return `
                 <div class="receipt-body" style="width: 72mm; margin: 0 auto; padding: 1mm; font-family: 'Courier New', Courier, monospace; color: #000000; background-color: #ffffff;">
-                    <!-- Header Branding -->
-                    <div class="receipt-center receipt-header-title" style="font-size: 16px; font-weight: 900;">ETHIOPIA COFFEE HOUSE</div>
+                    <!-- Centered Logo Field Integration -->
+                    <div class="receipt-logo-container">
+                        <img class="receipt-logo" src="https://res.cloudinary.com/duq1f7pvq/image/upload/v1780915022/WhatsApp_Image_2026-06-08_at_4.04.17_PM_cggn54.jpg" alt="Receipt Stamp Logo">
+                    </div>
+                    
+                    <!-- Branding Header Strings -->
+                    <div class="receipt-center receipt-header-title" style="font-size: 16px; font-weight: 900; margin-top: 4px;">ETHIOPIA COFFEE HOUSE</div>
                     <div class="receipt-center receipt-header-sub">Cafe No-06, Next to SBI Bank,</div>
                     <div class="receipt-center receipt-header-sub">Below Metro Station, Chakala,</div>
                     <div class="receipt-center receipt-header-sub">J B Nagar, Andheri East,</div>
@@ -917,7 +959,7 @@
                     
                     <div class="receipt-divider">********************************</div>
                     
-                    <!-- Metadata Identity Grid -->
+                    <!-- Customer Metadata Info Context -->
                     <table class="receipt-meta-table" style="width: 100%; border-collapse: collapse;">
                         <tr><td style="width: 32%; font-weight: bold;">Bill No</td><td>: ${billNo}</td></tr>
                         <tr><td style="font-weight: bold;">Date</td><td>: ${dateString}</td></tr>
@@ -928,7 +970,7 @@
                     
                     <div class="receipt-divider">********************************</div>
                     
-                    <!-- Core Manifest Items Loop -->
+                    <!-- Dynamic Matrix Table Loop Items -->
                     <table class="receipt-items-table" style="width: 100%; border-collapse: collapse;">
                         <thead>
                             <tr style="border-bottom: 1px dashed #000000;">
@@ -944,7 +986,7 @@
                     
                     <div class="receipt-divider">================================</div>
                     
-                    <!-- Accounting Computations Rows -->
+                    <!-- Financial Summary Accounting Elements -->
                     <table class="receipt-totals-table" style="width: 100%; border-collapse: collapse;">
                         <tr>
                             <td style="text-align: right; width: 44mm;">Subtotal :</td>
@@ -968,7 +1010,7 @@
                     
                     <div class="receipt-divider">--------------------------------</div>
                     
-                    <!-- Footer Info Cluster -->
+                    <!-- Regulatory Footers Strings -->
                     <div class="receipt-center receipt-footer-text" style="font-style: italic; font-size: 12px;">No GST Applicable</div>
                     <div class="receipt-center receipt-footer-text" style="font-size: 12px;"><b>${trackingPaymentText}</b></div>
                     <div class="receipt-center receipt-footer-text" style="margin: 5px 0; font-size: 13px; font-weight: bold;">Thank You! Visit Again ☕</div>
@@ -1001,7 +1043,7 @@
             };
 
             const completedHTML = createHardwareReceiptHTML(currentBillFormatted, dStr, tStr, name, mobile, currentActiveItems, financials);
-            document.getElementById('virtualReceiptEmbed').innerHTML = compiledHTML;
+            document.getElementById('virtualReceiptEmbed').innerHTML = completedHTML;
         }
 
         function executeBillPrintPipeline(actionType) {
@@ -1032,7 +1074,6 @@
                 cardDigits: cardDigits
             };
 
-            // Commit record array payload map to storage arrays
             const transactionRecordObj = {
                 billNo: currentBillFormatted,
                 timestamp: `${dStr} ${tStr}`,
@@ -1044,34 +1085,36 @@
 
             genericLedgerStorageArray.unshift(transactionRecordObj);
             if(genericLedgerStorageArray.length > 100) genericLedgerStorageArray.pop();
-            localStorage.setItem('ethiopia_pos_ledger_v5', JSON.stringify(genericLedgerStorageArray));
+            localStorage.setItem('ethiopia_pos_ledger_v6', JSON.stringify(genericLedgerStorageArray));
 
-            // Up-tick index markers controls tokens counters
             systemBillIndexCounter++;
-            localStorage.setItem('ethiopia_pos_idx_v5', systemBillIndexCounter);
+            localStorage.setItem('ethiopia_pos_idx_v6', systemBillIndexCounter);
             document.getElementById('screenBillId').innerText = `ECH-${String(systemBillIndexCounter).padStart(6, '0')}`;
 
             renderHistoryTable();
 
-            // Direct assignment routing target payload mapping
-            const stationPortal = document.getElementById('printStationContainer');
             const targetReceiptHTML = createHardwareReceiptHTML(currentBillFormatted, dStr, tStr, name, mobile, verifiedActiveItems, financials);
-            stationPortal.innerHTML = targetReceiptHTML;
-
+            
             if (actionType === 'print') {
+                const stationPortal = document.getElementById('printStationContainer');
+                stationPortal.innerHTML = targetReceiptHTML;
                 window.print();
                 clearActiveBillWorkspace();
             } else if (actionType === 'pdf') {
-                // Execute native client-side PDF synthesis snapshot pipeline
-                const targetElement = document.getElementById('virtualReceiptEmbed');
+                // Fixed blank page bug: Generate inside a fully visible headless portal context container
+                const pdfContainer = document.getElementById('pdfHeadlessRenderingPortal');
+                pdfContainer.innerHTML = targetReceiptHTML;
+
                 const opt = {
-                    margin: 0.1,
+                    margin: [0.1, 0.1, 0.1, 0.1],
                     filename: `ETHIOPIA_${currentBillFormatted}.pdf`,
                     image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2, backgroundColor: '#ffffff' },
-                    jsPDF: { unit: 'in', format: [3.15, 6.5], orientation: 'portrait' }
+                    html2canvas: { scale: 2, backgroundColor: '#ffffff', useCORS: true },
+                    jsPDF: { unit: 'in', format: [3.15, 6.8], orientation: 'portrait' }
                 };
-                html2pdf().set(opt).from(targetElement).save().then(() => {
+
+                html2pdf().set(opt).from(pdfContainer).save().then(() => {
+                    pdfContainer.innerHTML = '';
                     clearActiveBillWorkspace();
                 });
             }
@@ -1127,20 +1170,21 @@
                 const dStr = parts[0];
                 const tStr = parts.slice(1).join(' ');
 
-                // Synthesize transient temporary node matrix targeted purely for headless canvas captures
-                const hiddenWorkerNode = document.createElement('div');
-                hiddenWorkerNode.innerHTML = createHardwareReceiptHTML(
+                const pdfContainer = document.getElementById('pdfHeadlessRenderingPortal');
+                pdfContainer.innerHTML = createHardwareReceiptHTML(
                     billMatch.billNo, dStr, tStr, billMatch.customerName, billMatch.customerMobile, billMatch.items, billMatch.financials
                 );
                 
                 const opt = {
-                    margin: 0.1,
+                    margin: [0.1, 0.1, 0.1, 0.1],
                     filename: `ETHIOPIA_REPRINT_${billMatch.billNo}.pdf`,
                     image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2, backgroundColor: '#ffffff' },
-                    jsPDF: { unit: 'in', format: [3.15, 6.5], orientation: 'portrait' }
+                    html2canvas: { scale: 2, backgroundColor: '#ffffff', useCORS: true },
+                    jsPDF: { unit: 'in', format: [3.15, 6.8], orientation: 'portrait' }
                 };
-                html2pdf().set(opt).from(hiddenWorkerNode).save();
+                html2pdf().set(opt).from(pdfContainer).save().then(() => {
+                    pdfContainer.innerHTML = '';
+                });
             }
         }
 
